@@ -1,0 +1,6 @@
+{
+    "parent": "block/cube",
+    "textures": {
+        "particle": "jum:blocks/useless_block"
+    }
+}

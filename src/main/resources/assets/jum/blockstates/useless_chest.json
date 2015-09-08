@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=east": { "model": "jum:useless_chest" },
+        "facing=west": { "model": "jum:useless_chest" },
+        "facing=north": { "model": "jum:useless_chest" },
+        "facing=south": { "model": "jum:useless_chest" }
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "variants": {
+        "normal": { "model": "jum:useless_machine" },
+
+    "facing=north": { "model": "jum:useless_machine" },
+    "facing=south": { "model": "jum:useless_machine", "y": 180 },
+    "facing=west":  { "model": "jum:useless_machine", "y": 270 },
+    "facing=east":  { "model": "jum:useless_machine", "y": 90 },
+    "facing=down":  { "model": "jum:useless_machine", "x": 90 },
+    "facing=up":    { "model": "jum:useless_machine", "x": 270 }
+    
+}}

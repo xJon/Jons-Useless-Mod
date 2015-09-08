@@ -1,0 +1,16 @@
+[
+{
+  "modid": "jum",
+  "name": "Jon's Useless Mod",
+  "description": "A useless mod that adds a slew of useless items, blocks, and more!",
+  "version": "0.1.0",
+  "mcversion": "1.8",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Jon"],
+  "credits": "SuperSlime for the useless textures",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

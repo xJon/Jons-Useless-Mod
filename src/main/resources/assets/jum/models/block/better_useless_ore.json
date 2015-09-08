@@ -1,0 +1,6 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+        "all": "jum:blocks/better_useless_ore"
+    }
+}
