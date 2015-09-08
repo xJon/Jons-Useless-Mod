@@ -1,6 +1,5 @@
 Implement: Finish UselessDimension generation
 
-Finish server-side testing
 Finish all textures and sounds:
 - UselessDave sounds
 - UselessBow & UselessArrow textures
