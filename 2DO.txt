@@ -1,0 +1,11 @@
+Implement: Finish UselessDimension generation
+
+Finish server-side testing
+Finish all textures and sounds:
+- UselessDave sounds
+- UselessBow & UselessArrow textures
+- UselessChest texture
+- Useless Tools textures
+- Useless Food texture
+- Useless MultiTool texture
+- Super useless material & super useless block & better useless ore
