@@ -1,8 +1,5 @@
 package xjon.jum.network;
 
-import com.sun.org.apache.xml.internal.security.encryption.Reference;
-import com.sun.org.apache.xml.internal.security.signature.reference.ReferenceSubTreeData;
-
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
