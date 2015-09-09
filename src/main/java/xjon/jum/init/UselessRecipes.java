@@ -29,6 +29,8 @@ public class UselessRecipes {
 		GameRegistry.addShapelessRecipe(new ItemStack(UselessItems.super_useless_material, 9), new ItemStack(UselessBlocks.super_useless_block));
 		
 		GameRegistry.addSmelting(UselessItems.useless_material, new ItemStack(UselessItems.useless_food), 10.0F);
+		GameRegistry.addSmelting(UselessBlocks.useless_ore, new ItemStack(UselessItems.useless_material), 10.0F);
+		GameRegistry.addSmelting(UselessBlocks.super_useless_block, new ItemStack(UselessItems.super_useless_material), 10.0F);
 	}
 	
 }
