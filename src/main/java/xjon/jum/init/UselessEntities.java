@@ -30,7 +30,6 @@ public class UselessEntities {
 		EntityRegistry.registerGlobalEntityID(entityClass, entityName, randomId);
 		EntityRegistry.registerModEntity(entityClass, entityName, randomId, JumCore.instance, 64, 1, true);
 		
-        System.out.println("Registering natural spawns");
 		EntityRegistry.addSpawn(entityClass, 7, 1, 1, EnumCreatureType.CREATURE, allBiomes);
 		
 		createEgg(randomId, solidColor, spotColor);

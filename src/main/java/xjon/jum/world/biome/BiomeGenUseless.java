@@ -5,6 +5,7 @@ import java.util.Random;
 import net.minecraft.block.BlockSand;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
@@ -21,16 +22,16 @@ public class BiomeGenUseless extends BiomeGenBase {
 		super(biomeId);
 		
 		this.setBiomeName("Useless Biome");
+		this.setColor(0xEFAAAA);
 		this.topBlock = Blocks.grass.getDefaultState();
 		this.fillerBlock = Blocks.stone.getDefaultState();
 		this.spawnableCreatureList.clear();
 		this.spawnableMonsterList.clear();
 		this.spawnableWaterCreatureList.clear();
 		this.spawnableCaveCreatureList.clear();
-		this.spawnableCreatureList.add(new SpawnListEntry(EntityUselessDave.class, 5, 1, 3));
-		this.waterColorMultiplier = 53562184;
-		this.setHeight(new Height(0.000001f, 0.5f));
-		
+		this.spawnableCreatureList.add(new SpawnListEntry(EntityUselessDave.class, 8, 1, 3));
+		this.spawnableWaterCreatureList.add(new SpawnListEntry(EntitySquid.class, 5, 1, 4));
+		this.waterColorMultiplier = 53562184;		
 	}
 
 	@Override

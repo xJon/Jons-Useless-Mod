@@ -1,7 +1,6 @@
 Implement: Finish UselessDimension generation
 
 Finish all textures and sounds:
-- UselessDave sounds
 - UselessBow & UselessArrow textures
 - UselessChest texture
 - Useless Tools textures

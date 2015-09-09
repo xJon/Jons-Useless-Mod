@@ -3,6 +3,7 @@ package xjon.jum.world.dimension;
 import java.util.List;
 import java.util.Random;
 
+import net.minecraft.block.BlockFalling;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
@@ -221,7 +222,10 @@ public class ChunkProviderUseless implements IChunkProvider {
 
     @Override
     public void populate(IChunkProvider ichunkprovider, int i, int j) {
-           
+    	BlockFalling.fallInstantly = true;
+    	
+    	BlockFalling.fallInstantly = false;
+    	
     }
 
     @Override
