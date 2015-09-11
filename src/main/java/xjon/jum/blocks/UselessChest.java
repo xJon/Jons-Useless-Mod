@@ -35,20 +35,10 @@ public class UselessChest extends BlockChest {
 		super(chest);
 		setHardness(1.0F);
 		setHarvestLevel("axe", 1);
-		this.setStepSound(this.soundTypeWood);
+		this.setHardness(2.5F).setStepSound(this.soundTypeWood);
 	}
 	
-	public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock)
-    {
-        super.onNeighborBlockChange(worldIn, pos, state, neighborBlock);
-        TileEntity tileentity = worldIn.getTileEntity(pos);
-
-        if (tileentity instanceof TileEntityUselessChest)
-        {
-            tileentity.updateContainingBlockInfo();
-        }
-    }
-	
+	@Override
 	 public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
 	    {
 	        TileEntity tileentity = worldIn.getTileEntity(pos);
@@ -62,64 +52,30 @@ public class UselessChest extends BlockChest {
 	        super.breakBlock(worldIn, pos, state);
 	    }
 	 
+	@Override
 	 public TileEntity createNewTileEntity(World worldIn, int meta)
 	    {
 	        return new TileEntityUselessChest();
 	    }
 	
+	@Override
 	 public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
 	    {
-	        EnumFacing enumfacing = EnumFacing.getHorizontal(MathHelper.floor_double((double)(placer.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3).getOpposite();
-	        state = state.withProperty(FACING, enumfacing);
-	        BlockPos blockpos1 = pos.north();
-	        BlockPos blockpos2 = pos.south();
-	        BlockPos blockpos3 = pos.west();
-	        BlockPos blockpos4 = pos.east();
-	        boolean flag = this == worldIn.getBlockState(blockpos1).getBlock();
-	        boolean flag1 = this == worldIn.getBlockState(blockpos2).getBlock();
-	        boolean flag2 = this == worldIn.getBlockState(blockpos3).getBlock();
-	        boolean flag3 = this == worldIn.getBlockState(blockpos4).getBlock();
+		 EnumFacing enumfacing = EnumFacing.getHorizontal(MathHelper.floor_double(placer.rotationYaw * 4.0F / 360.0F + 0.5D) & 3).getOpposite();
+			state = state.withProperty(FACING, enumfacing);
+			worldIn.setBlockState(pos, state, 3);
 
-	        if (!flag && !flag1 && !flag2 && !flag3)
-	        {
-	            worldIn.setBlockState(pos, state, 3);
-	        }
-	        else if (enumfacing.getAxis() == EnumFacing.Axis.X && (flag || flag1))
-	        {
-	            if (flag)
-	            {
-	                worldIn.setBlockState(blockpos1, state, 3);
-	            }
-	            else
-	            {
-	                worldIn.setBlockState(blockpos2, state, 3);
-	            }
+			TileEntity tileentity = worldIn.getTileEntity(pos);
 
-	            worldIn.setBlockState(pos, state, 3);
-	        }
-	        else if (enumfacing.getAxis() == EnumFacing.Axis.Z && (flag2 || flag3))
-	        {
-	            if (flag2)
-	            {
-	                worldIn.setBlockState(blockpos3, state, 3);
-	            }
-	            else
-	            {
-	                worldIn.setBlockState(blockpos4, state, 3);
-	            }
+			if (tileentity instanceof TileEntityUselessChest)
+			{
+				if (stack.hasDisplayName())
+				{
+					((TileEntityUselessChest) tileentity).setCustomName(stack.getDisplayName());
+				}
 
-	            worldIn.setBlockState(pos, state, 3);
-	        }
-
-	        if (stack.hasDisplayName())
-	        {
-	            TileEntity tileentity = worldIn.getTileEntity(pos);
-
-	            if (tileentity instanceof TileEntityUselessChest)
-	            {
-	                ((TileEntityUselessChest)tileentity).setCustomName(stack.getDisplayName());
-	            }
-	        }
+				((TileEntityUselessChest) tileentity).setChestType(stack.getItemDamage());
+			}
 	    }
 	 
 	 private boolean isOcelotSittingOnChest(World worldIn, BlockPos pos)
@@ -142,11 +98,13 @@ public class UselessChest extends BlockChest {
 	        return true;
 	    }
 
+	 	@Override
 	    public int getComparatorInputOverride(World worldIn, BlockPos pos)
 	    {
 	        return Container.calcRedstoneFromInventory(this.getLockableContainer(worldIn, pos));
 	    }
 
+	 	@Override
 	    public ILockableContainer getLockableContainer(World worldIn, BlockPos pos)
 	    {
 	        TileEntity tileentity = worldIn.getTileEntity(pos);

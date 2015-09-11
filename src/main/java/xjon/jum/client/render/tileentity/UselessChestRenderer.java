@@ -21,10 +21,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class UselessChestRenderer extends TileEntitySpecialRenderer
 {
-    private static final ResourceLocation textureNormalDouble = new ResourceLocation("jum:textures/entity/chest/normal_double.png");
     private static final ResourceLocation textureNormal = new ResourceLocation("jum:textures/entity/chest/normal.png");
     private ModelChest simpleChest = new ModelChest();
-    private ModelChest largeChest = new ModelLargeChest();
 	private RenderManager renderManager;
     private static final String __OBFID = "CL_00000965";
 
@@ -78,7 +76,7 @@ public class UselessChestRenderer extends TileEntitySpecialRenderer
             }
             else
             {
-                modelchest = this.largeChest;
+                modelchest = this.simpleChest;
 
                 if (p_180538_9_ >= 0)
                 {
@@ -89,11 +87,7 @@ public class UselessChestRenderer extends TileEntitySpecialRenderer
                     GlStateManager.translate(0.0625F, 0.0625F, 0.0625F);
                     GlStateManager.matrixMode(5888);
                 }
-                
-                else
-                {
-                    this.bindTexture(textureNormalDouble);
-                }
+        
             }
 
             GlStateManager.pushMatrix();
