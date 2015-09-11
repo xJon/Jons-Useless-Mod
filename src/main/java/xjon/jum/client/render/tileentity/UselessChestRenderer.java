@@ -7,8 +7,10 @@ import xjon.jum.tileentity.TileEntityUselessChest;
 import xjon.jum.util.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.client.model.ModelChest;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.model.ModelLargeChest;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
@@ -19,13 +21,18 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class UselessChestRenderer extends TileEntitySpecialRenderer
 {
-    private static final ResourceLocation textureNormalDouble = new ResourceLocation("textures/entity/chest/normal_double.png");
-    private static final ResourceLocation textureNormal = new ResourceLocation("textures/entity/chest/normal.png");
+    private static final ResourceLocation textureNormalDouble = new ResourceLocation("jum:textures/entity/chest/normal_double.png");
+    private static final ResourceLocation textureNormal = new ResourceLocation("jum:textures/entity/chest/normal.png");
     private ModelChest simpleChest = new ModelChest();
     private ModelChest largeChest = new ModelLargeChest();
+	private RenderManager renderManager;
     private static final String __OBFID = "CL_00000965";
 
-    public void func_180538_a(TileEntityUselessChest p_180538_1_, double p_180538_2_, double p_180538_4_, double p_180538_6_, float p_180538_8_, int p_180538_9_)
+    public UselessChestRenderer(RenderManager renderManager) {
+		this.renderManager = renderManager	;
+	}
+
+	public void func_180538_a(TileEntityUselessChest p_180538_1_, double p_180538_2_, double p_180538_4_, double p_180538_6_, float p_180538_8_, int p_180538_9_)
     {
         int j;
 
@@ -174,6 +181,7 @@ public class UselessChestRenderer extends TileEntitySpecialRenderer
         }
     }
 
+	@Override
     public void renderTileEntityAt(TileEntity p_180535_1_, double posX, double posZ, double p_180535_6_, float p_180535_8_, int p_180535_9_)
     {
         this.func_180538_a((TileEntityUselessChest)p_180535_1_, posX, posZ, p_180535_6_, p_180535_8_, p_180535_9_);

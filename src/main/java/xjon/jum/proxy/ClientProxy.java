@@ -1,12 +1,14 @@
  package xjon.jum.proxy;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import xjon.jum.client.render.ModeledBlockInventoryRenderer;
 import xjon.jum.client.render.item.ItemRendererUselessChest;
 import xjon.jum.client.render.mob.RenderUselessDave;
 import xjon.jum.client.render.tileentity.UselessChestRenderer;
@@ -27,8 +29,10 @@ public class ClientProxy extends CommonProxy {
 		UselessBlocks.registerRenders();
 		UselessItems.registerRenders();
 		
-		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityUselessChest.class, new UselessChestRenderer());
-		MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(UselessBlocks.useless_chest), new ItemRendererUselessChest());
+		
+		TileEntitySpecialRenderer mcr = new UselessChestRenderer(Minecraft.getMinecraft().getRenderManager());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityUselessChest.class, mcr);
+		TileEntityItemStackRenderer.instance = new ModeledBlockInventoryRenderer();
 	}
 	
 }
