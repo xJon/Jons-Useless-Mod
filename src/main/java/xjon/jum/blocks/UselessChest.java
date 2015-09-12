@@ -14,7 +14,6 @@ import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
-import net.minecraft.inventory.InventoryLargeChest;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
@@ -67,16 +66,13 @@ public class UselessChest extends BlockChest {
 
 			TileEntity tileentity = worldIn.getTileEntity(pos);
 
-			if (tileentity instanceof TileEntityUselessChest)
-			{
-				if (stack.hasDisplayName())
-				{
-					((TileEntityUselessChest) tileentity).setCustomName(stack.getDisplayName());
-				}
-
-				((TileEntityUselessChest) tileentity).setChestType(stack.getItemDamage());
-			}
 	    }
+	
+	@Override
+	 public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
+    {
+        
+    }
 	 
 	 private boolean isOcelotSittingOnChest(World worldIn, BlockPos pos)
 	    {
@@ -97,7 +93,7 @@ public class UselessChest extends BlockChest {
 
 	        return true;
 	    }
-
+	 
 	 	@Override
 	    public int getComparatorInputOverride(World worldIn, BlockPos pos)
 	    {
@@ -139,18 +135,6 @@ public class UselessChest extends BlockChest {
 	                        }
 
 	                        TileEntity tileentity1 = worldIn.getTileEntity(blockpos1);
-
-	                        if (tileentity1 instanceof TileEntityUselessChest)
-	                        {
-	                            if (enumfacing != EnumFacing.WEST && enumfacing != EnumFacing.NORTH)
-	                            {
-	                                object = new InventoryLargeChest("Large Useless Chest", (ILockableContainer)object, (TileEntityUselessChest)tileentity1);
-	                            }
-	                            else
-	                            {
-	                                object = new InventoryLargeChest("Large Useless Chest", (TileEntityUselessChest)tileentity1, (ILockableContainer)object);
-	                            }
-	                        }
 	                    }
 	                }
 
