@@ -2,7 +2,9 @@ Implement: Finish UselessDimension generation
 
 Finish all textures and sounds:
 - UselessBow & UselessArrow textures
-- Useless Tools textures
 - Useless Food texture
 - Useless MultiTool texture
 - Super useless block
+
+Change:
+- Useless Material to something more green (like the tools and armo(u)r)
