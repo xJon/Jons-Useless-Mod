@@ -92,7 +92,7 @@ public class TileEntityUselessChest extends TileEntityChest {
             }
         }
     }
-
+	
 	@Override
     public void writeToNBT(NBTTagCompound compound)
     {
@@ -117,7 +117,7 @@ public class TileEntityUselessChest extends TileEntityChest {
             compound.setString("Useless Chest", this.UselessChest);
         }
     }
-    
+	
 	@Override
     public void update()
     {
@@ -141,7 +141,7 @@ public class TileEntityUselessChest extends TileEntityChest {
 				if (entityplayer.openContainer instanceof ContainerChest)
 				{
 					IInventory iinventory = ((ContainerChest) entityplayer.openContainer).getLowerChestInventory();
-
+					
 					if (iinventory == this || iinventory instanceof InventoryLargeChest && ((InventoryLargeChest) iinventory).isPartOfLargeChest(this))
 					{
 						++this.numPlayersUsing;
