@@ -1,5 +1,12 @@
 package xjon.jum.world.dimension;
 
+import static net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.SCATTERED_FEATURE;
+import static net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.ANIMALS;
+import static net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.DUNGEON;
+import static net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.ICE;
+import static net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.LAKE;
+import static net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.LAVA;
+
 import java.util.List;
 import java.util.Random;
 
@@ -10,15 +17,23 @@ import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.IProgressUpdate;
+import net.minecraft.world.ChunkCoordIntPair;
+import net.minecraft.world.SpawnerAnimals;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.ChunkProviderSettings;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.NoiseGeneratorPerlin;
+import net.minecraft.world.gen.feature.WorldGenDungeons;
+import net.minecraft.world.gen.feature.WorldGenLakes;
+import net.minecraft.world.gen.structure.MapGenScatteredFeature;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.ChunkProviderEvent;
+import net.minecraftforge.event.terraingen.PopulateChunkEvent;
+import net.minecraftforge.event.terraingen.TerrainGen;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 
 
@@ -29,12 +44,14 @@ public class ChunkProviderUseless implements IChunkProvider {
     private Random rand;
     private NoiseGeneratorOctaves noiseGen1, noiseGen2, noiseGen3, field_909_n, noiseGen4, noiseGen5, noiseGen6;
     private World worldObj;
+    private ChunkProviderSettings settings;
     private double[] noiseArray, stoneNoise = new double[256];
     private BiomeGenBase[] biomesForGeneration;
     private double[] noise3, noise1, noise2, noise5, noise6;
     private NoiseGeneratorPerlin field_147430_m;
     private int[][] field_914_i = new int[32][32];
     private double[] generatedTemperatures;
+    private MapGenScatteredFeature scatteredFeatureGenerator;
 
     public ChunkProviderUseless(World var1, long var2){
             this.worldObj = var1;
@@ -47,6 +64,10 @@ public class ChunkProviderUseless implements IChunkProvider {
             this.noiseGen4 = new NoiseGeneratorOctaves(this.rand, 4);
             this.noiseGen5 = new NoiseGeneratorOctaves(this.rand, 10);
             this.noiseGen6 = new NoiseGeneratorOctaves(this.rand, 16);
+            this.scatteredFeatureGenerator = new MapGenScatteredFeature();
+            {
+            	scatteredFeatureGenerator = (MapGenScatteredFeature)TerrainGen.getModdedMapGen(scatteredFeatureGenerator, SCATTERED_FEATURE);
+            }
     }
 
     @Override
@@ -223,7 +244,71 @@ public class ChunkProviderUseless implements IChunkProvider {
     @Override
     public void populate(IChunkProvider ichunkprovider, int i, int j) {
     	BlockFalling.fallInstantly = true;
-    	
+    	int k = i * 16;
+        int l = j * 16;
+        BlockPos blockpos = new BlockPos(k, 0, l);
+        BiomeGenBase biomegenbase = this.worldObj.getBiomeGenForCoords(blockpos.add(16, 0, 16));
+        this.rand.setSeed(this.worldObj.getSeed());
+        long i1 = this.rand.nextLong() / 2L * 2L + 1L;
+        long j1 = this.rand.nextLong() / 2L * 2L + 1L;
+        this.rand.setSeed((long)i * i1 + (long)j * j1 ^ this.worldObj.getSeed());
+        boolean flag = false;
+        ChunkCoordIntPair chunkcoordintpair = new ChunkCoordIntPair(i, j);
+        this.scatteredFeatureGenerator.func_175794_a(this.worldObj, this.rand, chunkcoordintpair);
+        MinecraftForge.EVENT_BUS.post(new PopulateChunkEvent.Pre(ichunkprovider, worldObj, rand, i, j, flag));
+       /* int k1;
+        int l1;
+        int i2;
+
+        if (biomegenbase != BiomeGenBase.desert && biomegenbase != BiomeGenBase.desertHills && this.settings.useWaterLakes && !flag && this.rand.nextInt(this.settings.waterLakeChance) == 0
+            && TerrainGen.populate(ichunkprovider, worldObj, rand, i, j, flag, LAKE))
+        {
+            k1 = this.rand.nextInt(16) + 8;
+            l1 = this.rand.nextInt(256);
+            i2 = this.rand.nextInt(16) + 8;
+            (new WorldGenLakes(Blocks.water)).generate(this.worldObj, this.rand, blockpos.add(k1, l1, i2));
+        }
+
+        if (TerrainGen.populate(ichunkprovider, worldObj, rand, i, j, flag, LAVA) && !flag && this.rand.nextInt(this.settings.lavaLakeChance / 10) == 0 && this.settings.useLavaLakes)
+        {
+            k1 = this.rand.nextInt(16) + 8;
+            l1 = this.rand.nextInt(this.rand.nextInt(248) + 8);
+            i2 = this.rand.nextInt(16) + 8;
+
+            if (l1 < 63 || this.rand.nextInt(this.settings.lavaLakeChance / 8) == 0)
+            {
+                (new WorldGenLakes(Blocks.lava)).generate(this.worldObj, this.rand, blockpos.add(k1, l1, i2));
+            }
+        }
+
+        biomegenbase.decorate(this.worldObj, this.rand, new BlockPos(k, 0, l));
+        if (TerrainGen.populate(ichunkprovider, worldObj, rand, i, j, flag, ANIMALS))
+        {
+        SpawnerAnimals.performWorldGenSpawning(this.worldObj, biomegenbase, k + 8, l + 8, 16, 16, this.rand);
+        }
+        blockpos = blockpos.add(8, 0, 8);
+
+        boolean doGen = TerrainGen.populate(ichunkprovider, worldObj, rand, i, j, flag, ICE);
+        for (k1 = 0; doGen && k1 < 16; ++k1)
+        {
+            for (l1 = 0; l1 < 16; ++l1)
+            {
+                BlockPos blockpos1 = this.worldObj.getPrecipitationHeight(blockpos.add(k1, 0, l1));
+                BlockPos blockpos2 = blockpos1.down();
+
+                if (this.worldObj.func_175675_v(blockpos2))
+                {
+                    this.worldObj.setBlockState(blockpos2, Blocks.ice.getDefaultState(), 2);
+                }
+
+                if (this.worldObj.canSnowAt(blockpos1, true))
+                {
+                    this.worldObj.setBlockState(blockpos1, Blocks.snow_layer.getDefaultState(), 2);
+                }
+            }
+        }
+
+        MinecraftForge.EVENT_BUS.post(new PopulateChunkEvent.Post(ichunkprovider, worldObj, rand, i, j, flag));*/
     	BlockFalling.fallInstantly = false;
     	
     }

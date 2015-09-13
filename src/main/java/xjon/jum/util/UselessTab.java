@@ -15,10 +15,10 @@ public class UselessTab extends CreativeTabs {
 		this.setBackgroundImageName("jum.png");
 	}
 
-	 @SideOnly(Side.CLIENT)
+	@SideOnly(Side.CLIENT)
 	@Override
 	public Item getTabIconItem() {
-		return UselessItems.useless_sword;
+		return UselessItems.useless_material;
 	}
 
 }
