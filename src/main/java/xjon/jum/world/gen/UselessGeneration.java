@@ -44,8 +44,8 @@ public class UselessGeneration implements IWorldGenerator {
 	
 	private void generateUselessDimension(World world, Random rnd, BlockPos pos)
 	{
-		generateOre(UselessBlocks.better_useless_ore, world, rnd, pos, 16, 16, 3, 8, 0, 255, BlockHelper.forBlock(Blocks.stone));
-		generateOre(UselessBlocks.legitimate_diamond_ore, world, rnd, pos, 16, 16, 5, 10, 0, 255, BlockHelper.forBlock(Blocks.stone));
+		generateOre(UselessBlocks.better_useless_ore, world, rnd, pos, 16, 16, 5, 20, 0, 255, BlockHelper.forBlock(Blocks.stone));
+		generateOre(UselessBlocks.legitimate_diamond_ore, world, rnd, pos, 16, 16, 5, 20, 0, 255, BlockHelper.forBlock(Blocks.stone));
 	}
 	
 	public void generateOre(Block block, World world, Random random, BlockPos pos, int maxX, int maxZ, int maxVeinSize, int chanceToSpawn, int minY, int maxY, BlockHelper blockHelper)
