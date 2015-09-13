@@ -30,7 +30,7 @@ public class UselessEntities {
 		EntityRegistry.registerGlobalEntityID(entityClass, entityName, randomId);
 		EntityRegistry.registerModEntity(entityClass, entityName, randomId, JumCore.instance, 64, 1, true);
 		
-		EntityRegistry.addSpawn(entityClass, 7, 1, 1, EnumCreatureType.CREATURE, allBiomes);
+		EntityRegistry.addSpawn(entityClass, 14, 1, 2, EnumCreatureType.CREATURE, allBiomes);
 		
 		createEgg(randomId, solidColor, spotColor);
 	}
