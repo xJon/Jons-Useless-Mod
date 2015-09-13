@@ -1,5 +1,5 @@
 Implement: Finish UselessDimension generation
-Fix: Bow pulling animation
+Fix: Bow pulling animation & Entity arrow texture
 
 Finish all textures and sounds:
 - Useless Food texture
