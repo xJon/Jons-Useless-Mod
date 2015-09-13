@@ -27,7 +27,7 @@ public class BiomeGenUseless extends BiomeGenBase {
 		this.fillerBlock = Blocks.stone.getDefaultState();
 		this.spawnableMonsterList.clear();
 		this.spawnableWaterCreatureList.clear();
-		this.spawnableCreatureList.add(new SpawnListEntry(EntityUselessDave.class, 20, 1, 3));
+		this.spawnableCreatureList.add(new SpawnListEntry(EntityUselessDave.class, 20, 1, 6));
 	}
 
 	@Override
