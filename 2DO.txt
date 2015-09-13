@@ -1,7 +1,6 @@
 Implement: Finish UselessDimension generation
 
 Finish all textures and sounds:
-- UselessBow & UselessArrow textures
 - Useless Food texture
 - Useless MultiTool texture
 - Super useless block texture
