@@ -43,7 +43,8 @@ public class WorldProviderUseless extends WorldProvider {
 		return new Vec3(1.2, 1.2, 1);
 	}
 
-	public IChunkProvider createChunkGeneration() {
+	@Override
+	public IChunkProvider createChunkGenerator() {
 		return new ChunkProviderUseless(this.worldObj, this.worldObj.getSeed());
 	}
 
