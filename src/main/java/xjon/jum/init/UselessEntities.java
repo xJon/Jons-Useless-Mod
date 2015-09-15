@@ -9,9 +9,13 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import xjon.jum.JumCore;
 import xjon.jum.entity.mob.EntityUselessDave;
+import xjon.jum.entity.projectile.EntityUselessArrow;
+import xjon.jum.util.Reference;
 
 public class UselessEntities {
 
+	public static int randomId = EntityRegistry.findGlobalUniqueEntityId();
+	
 	public static void init()
 	{
 		register();
@@ -20,11 +24,11 @@ public class UselessEntities {
 	public static void register()
 	{
 		createEntity(EntityUselessDave.class, "Dave the Useless", 0x2E2814, 0x594E30);
+		EntityRegistry.registerModEntity(EntityUselessArrow.class, "Useless Arrow", randomId + 1, JumCore.instance, 250, 5, true);
 	}
 	
 	public static void createEntity(Class entityClass, String entityName, int solidColor, int spotColor)
 	{
-		int randomId = EntityRegistry.findGlobalUniqueEntityId();
 		BiomeGenBase[] allBiomes = Iterators.toArray(Iterators.filter(Iterators.forArray(BiomeGenBase.getBiomeGenArray()), Predicates.notNull()), BiomeGenBase.class);
 		
 		EntityRegistry.registerGlobalEntityID(entityClass, entityName, randomId);
