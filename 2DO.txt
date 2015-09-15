@@ -1,7 +1,7 @@
-Implement: Finish UselessDimension generation
+Implement: Finish UselessDimension generation, better log messages
 Fix: Bow pulling animation & Entity arrow texture
 
-Finish all textures and sounds:
+Finish all textures:
 - Useless Food texture
 - Useless MultiTool texture
 - Super useless block texture
