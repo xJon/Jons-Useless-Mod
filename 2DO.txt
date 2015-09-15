@@ -1,4 +1,4 @@
-Implement: Finish UselessDimension generation, better log messages
+Implement: Finish UselessDimension generation
 Fix: Bow pulling animation & Entity arrow texture
 
 Finish all textures:

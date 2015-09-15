@@ -12,6 +12,7 @@ import xjon.jum.init.UselessAchievements;
 import xjon.jum.init.UselessBlocks;
 import xjon.jum.init.UselessDimensions;
 import xjon.jum.init.UselessItems;
+import xjon.jum.util.Log;
 import xjon.jum.world.dimension.TeleporterUseless;
 
 public class PlayerEvents{
@@ -51,7 +52,7 @@ public class PlayerEvents{
 				
 				playerMP.mcServer.getConfigurationManager().transferPlayerToDimension(playerMP, 0, new TeleporterUseless(playerMP.mcServer.worldServerForDimension(0)));
 				event.player.setPositionAndUpdate(UselessMachine.x1, UselessMachine.y1, UselessMachine.z1);
-				System.out.println("Player teleported back to the overworld");
+				Log.info("Player teleported back to the overworld");
 			}
 		}
 	}

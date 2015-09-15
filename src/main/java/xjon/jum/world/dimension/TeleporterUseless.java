@@ -2,12 +2,14 @@ package xjon.jum.world.dimension;
 
 import java.util.List;
 import java.util.Random;
+import java.util.logging.Level;
 
 import com.google.common.collect.Lists;
 
 import xjon.jum.blocks.UselessMachine;
 import xjon.jum.init.UselessBlocks;
 import xjon.jum.init.UselessDimensions;
+import xjon.jum.util.Log;
 import net.minecraft.block.BlockPortal;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -71,14 +73,14 @@ public class TeleporterUseless extends Teleporter {
 					{
 						this.worldServerInstance.setBlockState(new BlockPos(entityIn.posX, entityIn.posY, entityIn.posZ - 2), blockState);
 					}
-					System.out.println("Useless Machine spawned at x: " + entityIn.posX + " y: " + (entityIn.posY) + " z: " + (entityIn.posZ - 1));
+					Log.info("Useless Machine spawned at x: " + entityIn.posX + " y: " + (entityIn.posY) + " z: " + (entityIn.posZ - 1));
 					this.worldServerInstance.setBlockState(new BlockPos(entityIn.posX, entityIn.posY, entityIn.posZ + 1), Blocks.torch.getDefaultState());
 					i = 0;
 						}
 				else
 				{
-					System.out.println("Useless Machine ALREADY spawned, or player teleported to overworld; not spawning another one");
-					System.out.println("Number of blocks Useless Machine wasn't in the range of player: " + (i));
+					Log.info("Useless Machine ALREADY spawned, or player teleported to overworld; not spawning another one");
+					Log.info("Number of blocks Useless Machine wasn't in the range of player: " + (i));
 					i = 0;
 				}
 			}
