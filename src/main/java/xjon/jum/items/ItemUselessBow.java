@@ -129,11 +129,12 @@ public class ItemUselessBow extends Item
 	@Override
 	@SideOnly(Side.CLIENT)
 	public ModelResourceLocation getModel(ItemStack stack, EntityPlayer player, int useRemaining) {
+		ModelResourceLocation modelresourcelocation = new ModelResourceLocation(Reference.MOD_ID + ":useless_bow", "inventory");
 		if(stack.getItem() instanceof ItemUselessBow && player.getItemInUse() != null) {
 			int i = stack.getMaxItemUseDuration() - player.getItemInUseCount();
-			if(i >= 18) return new ModelResourceLocation(Reference.MOD_ID + ":textures/items/bow_useless_pulling_2.png");
-			else if(i > 13) return new ModelResourceLocation(Reference.MOD_ID + ":textures/items/bow_useless_pulling_1.png");
-			else if(i > 0) return new ModelResourceLocation(Reference.MOD_ID + ":textures/items/bow_useless_pulling_0.png");
+			if(i >= 18) return new ModelResourceLocation(Reference.MOD_ID + ":bow_useless_pulling_2", "inventory");
+			else if(i > 13) return new ModelResourceLocation(Reference.MOD_ID + ":bow_useless_pulling_1", "inventory");
+			else if(i > 0) return new ModelResourceLocation(Reference.MOD_ID + ":bow_useless_pulling_0", "inventory");
 		}
 		return null;
 	}
