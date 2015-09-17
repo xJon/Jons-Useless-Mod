@@ -1,5 +1,6 @@
 package xjon.jum;
 
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
@@ -10,6 +11,8 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import xjon.jum.event.ConfigEvents;
+import xjon.jum.event.FOVEvents;
 import xjon.jum.event.JoinWorldEvents;
 import xjon.jum.event.PlayerEvents;
 import xjon.jum.init.UselessAchievements;
@@ -57,8 +60,11 @@ public class JumCore {
 		UselessBiomes.init();
 		UselessDimensions.init();
 		NetworkHandler.init();
+		FMLCommonHandler.instance().bus().register(new ConfigEvents());
 		FMLCommonHandler.instance().bus().register(new PlayerEvents());
 		FMLCommonHandler.instance().bus().register(new JoinWorldEvents());
+		MinecraftForge.EVENT_BUS.register(new FOVEvents());
+		
 	}
 	
 	@EventHandler

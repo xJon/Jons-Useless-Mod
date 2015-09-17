@@ -63,7 +63,7 @@ public class UselessItems {
 			maxUses = 1000;
 			enchantability = 100;
 			efficiency = 10.0F;
-			damage = 8.0F;
+			damage = 5.0F;
 			
 			armorHelm = 4;
 			armorChest = 14;
