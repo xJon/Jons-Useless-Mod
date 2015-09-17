@@ -247,68 +247,17 @@ public class ChunkProviderUseless implements IChunkProvider {
     	int k = i * 16;
         int l = j * 16;
         BlockPos blockpos = new BlockPos(k, 0, l);
-        BiomeGenBase biomegenbase = this.worldObj.getBiomeGenForCoords(blockpos.add(16, 0, 16));
+        BiomeGenBase biomegenbase =  this.worldObj.getBiomeGenForCoords(blockpos.add(16, 0, 16));
         this.rand.setSeed(this.worldObj.getSeed());
         long i1 = this.rand.nextLong() / 2L * 2L + 1L;
         long j1 = this.rand.nextLong() / 2L * 2L + 1L;
         this.rand.setSeed((long)i * i1 + (long)j * j1 ^ this.worldObj.getSeed());
         boolean flag = false;
-        ChunkCoordIntPair chunkcoordintpair = new ChunkCoordIntPair(i, j);
-        this.scatteredFeatureGenerator.func_175794_a(this.worldObj, this.rand, chunkcoordintpair);
         MinecraftForge.EVENT_BUS.post(new PopulateChunkEvent.Pre(ichunkprovider, worldObj, rand, i, j, flag));
-       /* int k1;
-        int l1;
-        int i2;
-
-        if (biomegenbase != BiomeGenBase.desert && biomegenbase != BiomeGenBase.desertHills && this.settings.useWaterLakes && !flag && this.rand.nextInt(this.settings.waterLakeChance) == 0
-            && TerrainGen.populate(ichunkprovider, worldObj, rand, i, j, flag, LAKE))
-        {
-            k1 = this.rand.nextInt(16) + 8;
-            l1 = this.rand.nextInt(256);
-            i2 = this.rand.nextInt(16) + 8;
-            (new WorldGenLakes(Blocks.water)).generate(this.worldObj, this.rand, blockpos.add(k1, l1, i2));
-        }
-
-        if (TerrainGen.populate(ichunkprovider, worldObj, rand, i, j, flag, LAVA) && !flag && this.rand.nextInt(this.settings.lavaLakeChance / 10) == 0 && this.settings.useLavaLakes)
-        {
-            k1 = this.rand.nextInt(16) + 8;
-            l1 = this.rand.nextInt(this.rand.nextInt(248) + 8);
-            i2 = this.rand.nextInt(16) + 8;
-
-            if (l1 < 63 || this.rand.nextInt(this.settings.lavaLakeChance / 8) == 0)
-            {
-                (new WorldGenLakes(Blocks.lava)).generate(this.worldObj, this.rand, blockpos.add(k1, l1, i2));
-            }
-        }
 
         biomegenbase.decorate(this.worldObj, this.rand, new BlockPos(k, 0, l));
-        if (TerrainGen.populate(ichunkprovider, worldObj, rand, i, j, flag, ANIMALS))
-        {
-        SpawnerAnimals.performWorldGenSpawning(this.worldObj, biomegenbase, k + 8, l + 8, 16, 16, this.rand);
-        }
-        blockpos = blockpos.add(8, 0, 8);
 
-        boolean doGen = TerrainGen.populate(ichunkprovider, worldObj, rand, i, j, flag, ICE);
-        for (k1 = 0; doGen && k1 < 16; ++k1)
-        {
-            for (l1 = 0; l1 < 16; ++l1)
-            {
-                BlockPos blockpos1 = this.worldObj.getPrecipitationHeight(blockpos.add(k1, 0, l1));
-                BlockPos blockpos2 = blockpos1.down();
-
-                if (this.worldObj.func_175675_v(blockpos2))
-                {
-                    this.worldObj.setBlockState(blockpos2, Blocks.ice.getDefaultState(), 2);
-                }
-
-                if (this.worldObj.canSnowAt(blockpos1, true))
-                {
-                    this.worldObj.setBlockState(blockpos1, Blocks.snow_layer.getDefaultState(), 2);
-                }
-            }
-        }
-
-        MinecraftForge.EVENT_BUS.post(new PopulateChunkEvent.Post(ichunkprovider, worldObj, rand, i, j, flag));*/
+        MinecraftForge.EVENT_BUS.post(new PopulateChunkEvent.Post(ichunkprovider, worldObj, rand, i, j, flag));
     	BlockFalling.fallInstantly = false;
     	
     }

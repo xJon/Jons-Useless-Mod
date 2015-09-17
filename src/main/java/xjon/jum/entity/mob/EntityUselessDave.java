@@ -24,6 +24,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.util.BlockPos;
+import net.minecraft.world.EnumDifficulty;
+import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 
 public class EntityUselessDave extends EntityMob {
@@ -89,6 +91,12 @@ public class EntityUselessDave extends EntityMob {
 	{
 	        return UselessItems.useless_material;
 	}
+	
+	@Override
+	public boolean getCanSpawnHere()
+    {
+        return true;
+    }
 	 
 	 
 	 
