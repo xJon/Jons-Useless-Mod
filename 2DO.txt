@@ -2,5 +2,5 @@ Fix: Arrow bouncing back, Useless Machine missing part in model?
 
 Finish all textures:
 - Useless Food texture / could have like this white & red can with green goo
-- Useless MultiTool texture / could have a stick with all tool heads from the sides as the recipe shows. (See the recipe)
+- Useless MultiTool texture / could have a stick with all tool heads from the sides as the recipe shows. (See the recipe) OR switch texture on use?
 - Super useless block texture / like normal block, flashing, but maybe with more spiky texture on it
