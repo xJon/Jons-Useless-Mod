@@ -50,7 +50,7 @@ public class TeleporterUseless extends Teleporter {
 						}
 					}
 				}
-				if(i == 343 && entityIn.dimension == UselessDimensions.dimensionId) {
+				if(i == 605 && entityIn.dimension == UselessDimensions.dimensionId) {
 					for (int x = -1; x <= 1; ++x)
 					{
 						for (int z = -1; z <= 1; ++z)
