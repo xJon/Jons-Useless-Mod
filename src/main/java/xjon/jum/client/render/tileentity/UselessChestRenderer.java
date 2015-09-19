@@ -24,7 +24,6 @@ public class UselessChestRenderer extends TileEntitySpecialRenderer
     private static final ResourceLocation textureNormal = new ResourceLocation("jum:textures/entity/chest/normal.png");
     private ModelChest simpleChest = new ModelChest();
 	private RenderManager renderManager;
-    private static final String __OBFID = "CL_00000965";
 
     public UselessChestRenderer(RenderManager renderManager) {
 		this.renderManager = renderManager	;

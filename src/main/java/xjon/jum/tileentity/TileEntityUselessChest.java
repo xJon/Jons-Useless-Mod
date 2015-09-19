@@ -213,8 +213,6 @@ public class TileEntityUselessChest extends TileEntityChest {
     static final class SwitchEnumFacing
     {
         static final int[] field_177366_a = new int[EnumFacing.values().length];
-        private static final String __OBFID = "CL_00002041";
-
         static
         {
             try

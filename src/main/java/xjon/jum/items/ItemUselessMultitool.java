@@ -133,8 +133,6 @@ public class ItemUselessMultitool extends ItemTool{
 	    static final class SwitchDirtType
 	        {
 	            static final int[] TYPE_LOOKUP = new int[BlockDirt.DirtType.values().length];
-	            private static final String __OBFID = "CL_00002179";
-
 	            static
 	            {
 	                try

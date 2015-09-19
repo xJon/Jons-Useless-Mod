@@ -37,11 +37,11 @@ public class TeleporterUseless extends Teleporter {
 
 	@Override
 	public void placeInPortal(Entity entityIn, float rotationYaw) {		
-			for (int x = -3; x <= 3; ++x)
+			for (int x = -5; x <= 5; ++x)
 				{
-					for (int y = -3; y <= 3; ++y)
+					for (int y = -2; y <= 2; ++y)
 					{
-						for(int z = -3; z <= 3; ++z)
+						for(int z = -5; z <= 5; ++z)
 						{
 							if(!this.worldServerInstance.getBlockState(new BlockPos(entityIn.posX + x, entityIn.posY + y, entityIn.posZ + z)).equals(UselessBlocks.useless_machine.getDefaultState()))
 									{
@@ -79,8 +79,11 @@ public class TeleporterUseless extends Teleporter {
 						}
 				else
 				{
-					Log.info("Useless Machine ALREADY spawned, or player teleported to overworld; not spawning another one");
-					Log.info("Number of blocks Useless Machine wasn't in the range of player: " + (i));
+					if (entityIn.dimension == UselessDimensions.dimensionId)
+					{
+						Log.info("Useless Machine already spawned, not spawning another one");
+						Log.info("Number of blocks Useless Machine wasn't in the range of player: " + (i));
+					}
 					i = 0;
 				}
 			}

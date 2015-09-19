@@ -1,5 +1,7 @@
 package xjon.jum.entity.projectile;
 
+import io.netty.buffer.ByteBuf;
+
 import java.util.List;
 
 import net.minecraft.block.Block;
@@ -25,11 +27,14 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.network.ByteBufUtils;
+import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import xjon.jum.init.UselessItems;
+import xjon.jum.util.UselessConfiguration;
 
-public class EntityUselessArrow extends EntityArrow implements IProjectile {
+public class EntityUselessArrow extends EntityArrow implements IProjectile, IEntityAdditionalSpawnData {
 
 	private int xTile = -1;
     private int yTile = -1;
@@ -44,8 +49,7 @@ public class EntityUselessArrow extends EntityArrow implements IProjectile {
     private int ticksInAir;
     private double damage = 5.0D;
     private int knockbackStrength;
-    private static final String __OBFID = "CL_00001715";
-
+    
     public EntityUselessArrow(World worldIn)
     {
         super(worldIn);
@@ -113,11 +117,13 @@ public class EntityUselessArrow extends EntityArrow implements IProjectile {
         this.setThrowableHeading(this.motionX, this.motionY, this.motionZ, p_i1756_3_ * 1.5F, 1.0F);
     }
 
+    @Override
     protected void entityInit()
     {
         this.dataWatcher.addObject(16, Byte.valueOf((byte)0));
     }
 
+    @Override
     public void setThrowableHeading(double x, double y, double z, float velocity, float inaccuracy)
     {
         float f2 = MathHelper.sqrt_double(x * x + y * y + z * z);
@@ -139,6 +145,7 @@ public class EntityUselessArrow extends EntityArrow implements IProjectile {
         this.ticksInGround = 0;
     }
 
+    @Override
     @SideOnly(Side.CLIENT)
     public void func_180426_a(double p_180426_1_, double p_180426_3_, double p_180426_5_, float p_180426_7_, float p_180426_8_, int p_180426_9_, boolean p_180426_10_)
     {
@@ -146,6 +153,7 @@ public class EntityUselessArrow extends EntityArrow implements IProjectile {
         this.setRotation(p_180426_7_, p_180426_8_);
     }
 
+    @Override
     @SideOnly(Side.CLIENT)
     public void setVelocity(double x, double y, double z)
     {
@@ -165,6 +173,7 @@ public class EntityUselessArrow extends EntityArrow implements IProjectile {
         }
     }
 
+    @Override
     public void onUpdate()
     {
         super.onEntityUpdate();
@@ -243,7 +252,7 @@ public class EntityUselessArrow extends EntityArrow implements IProjectile {
             {
                 Entity entity1 = (Entity)list.get(i);
 
-                if (entity1.canBeCollidedWith() && (entity1 != this.shootingEntity || this.ticksInAir >= 5))
+                if (entity1.canBeCollidedWith() && (entity1 != this.shootingEntity || this.ticksInAir >= 10))
                 {
                     f1 = 0.3F;
                     AxisAlignedBB axisalignedbb1 = entity1.getEntityBoundingBox().expand((double)f1, (double)f1, (double)f1);
@@ -451,6 +460,7 @@ public class EntityUselessArrow extends EntityArrow implements IProjectile {
         }
     }
 
+    @Override
     public void writeEntityToNBT(NBTTagCompound tagCompound)
     {
         tagCompound.setShort("xTile", (short)this.xTile);
@@ -466,6 +476,7 @@ public class EntityUselessArrow extends EntityArrow implements IProjectile {
         tagCompound.setDouble("damage", this.damage);
     }
 
+    @Override
     public void readEntityFromNBT(NBTTagCompound tagCompund)
     {
         this.xTile = tagCompund.getShort("xTile");
@@ -501,6 +512,7 @@ public class EntityUselessArrow extends EntityArrow implements IProjectile {
         }
     }
 
+    @Override
     public void onCollideWithPlayer(EntityPlayer entityIn)
     {
         if (!this.worldObj.isRemote && this.inGround && this.arrowShake <= 0)
@@ -521,31 +533,44 @@ public class EntityUselessArrow extends EntityArrow implements IProjectile {
         }
     }
 
+    @Override
     protected boolean canTriggerWalking()
     {
         return false;
     }
 
+    @Override
     public void setDamage(double p_70239_1_)
     {
-        this.damage = p_70239_1_;
+    	if (!UselessConfiguration.isUseless)
+    	{
+    		this.damage = p_70239_1_;
+    	}
+    	else
+    	{
+    		this.damage = p_70239_1_ - 4.0D;
+    	}
     }
 
+    @Override
     public double getDamage()
     {
         return this.damage;
     }
 
+    @Override
     public void setKnockbackStrength(int p_70240_1_)
     {
         this.knockbackStrength = p_70240_1_;
     }
 
+    @Override
     public boolean canAttackWithItem()
     {
         return false;
     }
 
+    @Override
     public void setIsCritical(boolean p_70243_1_)
     {
         byte b0 = this.dataWatcher.getWatchableObjectByte(16);
@@ -560,10 +585,21 @@ public class EntityUselessArrow extends EntityArrow implements IProjectile {
         }
     }
 
+    @Override
     public boolean getIsCritical()
     {
         byte b0 = this.dataWatcher.getWatchableObjectByte(16);
         return (b0 & 1) != 0;
     }
+
+	@Override
+	public void writeSpawnData(ByteBuf buffer) {
+		buffer.writeInt(this.shootingEntity.getEntityId());
+	}
+
+	@Override
+	public void readSpawnData(ByteBuf additionalData) {
+		this.shootingEntity.setEntityId(additionalData.readInt());
+	}
 	
 }

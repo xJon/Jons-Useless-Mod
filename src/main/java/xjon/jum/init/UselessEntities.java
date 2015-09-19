@@ -24,7 +24,7 @@ public class UselessEntities {
 	public static void register()
 	{
 		createEntity(EntityUselessDave.class, "Dave the Useless", 0x2E2814, 0x594E30);
-		EntityRegistry.registerModEntity(EntityUselessArrow.class, "Useless Arrow", randomId + 1, JumCore.instance, 250, 5, true);
+		EntityRegistry.registerModEntity(EntityUselessArrow.class, "Useless Arrow", randomId + 1, JumCore.instance, 250, 20, true);
 	}
 	
 	public static void createEntity(Class entityClass, String entityName, int solidColor, int spotColor)
