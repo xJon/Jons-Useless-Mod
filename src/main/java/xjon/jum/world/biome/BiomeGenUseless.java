@@ -22,8 +22,8 @@ public class BiomeGenUseless extends BiomeGenBase {
 		super(biomeId);
 		
 		this.setBiomeName("Useless Biome");
-		this.setColor(0xEFAAAA);
-		this.waterColorMultiplier = 4562521;
+		this.setColor(0xEDFCD3);
+		this.waterColorMultiplier = 13762304;
 		this.topBlock = Blocks.grass.getDefaultState();
 		this.fillerBlock = Blocks.stone.getDefaultState();
 		this.spawnableMonsterList.clear();
