@@ -73,6 +73,12 @@ public class UselessChest extends BlockChest {
     {
         
     }
+	
+	@Override
+	public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
+    {
+        return true;
+    }
 	 
 	 private boolean isOcelotSittingOnChest(World worldIn, BlockPos pos)
 	    {
