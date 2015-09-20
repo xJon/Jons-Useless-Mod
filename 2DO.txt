@@ -1,4 +1,3 @@
-Fix: Useless Machine missing part in model
 Change: Disable normal ore generation in Useless Dimension (?)
 
 Finish all textures:

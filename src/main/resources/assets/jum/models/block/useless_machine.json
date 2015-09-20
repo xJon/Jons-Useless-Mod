@@ -3,7 +3,7 @@
         "particle": "blocks/quartz_block_top",
         "0": "blocks/stonebrick_carved",
         "1": "blocks/log_spruce",
-        "2": "blocks/coal_block",
+        "2": "jum:blocks/useless_block",
         "3": "blocks/hardened_clay_stained_cyan",
         "4": "blocks/piston_bottom",
         "5": "blocks/glowstone",
@@ -12,7 +12,7 @@
         "8": "blocks/hardened_clay_stained_red",
         "9": "blocks/hardened_clay_stained_blue",
         "10": "blocks/hardened_clay_stained_yellow",
-        "11": "blocks/quartz_block_top"
+        "11": "blocks/mushroom_block_skin_stem"
     },
     "elements": [
         {
@@ -46,12 +46,12 @@
             "from": [ 12.0, 1.0, 11.0 ], 
             "to": [ 5.0, 9.0, 5.0 ], 
             "faces": {
-                "north": { "texture": "#2", "uv": [ 0.0, 0.0, -7.0, 8.0 ] },
-                "east": { "texture": "#2", "uv": [ 0.0, 0.0, -6.0, 8.0 ] },
-                "south": { "texture": "#2", "uv": [ 0.0, 0.0, -7.0, 8.0 ] },
-                "west": { "texture": "#2", "uv": [ 0.0, 0.0, -6.0, 8.0 ] },
-                "up": { "texture": "#2", "uv": [ 0.0, 0.0, -7.0, -6.0 ] },
-                "down": { "texture": "#2", "uv": [ 0.0, 0.0, -7.0, -6.0 ] }
+                "north": { "texture": "#2", "uv": [ 8.0, 6.0, 15.0, 14.0 ] },
+                "east": { "texture": "#2", "uv": [ 4.0, 4.0, 10.0, 12.0 ] },
+                "south": { "texture": "#2", "uv": [ 10.0, 4.0, 6.0, 11.0 ] },
+                "west": { "texture": "#2", "uv": [ 12.0, 5.0, 5.0, 11.0 ] },
+                "up": { "texture": "#2", "uv": [ 4.0, 3.0, 11.0, 9.0 ] },
+                "down": { "texture": "#2", "uv": [ 5.0, 4.0, 12.0, 10.0 ] }
             }
         },
         {
