@@ -1,4 +1,4 @@
-Fix: Arrow bouncing back, Useless Machine missing part in model?
+Fix: Useless Machine missing part in model
 
 Finish all textures:
 - Useless MultiTool texture / could have a stick with all tool heads from the sides as the recipe shows. (See the recipe) -> (SH) switch texture on use? -> (J) pretty crazy idea, could work but a bit weird

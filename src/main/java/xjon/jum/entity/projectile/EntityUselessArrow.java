@@ -599,7 +599,10 @@ public class EntityUselessArrow extends EntityArrow implements IProjectile, IEnt
 
 	@Override
 	public void readSpawnData(ByteBuf additionalData) {
-		this.shootingEntity.setEntityId(additionalData.readInt());
+		Entity shooter = worldObj.getEntityByID(additionalData.readInt());
+		if (shooter instanceof EntityLivingBase) {
+			shootingEntity = (EntityLivingBase) shooter;
+		}
 	}
 	
 }
