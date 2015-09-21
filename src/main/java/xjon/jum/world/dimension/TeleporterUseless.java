@@ -82,7 +82,6 @@ public class TeleporterUseless extends Teleporter {
 					if (entityIn.dimension == UselessDimensions.dimensionId)
 					{
 						Log.info("Useless Machine already spawned, not spawning another one");
-						Log.info("Number of blocks Useless Machine wasn't in the range of player: " + (i));
 					}
 					i = 0;
 				}

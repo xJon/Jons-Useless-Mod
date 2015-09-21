@@ -12,7 +12,8 @@
         "8": "blocks/hardened_clay_stained_red",
         "9": "blocks/hardened_clay_stained_blue",
         "10": "blocks/hardened_clay_stained_yellow",
-        "11": "blocks/mushroom_block_skin_stem"
+        "11": "blocks/mushroom_block_skin_stem",
+        "12": "blocks/coal_block"
     },
     "elements": [
         {
@@ -99,11 +100,11 @@
             "to": [ 12.0, 18.0, 12.0 ], 
             "rotation": { "origin": [ 8.0, 8.0, 8.0 ], "axis": "x", "angle": -22.5 },
             "faces": {
-                "north": { "texture": "#2", "uv": [ 0.0, 0.0, 7.0, 2.0 ] },
-                "east": { "texture": "#2", "uv": [ 0.0, 0.0, 4.0, 2.0 ] },
-                "south": { "texture": "#2", "uv": [ 0.0, 0.0, 7.0, 2.0 ] },
-                "west": { "texture": "#2", "uv": [ 0.0, 0.0, 4.0, 2.0 ] },
-                "up": { "texture": "#2", "uv": [ 0.0, 0.0, 7.0, 4.0 ] },
+                "north": { "texture": "#12", "uv": [ 0.0, 0.0, 7.0, 2.0 ] },
+                "east": { "texture": "#12", "uv": [ 0.0, 0.0, 4.0, 2.0 ] },
+                "south": { "texture": "#12", "uv": [ 0.0, 0.0, 7.0, 2.0 ] },
+                "west": { "texture": "#12", "uv": [ 0.0, 0.0, 4.0, 2.0 ] },
+                "up": { "texture": "#12", "uv": [ 0.0, 0.0, 7.0, 4.0 ] },
                 "down": { "texture": "#5", "uv": [ 4.0, 6.0, 11.0, 10.0 ] }
             }
         },
