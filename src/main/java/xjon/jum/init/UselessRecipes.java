@@ -25,7 +25,7 @@ public class UselessRecipes {
 		GameRegistry.addRecipe(new ItemStack(UselessBlocks.useless_block), new Object[]{"UUU","UUU","UUU", 'U', UselessItems.useless_material});
 		GameRegistry.addRecipe(new ItemStack(UselessBlocks.super_useless_block), new Object[]{"UUU","UUU","UUU", 'U', UselessItems.super_useless_material});
 		GameRegistry.addRecipe(new ItemStack(UselessBlocks.useless_chest), new Object[]{"UUU","U U", "UUU", 'U', UselessItems.useless_material});
-		GameRegistry.addRecipe(new ItemStack(UselessBlocks.useless_machine), new Object[]{"QLQ","DRD", "UGU", 'Q', Blocks.quartz_block, 'L', Blocks.sea_lantern, 'D', Items.diamond, 'R', Blocks.redstone_block, 'U', UselessBlocks.useless_block, 'G', Items.glowstone_dust});
+		GameRegistry.addRecipe(new ItemStack(UselessBlocks.useless_machine), new Object[]{"QGQ","DRD", "ULU", 'Q', Blocks.quartz_block, 'L', Blocks.sea_lantern, 'D', Items.diamond, 'R', Blocks.redstone_block, 'U', UselessBlocks.useless_block, 'G', Items.glowstone_dust});
 		
 		
 		GameRegistry.addShapelessRecipe(new ItemStack(UselessItems.useless_material, 9), new ItemStack(UselessBlocks.useless_block));
@@ -33,7 +33,8 @@ public class UselessRecipes {
 		
 		GameRegistry.addSmelting(UselessItems.useless_material, new ItemStack(UselessItems.useless_food), 3.0F);
 		GameRegistry.addSmelting(UselessBlocks.useless_ore, new ItemStack(UselessItems.useless_material), 5.0F);
-		GameRegistry.addSmelting(UselessBlocks.super_useless_block, new ItemStack(UselessItems.super_useless_material), 7.0F);
+		GameRegistry.addSmelting(UselessBlocks.better_useless_ore, new ItemStack(UselessItems.super_useless_material), 7.0F);
+		GameRegistry.addSmelting(UselessBlocks.legitimate_diamond_ore, new ItemStack(UselessItems.legitimate_diamond), 1.0F);
 	}
 	
 }
