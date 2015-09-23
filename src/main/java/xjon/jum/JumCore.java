@@ -1,5 +1,7 @@
 package xjon.jum;
 
+import java.io.File;
+
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -47,7 +49,8 @@ public class JumCore {
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
-		config = new Configuration(event.getSuggestedConfigurationFile());
+		config = new Configuration(new File("config/Jum.cfg"));
+		config.load();
 		UselessConfiguration.syncConfig();
 		UselessItems.checks();
 		UselessItems.init();
@@ -60,7 +63,6 @@ public class JumCore {
 		UselessBiomes.init();
 		UselessDimensions.init();
 		NetworkHandler.init();
-		FMLCommonHandler.instance().bus().register(new ConfigEvents());
 		FMLCommonHandler.instance().bus().register(new PlayerEvents());
 		FMLCommonHandler.instance().bus().register(new JoinWorldEvents());
 		MinecraftForge.EVENT_BUS.register(new FOVEvents());
@@ -74,7 +76,8 @@ public class JumCore {
 		UselessRecipes.register();
 		UselessTileEntities.register();
 		GameRegistry.registerWorldGenerator(new UselessGeneration(), 0);
-		FMLCommonHandler.instance().bus().register(instance);
+		FMLCommonHandler.instance().bus().register(JumCore.instance);
+		FMLCommonHandler.instance().bus().register(new ConfigEvents());
 	}
 	
 	@EventHandler

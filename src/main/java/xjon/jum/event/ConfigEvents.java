@@ -1,5 +1,6 @@
 package xjon.jum.event;
 
+import xjon.jum.util.Log;
 import xjon.jum.util.Reference;
 import xjon.jum.util.UselessConfiguration;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
@@ -13,6 +14,7 @@ public class ConfigEvents {
 		if(event.modID.equals(Reference.MOD_ID))
 		{
 			UselessConfiguration.syncConfig();
+			Log.info("Configuration changed");
 		}
 	}
 	
