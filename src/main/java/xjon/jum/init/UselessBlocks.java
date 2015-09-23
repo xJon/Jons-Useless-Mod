@@ -8,6 +8,7 @@ import xjon.jum.blocks.UselessBlock;
 import xjon.jum.blocks.UselessChest;
 import xjon.jum.blocks.UselessMachine;
 import xjon.jum.blocks.UselessOre;
+import xjon.jum.items.ItemBlockUselessMachine;
 import xjon.jum.util.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -44,7 +45,7 @@ public class UselessBlocks {
 		GameRegistry.registerBlock(useless_ore, useless_ore.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(better_useless_ore, better_useless_ore.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(legitimate_diamond_ore, legitimate_diamond_ore.getUnlocalizedName().substring(5));
-		GameRegistry.registerBlock(useless_machine, useless_machine.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(useless_machine, ItemBlockUselessMachine.class, useless_machine.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(useless_chest, useless_chest.getUnlocalizedName().substring(5));
 	}
 	
