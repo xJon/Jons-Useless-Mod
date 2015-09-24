@@ -14,7 +14,7 @@ public class UselessConfigGui extends GuiConfig{
 	public UselessConfigGui(GuiScreen screen)
 	{
 		super(screen, new ConfigElement(JumCore.config.getCategory(Configuration.CATEGORY_GENERAL)).getChildElements(),
-				Reference.MOD_NAME, false, false, GuiConfig.getAbridgedConfigPath(JumCore.config.toString()));
+				Reference.MOD_ID, false, false, GuiConfig.getAbridgedConfigPath(JumCore.config.toString()));
 	}
 
 }

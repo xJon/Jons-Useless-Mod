@@ -81,7 +81,7 @@ public class TeleporterUseless extends Teleporter {
 				{
 					if (entityIn.dimension == UselessDimensions.dimensionId)
 					{
-						Log.info("Useless Machine already spawned, not spawning another one");
+						Log.warn("Useless Machine already spawned, not spawning another one");
 					}
 					i = 0;
 				}

@@ -52,7 +52,7 @@ public class PlayerEvents{
 				
 				playerMP.mcServer.getConfigurationManager().transferPlayerToDimension(playerMP, 0, new TeleporterUseless(playerMP.mcServer.worldServerForDimension(0)));
 				event.player.setPositionAndUpdate(UselessMachine.x1, UselessMachine.y1, UselessMachine.z1);
-				Log.info("Player teleported back to the overworld");
+				Log.warn("Player teleported back to the overworld");
 			}
 		}
 	}
