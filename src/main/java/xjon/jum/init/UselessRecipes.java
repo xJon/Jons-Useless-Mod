@@ -21,7 +21,7 @@ public class UselessRecipes {
 		GameRegistry.addRecipe(new ItemStack(UselessItems.useless_boots), new Object[]{"U U","U U", 'U', UselessItems.useless_material});
 		GameRegistry.addRecipe(new ItemStack(UselessItems.useless_bow), new Object[]{" US", "U S", " US", 'U', UselessItems.useless_material, 'S', Items.string});
 		GameRegistry.addRecipe(new ItemStack(UselessItems.useless_arrow, 4), new Object[]{"T", "U", "F", 'T', Items.flint, 'U', UselessItems.useless_material, 'F', Items.feather});
-		GameRegistry.addRecipe(new ItemStack(UselessItems.useless_multitool), new Object[]{"PSA","B$B", "DHD", 'P', UselessItems.useless_pickaxe, '$', UselessItems.useless_shovel, 'A', UselessItems.useless_axe, 'B', UselessBlocks.super_useless_block, 'S', UselessItems.useless_sword, 'D', Blocks.diamond_block, 'H', UselessItems.useless_hoe});
+		GameRegistry.addRecipe(new ItemStack(UselessItems.useless_multitool), new Object[]{"ASP","B$B", "DHD", 'P', UselessItems.useless_pickaxe, '$', UselessItems.useless_shovel, 'A', UselessItems.useless_axe, 'B', UselessBlocks.super_useless_block, 'S', UselessItems.useless_sword, 'D', Blocks.diamond_block, 'H', UselessItems.useless_hoe});
 		GameRegistry.addRecipe(new ItemStack(UselessBlocks.useless_block), new Object[]{"UUU","UUU","UUU", 'U', UselessItems.useless_material});
 		GameRegistry.addRecipe(new ItemStack(UselessBlocks.super_useless_block), new Object[]{"UUU","UUU","UUU", 'U', UselessItems.super_useless_material});
 		GameRegistry.addRecipe(new ItemStack(UselessBlocks.useless_chest), new Object[]{"UUU","U U", "UUU", 'U', UselessItems.useless_material});
