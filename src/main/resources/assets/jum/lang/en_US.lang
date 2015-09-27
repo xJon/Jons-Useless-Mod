@@ -1,7 +1,7 @@
 itemGroup.tabJUM=§6Jon's Useless Mod
 item.useless_material.name=Useless Material
 item.super_useless_material.name=Super Useless Material
-item.legitimate_diamond.name=Useless Diamond
+item.legitimate_diamond.name=Legitimate Diamond
 item.useless_sword.name=Useless Sword
 item.useless_axe.name=Useless Axe
 item.useless_hoe.name=Useless Hoe
@@ -20,7 +20,7 @@ tile.useless_block.name=Useless Block
 tile.super_useless_block.name=Super Useless Block
 tile.useless_ore.name=Useless Ore
 tile.better_useless_ore.name=Better Useless Ore
-tile.legitimate_diamond_ore.name=Diamond Ore
+tile.legitimate_diamond_ore.name=Legitimate Diamond Ore
 tile.useless_machine.name=Useless Machine
 tile.useless_chest.name=Useless Chest
 entity.Dave the Useless.name=Dave the Useless
