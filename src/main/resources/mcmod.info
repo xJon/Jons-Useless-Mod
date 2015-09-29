@@ -9,7 +9,7 @@
   "updateUrl": "",
   "authorList": ["Jon"],
   "credits": "SuperSlime & SunshineHunter for the useless assets",
-  "logoFile": "",
+  "logoFile": "/assets/jum/logo/jum-logo.png",
   "screenshots": [],
   "dependencies": []
 }
