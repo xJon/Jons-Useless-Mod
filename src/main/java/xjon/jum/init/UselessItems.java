@@ -66,9 +66,9 @@ public class UselessItems {
 			damage = 5.0F;
 			
 			armorHelm = 4;
-			armorChest = 14;
-			armorLeg = 10;
-			armorBoot = 6;
+			armorChest = 9;
+			armorLeg = 7;
+			armorBoot = 4;
 			
 			foodAmount = 8;
 			foodSaturation = 3.0F;
