@@ -13,7 +13,7 @@ public class CommonProxy {
 	
 	private void addOreDictionary() {
 		OreDictionary.registerOre("oreUseless", UselessBlocks.useless_ore);
-		OreDictionary.registerOre("oreSuperUseless", UselessBlocks.super_useless_block);
+		OreDictionary.registerOre("oreSuperUseless", UselessBlocks.better_useless_ore);
 	}
 	
 }
