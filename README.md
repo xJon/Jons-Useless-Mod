@@ -1,2 +1,7 @@
 # Jon's Useless Mod
-A useless Minecraft mod that adds a slew of useless items, blocks, and more!
+
+####Discussion:
+* [Minecraft Forums Thread] (http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/2533589)
+
+####Download:
+* [CurseForge] (http://minecraft.curseforge.com/mc-mods/236574)
