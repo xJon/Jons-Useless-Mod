@@ -28,9 +28,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import com.google.common.collect.Sets;
 
 
-public class ItemUselessMultitool extends ItemTool{
+public class ItemUselessMultitool extends ItemTool {
  	
-	private static final Set<Block> blocksEffectiveAgainst = Sets.newHashSet(Block.blockRegistry);
+	private static final Set<Block> blocksEffectiveAgainst = Sets.newHashSet();
 	protected Item.ToolMaterial theToolMaterial;
 	
 	
@@ -56,6 +56,12 @@ public class ItemUselessMultitool extends ItemTool{
 			return false;
 		}
 	}
+	
+	@Override
+	public float getStrVsBlock(ItemStack stack, Block block)
+    {
+        return 10.0F;
+    }
 	
 	@Override
 	public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected)
