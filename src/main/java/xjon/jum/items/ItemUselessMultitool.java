@@ -66,14 +66,17 @@ public class ItemUselessMultitool extends ItemTool {
 	@Override
 	public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected)
 	{
-		EntityPlayer player = (EntityPlayer) entityIn;
-		ItemStack equipped = player.getCurrentEquippedItem();
-		if (equipped == stack)
+		if (!worldIn.isRemote)
 		{
-			player.addPotionEffect(new PotionEffect(Potion.digSpeed.getId(), 20, 0));
-		}
+			EntityPlayer player = (EntityPlayer) entityIn;
+			ItemStack equipped = player.getCurrentEquippedItem();
+			if (equipped == stack)
+				{
+					player.addPotionEffect(new PotionEffect(Potion.digSpeed.id, 100, 0));
+				}
 		
-		super.onUpdate(stack, worldIn, entityIn, itemSlot, isSelected);
+		}
+		else { super.onUpdate(stack, worldIn, entityIn, itemSlot, isSelected); }
 	}
 	
 	@Override

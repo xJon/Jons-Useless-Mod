@@ -28,21 +28,24 @@ public class ItemUselessArmor extends ItemArmor {
 	@Override
 	public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack)
 	{
-		if(player.getCurrentArmor(0) != null && player.getCurrentArmor(1) != null && player.getCurrentArmor(2) != null && player.getCurrentArmor(3) != null)
+		if (!world.isRemote)
 		{
-			ItemStack boots = player.getCurrentArmor(0);
-			ItemStack leggings = player.getCurrentArmor(1);
-			ItemStack chestplate = player.getCurrentArmor(2);
-			ItemStack helmet = player.getCurrentArmor(3);
+		
+			if(player.getCurrentArmor(0) != null && player.getCurrentArmor(1) != null && player.getCurrentArmor(2) != null && player.getCurrentArmor(3) != null)
+				{
+					ItemStack boots = player.getCurrentArmor(0);
+					ItemStack leggings = player.getCurrentArmor(1);
+					ItemStack chestplate = player.getCurrentArmor(2);
+					ItemStack helmet = player.getCurrentArmor(3);
 			
-			if(boots.getItem() == UselessItems.useless_boots && leggings.getItem() == UselessItems.useless_leggings && chestplate.getItem() == UselessItems.useless_chestplate && helmet.getItem() == UselessItems.useless_helmet)
-			{
-				player.addPotionEffect(new PotionEffect(Potion.regeneration.getId(), 200, 0));
-			}
+				if(boots.getItem() == UselessItems.useless_boots && leggings.getItem() == UselessItems.useless_leggings && chestplate.getItem() == UselessItems.useless_chestplate && helmet.getItem() == UselessItems.useless_helmet)
+					{
+						player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 200, 0));
+					}
 			
+				}
 		}
-			
-		super.onArmorTick(world, player, itemStack);
+		else { 	super.onArmorTick(world, player, itemStack); }
 	}
 
 }
