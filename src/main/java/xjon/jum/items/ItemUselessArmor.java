@@ -28,6 +28,7 @@ public class ItemUselessArmor extends ItemArmor {
 	@Override
 	public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack)
 	{
+		
 		if (!world.isRemote)
 		{
 		
@@ -40,7 +41,15 @@ public class ItemUselessArmor extends ItemArmor {
 			
 				if(boots.getItem() == UselessItems.useless_boots && leggings.getItem() == UselessItems.useless_leggings && chestplate.getItem() == UselessItems.useless_chestplate && helmet.getItem() == UselessItems.useless_helmet)
 					{
-						player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 200, 0));
+						if (player.getActivePotionEffect(Potion.regeneration) == null)
+						{
+							player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 50, 0));
+						}
+						if (world.getWorldTime() % 50 > 0)
+						{
+							return;
+						}
+						player.addPotionEffect(new PotionEffect(Potion.regeneration.id, 50, 0));
 					}
 			
 				}
