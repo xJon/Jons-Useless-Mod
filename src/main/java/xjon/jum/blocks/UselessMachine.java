@@ -119,19 +119,19 @@ public class UselessMachine extends Block {
 
             if (enumfacing == EnumFacing.NORTH && block.isFullBlock() && !block1.isFullBlock())
             {
-                enumfacing = EnumFacing.SOUTH;
+                enumfacing = EnumFacing.NORTH;
             }
             else if (enumfacing == EnumFacing.SOUTH && block1.isFullBlock() && !block.isFullBlock())
             {
-                enumfacing = EnumFacing.NORTH;
+                enumfacing = EnumFacing.SOUTH;
             }
             else if (enumfacing == EnumFacing.WEST && block2.isFullBlock() && !block3.isFullBlock())
             {
-                enumfacing = EnumFacing.EAST;
+                enumfacing = EnumFacing.WEST;
             }
             else if (enumfacing == EnumFacing.EAST && block3.isFullBlock() && !block2.isFullBlock())
             {
-                enumfacing = EnumFacing.WEST;
+                enumfacing = EnumFacing.EAST;
             }
 
             worldIn.setBlockState(pos, state.withProperty(FACING, enumfacing), 2);

@@ -26,8 +26,6 @@ import net.minecraft.world.WorldServer;
 public class TeleporterUseless extends Teleporter {
 
     private final WorldServer worldServerInstance;
-    IBlockState blockState;
-    boolean flag1 = false;
     public static int i = 0;
 	
 	public TeleporterUseless(WorldServer worldIn) {
@@ -62,17 +60,7 @@ public class TeleporterUseless extends Teleporter {
 							this.worldServerInstance.setBlockState(new BlockPos(entityIn.posX + x, entityIn.posY - 1, entityIn.posZ + z), UselessBlocks.legitimate_diamond_ore.getDefaultState());
 						}
 					}
-					if (!this.worldServerInstance.getBlockState(new BlockPos(entityIn.posX, entityIn.posY, entityIn.posZ - 2)).equals(Blocks.air))
-					{
-						blockState = this.worldServerInstance.getBlockState(new BlockPos(entityIn.posX, entityIn.posY, entityIn.posZ - 2));
-						this.worldServerInstance.setBlockState(new BlockPos(entityIn.posX, entityIn.posY, entityIn.posZ - 2), Blocks.air.getDefaultState());
-						flag1 = true;
-					}
 					this.worldServerInstance.setBlockState(new BlockPos(entityIn.posX, entityIn.posY, entityIn.posZ - 1), UselessBlocks.useless_machine.getDefaultState());
-					if (flag1 == true)
-					{
-						this.worldServerInstance.setBlockState(new BlockPos(entityIn.posX, entityIn.posY, entityIn.posZ - 2), blockState);
-					}
 					Log.info("Useless Machine spawned at x: " + entityIn.posX + " y: " + (entityIn.posY) + " z: " + (entityIn.posZ - 1));
 					this.worldServerInstance.setBlockState(new BlockPos(entityIn.posX, entityIn.posY, entityIn.posZ + 1), Blocks.torch.getDefaultState());
 					i = 0;
