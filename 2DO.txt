@@ -1,2 +1,1 @@
-- Make armor *even less* powerful
 - Fix rare issue while teleporting back from Useless Dimension

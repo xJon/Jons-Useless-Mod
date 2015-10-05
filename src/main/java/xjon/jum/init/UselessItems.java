@@ -65,10 +65,11 @@ public class UselessItems {
 			efficiency = 10.0F;
 			damage = 5.0F;
 			
-			armorHelm = 4;
+			armorHelm = 3;
 			armorChest = 9;
-			armorLeg = 7;
-			armorBoot = 4;
+			armorLeg = 6;
+			armorBoot = 3;
+			//84% damage reduction
 			
 			foodAmount = 8;
 			foodSaturation = 3.0F;
@@ -85,6 +86,7 @@ public class UselessItems {
 			armorChest = 2;
 			armorLeg = 2;
 			armorBoot = 1;
+			//24% damage reduction
 			
 			foodAmount = 2;
 			foodSaturation = 0.5F;
