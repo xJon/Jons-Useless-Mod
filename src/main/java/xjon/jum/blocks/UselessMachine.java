@@ -30,6 +30,7 @@ import xjon.jum.client.gui.GuiUselessMachine;
 import xjon.jum.init.UselessAchievements;
 import xjon.jum.init.UselessDimensions;
 import xjon.jum.tileentity.TileEntityUselessChest;
+import xjon.jum.util.Log;
 import xjon.jum.util.UselessConfiguration;
 import xjon.jum.world.dimension.TeleporterUseless;
 
@@ -74,10 +75,17 @@ public class UselessMachine extends Block {
 						z1 = playerIn.getPosition().getZ();
 						playerMP.mcServer.getConfigurationManager().transferPlayerToDimension(playerMP, UselessDimensions.dimensionId, new TeleporterUseless(playerMP.mcServer.worldServerForDimension(UselessDimensions.dimensionId)));
 						playerIn.setPositionAndUpdate(playerIn.getPosition().getX(), playerIn.getPosition().getY() + 1, playerIn.getPosition().getZ() + 1);	
-					} else {
+					} else if (x1 != 0 && y1 != 0 && z1 != 0) {
 						playerMP.mcServer.getConfigurationManager().transferPlayerToDimension(playerMP, 0, new TeleporterUseless(playerMP.mcServer.worldServerForDimension(0)));
 						playerIn.setPositionAndUpdate(x1, y1 + 1, z1);
-				}
+					}
+					  else if (x1 == 0 && y1 == 0 && z1 == 0)
+					  {
+						  playerMP.mcServer.getConfigurationManager().transferPlayerToDimension(playerMP, 0, new TeleporterUseless(playerMP.mcServer.worldServerForDimension(0)));
+						  playerIn.setPositionAndUpdate(worldIn.getSpawnPoint().getX(), worldIn.getSpawnPoint().getY(), worldIn.getSpawnPoint().getZ());
+						  playerIn.setPositionAndUpdate(playerIn.posX, worldIn.getTopSolidOrLiquidBlock(new BlockPos(playerIn.posX, playerIn.posY, playerIn.posZ)).getY() + 1, playerIn.posZ);
+						  Log.error("No coordinates were found, teleporting player back to spawn point");
+					  }
 			}
 		}
 		else
