@@ -5,6 +5,7 @@ import java.util.List;
 
 import xjon.jum.util.UselessConfiguration;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockChest;
 import xjon.jum.blocks.UselessChest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ContainerChest;
@@ -209,6 +210,91 @@ public class TileEntityUselessChest extends TileEntityChest {
 		return "minecraft:chest";
 	}
 
+	@Override
+	public void checkForAdjacentChests()
+    {
+        /*this.adjacentChestChecked = true;
+		if (!this.adjacentChestChecked)
+        {
+            this.adjacentChestChecked = true;
+            this.adjacentChestXNeg = this.func_174911_a(EnumFacing.WEST);
+            this.adjacentChestXPos = this.func_174911_a(EnumFacing.EAST);
+            this.adjacentChestZNeg = this.func_174911_a(EnumFacing.NORTH);
+            this.adjacentChestZPos = this.func_174911_a(EnumFacing.SOUTH);
+        }*/
+    }
+	
+	/*@Override
+	protected TileEntityUselessChest func_174911_a(EnumFacing p_174911_1_)
+    {
+        BlockPos blockpos = this.pos.offset(p_174911_1_);
+
+        if (this.func_174912_b(blockpos))
+        {
+            TileEntity tileentity = this.worldObj.getTileEntity(blockpos);
+
+            if (tileentity instanceof TileEntityChest)
+            {
+                TileEntityUselessChest tileentityuselesschest = (TileEntityUselessChest)tileentity;
+                tileentityuselesschest.func_174910_a(this, p_174911_1_.getOpposite());
+                return tileentityuselesschest;
+            }
+        }
+        return null;
+    }*/
+        
+        private boolean func_174912_b(BlockPos p_174912_1_)
+        {
+            if (this.worldObj == null)
+            {
+                return false;
+            }
+            else
+            {
+                Block block = this.worldObj.getBlockState(p_174912_1_).getBlock();
+                return block instanceof UselessChest && ((UselessChest)block).chestType == this.getChestType();
+            }
+        }
+        
+        private void func_174910_a(TileEntityUselessChest p_174910_1_, EnumFacing p_174910_2_)
+        {
+            if (p_174910_1_.isInvalid())
+            {
+                this.adjacentChestChecked = false;
+            }
+            else if (this.adjacentChestChecked)
+            {
+                switch (TileEntityUselessChest.SwitchEnumFacing.field_177366_a[p_174910_2_.ordinal()])
+                {
+                    case 1:
+                        if (this.adjacentChestZNeg != p_174910_1_)
+                        {
+                            this.adjacentChestChecked = false;
+                        }
+
+                        break;
+                    case 2:
+                        if (this.adjacentChestZPos != p_174910_1_)
+                        {
+                            this.adjacentChestChecked = false;
+                        }
+
+                        break;
+                    case 3:
+                        if (this.adjacentChestXPos != p_174910_1_)
+                        {
+                            this.adjacentChestChecked = false;
+                        }
+
+                        break;
+                    case 4:
+                        if (this.adjacentChestXNeg != p_174910_1_)
+                        {
+                            this.adjacentChestChecked = false;
+                        }
+                }
+            }
+        }
     
     static final class SwitchEnumFacing
     {
@@ -293,7 +379,7 @@ public class TileEntityUselessChest extends TileEntityChest {
     }
     
     @Override
-    public ItemStack getStackInSlotOnClosing(int index)
+    public ItemStack removeStackFromSlot(int index)
     {
         if (this.chestContents[index] != null)
         {

@@ -5,6 +5,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.util.MathHelper;
@@ -14,11 +15,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import org.lwjgl.opengl.GL11;
 
+import xjon.jum.entity.projectile.EntityUselessArrow;
 import xjon.jum.util.Reference;
 
 
 @SideOnly(Side.CLIENT)
-public class RenderArrow extends Render {
+public class RenderArrow extends Render<EntityUselessArrow> {
 	
 	private static final ResourceLocation arrowTextures = new ResourceLocation(Reference.MOD_ID + ":textures/entity/useless_arrow.png");
 
@@ -26,82 +28,74 @@ public class RenderArrow extends Render {
         super(Minecraft.getMinecraft().getRenderManager());
     }
 
-    public void doRender(EntityArrow p_180551_1_, double p_180551_2_, double p_180551_4_, double p_180551_6_, float p_180551_8_, float p_180551_9_) {
-        this.bindEntityTexture(p_180551_1_);
-    	GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+    @Override
+    public void doRender(EntityUselessArrow entity, double x, double y, double z, float entityYaw, float partialTicks) {
+    	this.bindEntityTexture(entity);
+        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         GlStateManager.pushMatrix();
-        GlStateManager.translate((float)p_180551_2_, (float)p_180551_4_, (float)p_180551_6_);
-        GlStateManager.rotate(p_180551_1_.prevRotationYaw + (p_180551_1_.rotationYaw - p_180551_1_.prevRotationYaw) * p_180551_9_ - 90.0F, 0.0F, 1.0F, 0.0F);
-        GlStateManager.rotate(p_180551_1_.prevRotationPitch + (p_180551_1_.rotationPitch - p_180551_1_.prevRotationPitch) * p_180551_9_, 0.0F, 0.0F, 1.0F);
+        GlStateManager.translate((float)x, (float)y, (float)z);
+        GlStateManager.rotate(entity.prevRotationYaw + (entity.rotationYaw - entity.prevRotationYaw) * partialTicks - 90.0F, 0.0F, 1.0F, 0.0F);
+        GlStateManager.rotate(entity.prevRotationPitch + (entity.rotationPitch - entity.prevRotationPitch) * partialTicks, 0.0F, 0.0F, 1.0F);
         Tessellator tessellator = Tessellator.getInstance();
         WorldRenderer worldrenderer = tessellator.getWorldRenderer();
-        byte b0 = 0;
-        float f2 = 0.0F;
-        float f3 = 0.5F;
-        float f4 = (float)(0 + b0 * 10) / 32.0F;
-        float f5 = (float)(5 + b0 * 10) / 32.0F;
-        float f6 = 0.0F;
-        float f7 = 0.15625F;
-        float f8 = (float)(5 + b0 * 10) / 32.0F;
-        float f9 = (float)(10 + b0 * 10) / 32.0F;
-        float f10 = 0.05625F;
+        int i = 0;
+        float f = 0.0F;
+        float f1 = 0.5F;
+        float f2 = (float)(0 + i * 10) / 32.0F;
+        float f3 = (float)(5 + i * 10) / 32.0F;
+        float f4 = 0.0F;
+        float f5 = 0.15625F;
+        float f6 = (float)(5 + i * 10) / 32.0F;
+        float f7 = (float)(10 + i * 10) / 32.0F;
+        float f8 = 0.05625F;
         GlStateManager.enableRescaleNormal();
-        float f11 = (float)p_180551_1_.arrowShake - p_180551_9_;
+        float f9 = (float)entity.arrowShake - partialTicks;
 
-        if (f11 > 0.0F)
+        if (f9 > 0.0F)
         {
-            float f12 = -MathHelper.sin(f11 * 3.0F) * f11;
-            GlStateManager.rotate(f12, 0.0F, 0.0F, 1.0F);
+            float f10 = -MathHelper.sin(f9 * 3.0F) * f9;
+            GlStateManager.rotate(f10, 0.0F, 0.0F, 1.0F);
         }
 
         GlStateManager.rotate(45.0F, 1.0F, 0.0F, 0.0F);
-        GlStateManager.scale(f10, f10, f10);
+        GlStateManager.scale(f8, f8, f8);
         GlStateManager.translate(-4.0F, 0.0F, 0.0F);
-        GL11.glNormal3f(f10, 0.0F, 0.0F);
-        worldrenderer.startDrawingQuads();
-        worldrenderer.addVertexWithUV(-7.0D, -2.0D, -2.0D, (double)f6, (double)f8);
-        worldrenderer.addVertexWithUV(-7.0D, -2.0D, 2.0D, (double)f7, (double)f8);
-        worldrenderer.addVertexWithUV(-7.0D, 2.0D, 2.0D, (double)f7, (double)f9);
-        worldrenderer.addVertexWithUV(-7.0D, 2.0D, -2.0D, (double)f6, (double)f9);
+        GL11.glNormal3f(f8, 0.0F, 0.0F);
+        worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
+        worldrenderer.pos(-7.0D, -2.0D, -2.0D).tex((double)f4, (double)f6).endVertex();
+        worldrenderer.pos(-7.0D, -2.0D, 2.0D).tex((double)f5, (double)f6).endVertex();
+        worldrenderer.pos(-7.0D, 2.0D, 2.0D).tex((double)f5, (double)f7).endVertex();
+        worldrenderer.pos(-7.0D, 2.0D, -2.0D).tex((double)f4, (double)f7).endVertex();
         tessellator.draw();
-        GL11.glNormal3f(-f10, 0.0F, 0.0F);
-        worldrenderer.startDrawingQuads();
-        worldrenderer.addVertexWithUV(-7.0D, 2.0D, -2.0D, (double)f6, (double)f8);
-        worldrenderer.addVertexWithUV(-7.0D, 2.0D, 2.0D, (double)f7, (double)f8);
-        worldrenderer.addVertexWithUV(-7.0D, -2.0D, 2.0D, (double)f7, (double)f9);
-        worldrenderer.addVertexWithUV(-7.0D, -2.0D, -2.0D, (double)f6, (double)f9);
+        GL11.glNormal3f(-f8, 0.0F, 0.0F);
+        worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
+        worldrenderer.pos(-7.0D, 2.0D, -2.0D).tex((double)f4, (double)f6).endVertex();
+        worldrenderer.pos(-7.0D, 2.0D, 2.0D).tex((double)f5, (double)f6).endVertex();
+        worldrenderer.pos(-7.0D, -2.0D, 2.0D).tex((double)f5, (double)f7).endVertex();
+        worldrenderer.pos(-7.0D, -2.0D, -2.0D).tex((double)f4, (double)f7).endVertex();
         tessellator.draw();
 
-        for (int i = 0; i < 4; ++i)
+        for (int j = 0; j < 4; ++j)
         {
             GlStateManager.rotate(90.0F, 1.0F, 0.0F, 0.0F);
-            GL11.glNormal3f(0.0F, 0.0F, f10);
-            worldrenderer.startDrawingQuads();
-            worldrenderer.addVertexWithUV(-8.0D, -2.0D, 0.0D, (double)f2, (double)f4);
-            worldrenderer.addVertexWithUV(8.0D, -2.0D, 0.0D, (double)f3, (double)f4);
-            worldrenderer.addVertexWithUV(8.0D, 2.0D, 0.0D, (double)f3, (double)f5);
-            worldrenderer.addVertexWithUV(-8.0D, 2.0D, 0.0D, (double)f2, (double)f5);
+            GL11.glNormal3f(0.0F, 0.0F, f8);
+            worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX);
+            worldrenderer.pos(-8.0D, -2.0D, 0.0D).tex((double)f, (double)f2).endVertex();
+            worldrenderer.pos(8.0D, -2.0D, 0.0D).tex((double)f1, (double)f2).endVertex();
+            worldrenderer.pos(8.0D, 2.0D, 0.0D).tex((double)f1, (double)f3).endVertex();
+            worldrenderer.pos(-8.0D, 2.0D, 0.0D).tex((double)f, (double)f3).endVertex();
             tessellator.draw();
         }
 
         GlStateManager.disableRescaleNormal();
         GlStateManager.popMatrix();
-        super.doRender(p_180551_1_, p_180551_2_, p_180551_4_, p_180551_6_, p_180551_8_, p_180551_9_);
+        super.doRender(entity, x, y, z, entityYaw, partialTicks);
     }
 
-    protected ResourceLocation getEntityTexture(EntityArrow p_180550_1_)
+    @Override
+    protected ResourceLocation getEntityTexture(EntityUselessArrow p_180550_1_)
     {
         return arrowTextures;
-    }
-
-    protected ResourceLocation getEntityTexture(Entity p_110775_1_)
-    {
-        return this.getEntityTexture((EntityArrow)p_110775_1_);
-    }
-
-    public void doRender(Entity p_76986_1_, double p_76986_2_, double p_76986_4_, double p_76986_6_, float p_76986_8_, float p_76986_9_)
-    {
-        this.doRender((EntityArrow)p_76986_1_, p_76986_2_, p_76986_4_, p_76986_6_, p_76986_8_, p_76986_9_);
     }
 
 }

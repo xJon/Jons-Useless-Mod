@@ -16,7 +16,9 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.IProgressUpdate;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.BiomeGenBase.SpawnListEntry;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.chunk.IChunkProvider;
@@ -290,11 +292,11 @@ public class ChunkProviderUseless implements IChunkProvider {
 
             if (s != null)
             {
-                chunkProviderSettings = ChunkProviderSettings.Factory.func_177865_a(s).func_177864_b();
+                chunkProviderSettings = ChunkProviderSettings.Factory.jsonToFactory(s).func_177864_b();
             }
             else
             {
-                chunkProviderSettings = ChunkProviderSettings.Factory.func_177865_a("").func_177864_b();
+                chunkProviderSettings = ChunkProviderSettings.Factory.jsonToFactory("").func_177864_b();
             }
 
             randomGenerator = rand;
@@ -347,7 +349,7 @@ public class ChunkProviderUseless implements IChunkProvider {
             l = randomGenerator.nextInt(16) + 8;
             WorldGenAbstractTree worldgenabstracttree = biomegenbase.genBigTreeChance(randomGenerator);
             worldgenabstracttree.func_175904_e();
-            blockpos = currentWorld.getHorizon(field_180294_c.add(k, 0, l));
+            blockpos = currentWorld.getHeight(field_180294_c.add(k, 0, l));
 
             if (worldgenabstracttree.generate(currentWorld, randomGenerator, blockpos))
             {
@@ -363,7 +365,7 @@ public class ChunkProviderUseless implements IChunkProvider {
         {
             k = randomGenerator.nextInt(16) + 8;
             l = randomGenerator.nextInt(16) + 8;
-            i1 = nextInt(currentWorld.getHorizon(field_180294_c.add(k, 0, l)).getY() + 32);
+            i1 = nextInt(currentWorld.getHeight(field_180294_c.add(k, 0, l)).getY() + 32);
             blockpos = field_180294_c.add(k, i1, l);
             BlockFlower.EnumFlowerType enumflowertype = biomegenbase.pickRandomFlower(randomGenerator, blockpos);
             BlockFlower blockflower = enumflowertype.getBlockType().getBlock();
@@ -380,7 +382,7 @@ public class ChunkProviderUseless implements IChunkProvider {
         {
             k = randomGenerator.nextInt(16) + 8;
             l = randomGenerator.nextInt(16) + 8;
-            i1 = nextInt(currentWorld.getHorizon( field_180294_c.add(k, 0, l)).getY() * 2);
+            i1 = nextInt(currentWorld.getHeight( field_180294_c.add(k, 0, l)).getY() * 2);
             biomegenbase.getRandomWorldGenForGrass(randomGenerator).generate(currentWorld, randomGenerator, field_180294_c.add(k, i1, l));
         }
 
@@ -391,7 +393,7 @@ public class ChunkProviderUseless implements IChunkProvider {
         {
             k = randomGenerator.nextInt(16) + 8;
             l = randomGenerator.nextInt(16) + 8;
-            i1 = nextInt(currentWorld.getHorizon( field_180294_c.add(k, 0, l)).getY() * 2);
+            i1 = nextInt(currentWorld.getHeight( field_180294_c.add(k, 0, l)).getY() * 2);
              reedGen.generate(currentWorld, randomGenerator, field_180294_c.add(k, i1, l));
         }
 
@@ -399,7 +401,7 @@ public class ChunkProviderUseless implements IChunkProvider {
         {
             k = randomGenerator.nextInt(16) + 8;
             l = randomGenerator.nextInt(16) + 8;
-            i1 = nextInt(currentWorld.getHorizon(field_180294_c.add(k, 0, l)).getY() * 2);
+            i1 = nextInt(currentWorld.getHeight(field_180294_c.add(k, 0, l)).getY() * 2);
              reedGen.generate(currentWorld, randomGenerator, field_180294_c.add(k, i1, l));
         }
 
@@ -408,7 +410,7 @@ public class ChunkProviderUseless implements IChunkProvider {
         {
             j = randomGenerator.nextInt(16) + 8;
             k = randomGenerator.nextInt(16) + 8;
-            l = nextInt(currentWorld.getHorizon( field_180294_c.add(j, 0, k)).getY() * 2);
+            l = nextInt(currentWorld.getHeight(field_180294_c.add(j, 0, k)).getY() * 2);
             (new WorldGenPumpkin()).generate(currentWorld, randomGenerator, field_180294_c.add(j, l, k));
         }
 
@@ -469,9 +471,9 @@ public class ChunkProviderUseless implements IChunkProvider {
     }
 
     @Override
-    public List func_177458_a(EnumCreatureType p_177458_1_, BlockPos p_177458_2_) {
-            BiomeGenBase var5 =  worldObj.getBiomeGenForCoords(p_177458_2_);
-            return var5 == null ? null : var5.getSpawnableList(p_177458_1_);
+    public List<SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos) {
+            BiomeGenBase var5 =  worldObj.getBiomeGenForCoords(pos);
+            return var5 == null ? null : var5.getSpawnableList(creatureType);
     }
 
     @Override

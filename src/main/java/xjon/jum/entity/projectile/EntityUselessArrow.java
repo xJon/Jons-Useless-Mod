@@ -147,10 +147,10 @@ public class EntityUselessArrow extends EntityArrow implements IProjectile, IEnt
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void func_180426_a(double p_180426_1_, double p_180426_3_, double p_180426_5_, float p_180426_7_, float p_180426_8_, int p_180426_9_, boolean p_180426_10_)
+    public void setPositionAndRotation2(double x, double y, double z, float yaw, float pitch, int posRotationIncrements, boolean p_180426_10_)
     {
-        this.setPosition(p_180426_1_, p_180426_3_, p_180426_5_);
-        this.setRotation(p_180426_7_, p_180426_8_);
+    	this.setPosition(x, y, z);
+        this.setRotation(yaw, pitch);
     }
 
     @Override
@@ -176,13 +176,13 @@ public class EntityUselessArrow extends EntityArrow implements IProjectile, IEnt
     @Override
     public void onUpdate()
     {
-        super.onEntityUpdate();
+    	super.onEntityUpdate();
 
         if (this.prevRotationPitch == 0.0F && this.prevRotationYaw == 0.0F)
         {
             float f = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
-            this.prevRotationYaw = this.rotationYaw = (float)(Math.atan2(this.motionX, this.motionZ) * 180.0D / Math.PI);
-            this.prevRotationPitch = this.rotationPitch = (float)(Math.atan2(this.motionY, (double)f) * 180.0D / Math.PI);
+            this.prevRotationYaw = this.rotationYaw = (float)(MathHelper.atan2(this.motionX, this.motionZ) * 180.0D / Math.PI);
+            this.prevRotationPitch = this.rotationPitch = (float)(MathHelper.atan2(this.motionY, (double)f) * 180.0D / Math.PI);
         }
 
         BlockPos blockpos = new BlockPos(this.xTile, this.yTile, this.zTile);
@@ -243,24 +243,22 @@ public class EntityUselessArrow extends EntityArrow implements IProjectile, IEnt
             }
 
             Entity entity = null;
-            List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
+            List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
             double d0 = 0.0D;
-            int i;
-            float f1;
 
-            for (i = 0; i < list.size(); ++i)
+            for (int i = 0; i < list.size(); ++i)
             {
                 Entity entity1 = (Entity)list.get(i);
 
-                if (entity1.canBeCollidedWith() && (entity1 != this.shootingEntity || this.ticksInAir >= 10))
+                if (entity1.canBeCollidedWith() && (entity1 != this.shootingEntity || this.ticksInAir >= 5))
                 {
-                    f1 = 0.3F;
+                    float f1 = 0.3F;
                     AxisAlignedBB axisalignedbb1 = entity1.getEntityBoundingBox().expand((double)f1, (double)f1, (double)f1);
                     MovingObjectPosition movingobjectposition1 = axisalignedbb1.calculateIntercept(vec31, vec3);
 
                     if (movingobjectposition1 != null)
                     {
-                        double d1 = vec31.distanceTo(movingobjectposition1.hitVec);
+                        double d1 = vec31.squareDistanceTo(movingobjectposition1.hitVec);
 
                         if (d1 < d0 || d0 == 0.0D)
                         {
@@ -286,20 +284,16 @@ public class EntityUselessArrow extends EntityArrow implements IProjectile, IEnt
                 }
             }
 
-            float f2;
-            float f3;
-            float f4;
-
             if (movingobjectposition != null)
             {
                 if (movingobjectposition.entityHit != null)
                 {
-                    f2 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
-                    int k = MathHelper.ceiling_double_int((double)f2 * this.damage);
+                    float f2 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
+                    int l = MathHelper.ceiling_double_int((double)f2 * this.damage);
 
                     if (this.getIsCritical())
                     {
-                        k += this.rand.nextInt(k / 2 + 2);
+                        l += this.rand.nextInt(l / 2 + 2);
                     }
 
                     DamageSource damagesource;
@@ -318,7 +312,7 @@ public class EntityUselessArrow extends EntityArrow implements IProjectile, IEnt
                         movingobjectposition.entityHit.setFire(5);
                     }
 
-                    if (movingobjectposition.entityHit.attackEntityFrom(damagesource, (float)k))
+                    if (movingobjectposition.entityHit.attackEntityFrom(damagesource, (float)l))
                     {
                         if (movingobjectposition.entityHit instanceof EntityLivingBase)
                         {
@@ -331,18 +325,18 @@ public class EntityUselessArrow extends EntityArrow implements IProjectile, IEnt
 
                             if (this.knockbackStrength > 0)
                             {
-                                f4 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
+                                float f7 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
 
-                                if (f4 > 0.0F)
+                                if (f7 > 0.0F)
                                 {
-                                    movingobjectposition.entityHit.addVelocity(this.motionX * (double)this.knockbackStrength * 0.6000000238418579D / (double)f4, 0.1D, this.motionZ * (double)this.knockbackStrength * 0.6000000238418579D / (double)f4);
+                                    movingobjectposition.entityHit.addVelocity(this.motionX * (double)this.knockbackStrength * 0.6000000238418579D / (double)f7, 0.1D, this.motionZ * (double)this.knockbackStrength * 0.6000000238418579D / (double)f7);
                                 }
                             }
 
                             if (this.shootingEntity instanceof EntityLivingBase)
                             {
-                                EnchantmentHelper.func_151384_a(entitylivingbase, this.shootingEntity);
-                                EnchantmentHelper.func_151385_b((EntityLivingBase)this.shootingEntity, entitylivingbase);
+                                EnchantmentHelper.applyThornEnchantments(entitylivingbase, this.shootingEntity);
+                                EnchantmentHelper.applyArthropodEnchantments((EntityLivingBase)this.shootingEntity, entitylivingbase);
                             }
 
                             if (this.shootingEntity != null && movingobjectposition.entityHit != this.shootingEntity && movingobjectposition.entityHit instanceof EntityPlayer && this.shootingEntity instanceof EntityPlayerMP)
@@ -374,16 +368,16 @@ public class EntityUselessArrow extends EntityArrow implements IProjectile, IEnt
                     this.xTile = blockpos1.getX();
                     this.yTile = blockpos1.getY();
                     this.zTile = blockpos1.getZ();
-                    iblockstate = this.worldObj.getBlockState(blockpos1);
-                    this.inTile = iblockstate.getBlock();
-                    this.inData = this.inTile.getMetaFromState(iblockstate);
+                    IBlockState iblockstate1 = this.worldObj.getBlockState(blockpos1);
+                    this.inTile = iblockstate1.getBlock();
+                    this.inData = this.inTile.getMetaFromState(iblockstate1);
                     this.motionX = (double)((float)(movingobjectposition.hitVec.xCoord - this.posX));
                     this.motionY = (double)((float)(movingobjectposition.hitVec.yCoord - this.posY));
                     this.motionZ = (double)((float)(movingobjectposition.hitVec.zCoord - this.posZ));
-                    f3 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
-                    this.posX -= this.motionX / (double)f3 * 0.05000000074505806D;
-                    this.posY -= this.motionY / (double)f3 * 0.05000000074505806D;
-                    this.posZ -= this.motionZ / (double)f3 * 0.05000000074505806D;
+                    float f5 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
+                    this.posX -= this.motionX / (double)f5 * 0.05000000074505806D;
+                    this.posY -= this.motionY / (double)f5 * 0.05000000074505806D;
+                    this.posZ -= this.motionZ / (double)f5 * 0.05000000074505806D;
                     this.playSound("random.bowhit", 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
                     this.inGround = true;
                     this.arrowShake = 7;
@@ -391,26 +385,26 @@ public class EntityUselessArrow extends EntityArrow implements IProjectile, IEnt
 
                     if (this.inTile.getMaterial() != Material.air)
                     {
-                        this.inTile.onEntityCollidedWithBlock(this.worldObj, blockpos1, iblockstate, this);
+                        this.inTile.onEntityCollidedWithBlock(this.worldObj, blockpos1, iblockstate1, this);
                     }
                 }
             }
 
             if (this.getIsCritical())
             {
-                for (i = 0; i < 4; ++i)
+                for (int k = 0; k < 4; ++k)
                 {
-                    this.worldObj.spawnParticle(EnumParticleTypes.CRIT, this.posX + this.motionX * (double)i / 4.0D, this.posY + this.motionY * (double)i / 4.0D, this.posZ + this.motionZ * (double)i / 4.0D, -this.motionX, -this.motionY + 0.2D, -this.motionZ, new int[0]);
+                    this.worldObj.spawnParticle(EnumParticleTypes.CRIT, this.posX + this.motionX * (double)k / 4.0D, this.posY + this.motionY * (double)k / 4.0D, this.posZ + this.motionZ * (double)k / 4.0D, -this.motionX, -this.motionY + 0.2D, -this.motionZ, new int[0]);
                 }
             }
 
             this.posX += this.motionX;
             this.posY += this.motionY;
             this.posZ += this.motionZ;
-            f2 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
-            this.rotationYaw = (float)(Math.atan2(this.motionX, this.motionZ) * 180.0D / Math.PI);
+            float f3 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
+            this.rotationYaw = (float)(MathHelper.atan2(this.motionX, this.motionZ) * 180.0D / Math.PI);
 
-            for (this.rotationPitch = (float)(Math.atan2(this.motionY, (double)f2) * 180.0D / Math.PI); this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F)
+            for (this.rotationPitch = (float)(MathHelper.atan2(this.motionY, (double)f3) * 180.0D / Math.PI); this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F)
             {
                 ;
             }
@@ -432,18 +426,18 @@ public class EntityUselessArrow extends EntityArrow implements IProjectile, IEnt
 
             this.rotationPitch = this.prevRotationPitch + (this.rotationPitch - this.prevRotationPitch) * 0.2F;
             this.rotationYaw = this.prevRotationYaw + (this.rotationYaw - this.prevRotationYaw) * 0.2F;
-            f3 = 0.99F;
-            f1 = 0.05F;
+            float f4 = 0.99F;
+            float f6 = 0.05F;
 
             if (this.isInWater())
             {
-                for (int l = 0; l < 4; ++l)
+                for (int i1 = 0; i1 < 4; ++i1)
                 {
-                    f4 = 0.25F;
-                    this.worldObj.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX - this.motionX * (double)f4, this.posY - this.motionY * (double)f4, this.posZ - this.motionZ * (double)f4, this.motionX, this.motionY, this.motionZ, new int[0]);
+                    float f8 = 0.25F;
+                    this.worldObj.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX - this.motionX * (double)f8, this.posY - this.motionY * (double)f8, this.posZ - this.motionZ * (double)f8, this.motionX, this.motionY, this.motionZ, new int[0]);
                 }
 
-                f3 = 0.6F;
+                f4 = 0.6F;
             }
 
             if (this.isWet())
@@ -451,10 +445,10 @@ public class EntityUselessArrow extends EntityArrow implements IProjectile, IEnt
                 this.extinguish();
             }
 
-            this.motionX *= (double)f3;
-            this.motionY *= (double)f3;
-            this.motionZ *= (double)f3;
-            this.motionY -= (double)f1;
+            this.motionX *= (double)f4;
+            this.motionY *= (double)f4;
+            this.motionZ *= (double)f4;
+            this.motionY -= (double)f6;
             this.setPosition(this.posX, this.posY, this.posZ);
             this.doBlockCollisions();
         }

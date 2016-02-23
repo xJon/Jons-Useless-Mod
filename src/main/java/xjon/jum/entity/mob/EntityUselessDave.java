@@ -34,7 +34,6 @@ public class EntityUselessDave extends EntityMob {
 		super(worldIn);
 		this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1.0D, false));
-        this.tasks.addTask(2, this.field_175455_a);
 		this.tasks.addTask(3, new EntityAIPanic(this, 1.2D));
         this.tasks.addTask(4, new EntityAITempt(this, 5.0D, UselessItems.useless_food, false));
         this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 1.0D));

@@ -148,6 +148,107 @@ public class UselessChest extends BlockChest {
 	            }
 	        }
 	    }
+	 	
+	 	public IBlockState checkForSurroundingChests(World worldIn, BlockPos pos, IBlockState state)
+	    {
+	        if (worldIn.isRemote)
+	        {
+	            return state;
+	        }
+	        else
+	        {
+	            IBlockState iblockstate1 = worldIn.getBlockState(pos.north());
+	            IBlockState iblockstate2 = worldIn.getBlockState(pos.south());
+	            IBlockState iblockstate3 = worldIn.getBlockState(pos.west());
+	            IBlockState iblockstate4 = worldIn.getBlockState(pos.east());
+	            EnumFacing enumfacing = (EnumFacing)state.getValue(FACING);
+	            Block block = iblockstate1.getBlock();
+	            Block block1 = iblockstate2.getBlock();
+	            Block block2 = iblockstate3.getBlock();
+	            Block block3 = iblockstate4.getBlock();
+
+	            if (block != this && block1 != this)
+	            {
+	                boolean flag = block.isFullBlock();
+	                boolean flag1 = block1.isFullBlock();
+
+	                if (block2 == this || block3 == this)
+	                {
+	                    BlockPos blockpos2 = block2 == this ? pos.west() : pos.east();
+	                    IBlockState iblockstate7 = worldIn.getBlockState(blockpos2.north());
+	                    IBlockState iblockstate8 = worldIn.getBlockState(blockpos2.south());
+	                    enumfacing = EnumFacing.SOUTH;
+	                    EnumFacing enumfacing2;
+
+	                    if (block2 == this)
+	                    {
+	                        enumfacing2 = (EnumFacing)iblockstate3.getValue(FACING);
+	                    }
+	                    else
+	                    {
+	                        enumfacing2 = (EnumFacing)iblockstate4.getValue(FACING);
+	                    }
+
+	                    if (enumfacing2 == EnumFacing.NORTH)
+	                    {
+	                        enumfacing = EnumFacing.NORTH;
+	                    }
+
+	                    Block block6 = iblockstate7.getBlock();
+	                    Block block7 = iblockstate8.getBlock();
+
+	                    if ((flag || block6.isFullBlock()) && !flag1 && !block7.isFullBlock())
+	                    {
+	                        enumfacing = EnumFacing.SOUTH;
+	                    }
+
+	                    if ((flag1 || block7.isFullBlock()) && !flag && !block6.isFullBlock())
+	                    {
+	                        enumfacing = EnumFacing.NORTH;
+	                    }
+	                }
+	            }
+	            else
+	            {
+	                BlockPos blockpos1 = block == this ? pos.north() : pos.south();
+	                IBlockState iblockstate5 = worldIn.getBlockState(blockpos1.west());
+	                IBlockState iblockstate6 = worldIn.getBlockState(blockpos1.east());
+	                enumfacing = EnumFacing.EAST;
+	                EnumFacing enumfacing1;
+
+	                if (block == this)
+	                {
+	                    enumfacing1 = (EnumFacing)iblockstate1.getValue(FACING);
+	                }
+	                else
+	                {
+	                    enumfacing1 = (EnumFacing)iblockstate2.getValue(FACING);
+	                }
+
+	                if (enumfacing1 == EnumFacing.WEST)
+	                {
+	                    enumfacing = EnumFacing.WEST;
+	                }
+
+	                Block block4 = iblockstate5.getBlock();
+	                Block block5 = iblockstate6.getBlock();
+
+	                if ((block2.isFullBlock() || block4.isFullBlock()) && !block3.isFullBlock() && !block5.isFullBlock())
+	                {
+	                    enumfacing = EnumFacing.EAST;
+	                }
+
+	                if ((block3.isFullBlock() || block5.isFullBlock()) && !block2.isFullBlock() && !block4.isFullBlock())
+	                {
+	                    enumfacing = EnumFacing.WEST;
+	                }
+	            }
+
+	            state = state.withProperty(FACING, enumfacing);
+	            worldIn.setBlockState(pos, state, 3);
+	            return state;
+	        }
+	    }
 	    
 	    private boolean isBlocked(World worldIn, BlockPos pos)
 	    {

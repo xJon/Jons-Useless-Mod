@@ -13,7 +13,6 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -26,7 +25,7 @@ public class UselessChestRenderer extends TileEntitySpecialRenderer
 	private RenderManager renderManager;
 
     public UselessChestRenderer(RenderManager renderManager) {
-		this.renderManager = renderManager	;
+		this.renderManager = renderManager;
 	}
 
 	public void func_180538_a(TileEntityUselessChest p_180538_1_, double p_180538_2_, double p_180538_4_, double p_180538_6_, float p_180538_8_, int p_180538_9_)

@@ -31,10 +31,9 @@ public class UselessEntities {
 	{
 		BiomeGenBase[] allBiomes = Iterators.toArray(Iterators.filter(Iterators.forArray(BiomeGenBase.getBiomeGenArray()), Predicates.notNull()), BiomeGenBase.class);
 		
-		EntityRegistry.registerGlobalEntityID(entityClass, entityName, randomId);
 		EntityRegistry.registerModEntity(entityClass, entityName, randomId, JumCore.instance, 64, 1, true);
 		
-		EntityRegistry.addSpawn(entityClass, 7, 1, 2, EnumCreatureType.CREATURE, allBiomes);
+		EntityRegistry.addSpawn(entityClass, 10, 1, 2, EnumCreatureType.CREATURE, allBiomes);
 		
 		createEgg(randomId, solidColor, spotColor);
 	}
