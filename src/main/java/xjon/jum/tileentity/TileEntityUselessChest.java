@@ -213,35 +213,35 @@ public class TileEntityUselessChest extends TileEntityChest {
 	@Override
 	public void checkForAdjacentChests()
     {
-        /*this.adjacentChestChecked = true;
+        this.adjacentChestChecked = true;
 		if (!this.adjacentChestChecked)
         {
             this.adjacentChestChecked = true;
-            this.adjacentChestXNeg = this.func_174911_a(EnumFacing.WEST);
-            this.adjacentChestXPos = this.func_174911_a(EnumFacing.EAST);
-            this.adjacentChestZNeg = this.func_174911_a(EnumFacing.NORTH);
-            this.adjacentChestZPos = this.func_174911_a(EnumFacing.SOUTH);
-        }*/
+            this.adjacentChestXNeg = this.getAdjacentChest(EnumFacing.WEST);
+            this.adjacentChestXPos = this.getAdjacentChest(EnumFacing.EAST);
+            this.adjacentChestZNeg = this.getAdjacentChest(EnumFacing.NORTH);
+            this.adjacentChestZPos = this.getAdjacentChest(EnumFacing.SOUTH);
+        }
     }
 	
-	/*@Override
-	protected TileEntityUselessChest func_174911_a(EnumFacing p_174911_1_)
+	@Override
+	protected TileEntityUselessChest getAdjacentChest(EnumFacing side)
     {
-        BlockPos blockpos = this.pos.offset(p_174911_1_);
+        BlockPos blockpos = this.pos.offset(side);
 
         if (this.func_174912_b(blockpos))
         {
             TileEntity tileentity = this.worldObj.getTileEntity(blockpos);
 
-            if (tileentity instanceof TileEntityChest)
+            if (tileentity instanceof TileEntityUselessChest)
             {
                 TileEntityUselessChest tileentityuselesschest = (TileEntityUselessChest)tileentity;
-                tileentityuselesschest.func_174910_a(this, p_174911_1_.getOpposite());
+                tileentityuselesschest.func_174910_a(this, side.getOpposite());
                 return tileentityuselesschest;
             }
         }
         return null;
-    }*/
+  }
         
         private boolean func_174912_b(BlockPos p_174912_1_)
         {
