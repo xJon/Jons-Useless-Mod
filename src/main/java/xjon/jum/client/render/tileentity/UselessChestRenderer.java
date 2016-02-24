@@ -46,8 +46,6 @@ public class UselessChestRenderer extends TileEntitySpecialRenderer
                 ((UselessChest)block).checkForSurroundingChests(p_180538_1_.getWorld(), p_180538_1_.getPos(), p_180538_1_.getWorld().getBlockState(p_180538_1_.getPos()));
                 j = p_180538_1_.getBlockMetadata();
             }
-
-            p_180538_1_.checkForAdjacentChests();
         }
 
         if (p_180538_1_.adjacentChestZNeg == null && p_180538_1_.adjacentChestXNeg == null)
