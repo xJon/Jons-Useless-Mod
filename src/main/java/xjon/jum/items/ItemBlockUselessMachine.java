@@ -15,6 +15,7 @@ public class ItemBlockUselessMachine extends ItemBlock {
 
 	public ItemBlockUselessMachine(Block block) {
 		super(block);
+		this.maxStackSize = 1;
 	}
 	
 	@SideOnly(Side.CLIENT)

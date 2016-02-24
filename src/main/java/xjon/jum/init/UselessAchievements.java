@@ -15,17 +15,11 @@ public class UselessAchievements {
 	
 	public static void loadAchievements()
 	{
-		uselessMining = new Achievement("achievement.jum_mining", "UselessMining", 0, 0, UselessItems.useless_material, null);
-		uselessBro = new Achievement("achievement.jum_bro", "UselessBro", 2, 1, UselessItems.useless_bro, uselessMining);
-		uselessMachine = new Achievement("achievement.jum_machine", "UselessMachine", 3, -1, UselessBlocks.useless_machine, uselessMining);
-		uselessMultitool = new Achievement("achievement.jum_multitool", "UselessMultitool", -3, -2, UselessItems.useless_multitool, uselessMachine);
+		uselessMining = new Achievement("achievement.jum_mining", "UselessMining", 0, 0, UselessItems.useless_material, null).initIndependentStat().registerStat();
+		uselessBro = new Achievement("achievement.jum_bro", "UselessBro", 2, 1, UselessItems.useless_bro, uselessMining).registerStat();
+		uselessMachine = new Achievement("achievement.jum_machine", "UselessMachine", 3, -1, UselessBlocks.useless_machine, uselessMining).registerStat();
+		uselessMultitool = new Achievement("achievement.jum_multitool", "UselessMultitool", -3, -2, UselessItems.useless_multitool, uselessMachine).registerStat();
 		
-		page = new AchievementPage("Jon's Useless Mod", uselessMining, uselessBro, uselessMachine, uselessMultitool);
+		AchievementPage.registerAchievementPage(new AchievementPage("Jon's Useless Mod", uselessMining, uselessBro, uselessMachine, uselessMultitool));
 	}
-	
-	public static void registerPage()
-	{
-		AchievementPage.registerAchievementPage(page);
-	}
-	
 }

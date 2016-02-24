@@ -57,8 +57,6 @@ public class JumCore {
 		UselessItems.register();
 		UselessBlocks.init();
 		UselessBlocks.register();
-		UselessAchievements.loadAchievements();
-		UselessAchievements.registerPage();
 		UselessEntities.init();
 		UselessBiomes.init();
 		UselessDimensions.init();
@@ -72,6 +70,7 @@ public class JumCore {
 	@EventHandler
 	public void Init(FMLInitializationEvent event)
 	{
+		UselessAchievements.loadAchievements();
 		proxy.registerRenders();
 		UselessRecipes.register();
 		UselessTileEntities.register();

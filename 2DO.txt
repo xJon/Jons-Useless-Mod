@@ -1,5 +1,6 @@
 Fix:
-- Useless chest next to chest make double chest
+- Saving achievements
+- Unfound problems
 
 Test:
 Everything else

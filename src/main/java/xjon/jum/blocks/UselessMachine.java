@@ -44,6 +44,7 @@ public class UselessMachine extends Block {
 		super(material);
 		setHardness(3.0F);
 		setHarvestLevel("pickaxe", 2);
+		this.setLightLevel(0.4F);
 		this.setStepSound(this.soundTypeMetal);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 	}
@@ -156,7 +157,7 @@ public class UselessMachine extends Block {
                 ((TileEntityFurnace)tileentity).setCustomInventoryName(stack.getDisplayName());
             }
         }
-        ((EntityPlayer) placer).triggerAchievement(UselessAchievements.uselessMachine);
+        ((EntityPlayer)placer).addStat(UselessAchievements.uselessMachine, 1);
     }
     
     public IBlockState getStateFromMeta(int meta)

@@ -588,7 +588,7 @@ public class EntityUselessArrow extends EntityArrow implements IProjectile, IEnt
 
 	@Override
 	public void writeSpawnData(ByteBuf buffer) {
-		buffer.writeInt(this.shootingEntity.getEntityId());
+		buffer.writeInt(shootingEntity != null ? shootingEntity.getEntityId() : -1);
 	}
 
 	@Override

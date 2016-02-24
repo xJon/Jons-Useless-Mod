@@ -22,7 +22,7 @@ public class PlayerEvents{
 	{
 		if (event.pickedUp.getEntityItem().getItem().equals(UselessItems.useless_material))
 		    {
-			event.player.triggerAchievement(UselessAchievements.uselessMining);;
+			event.player.addStat(UselessAchievements.uselessMining, 1);
 			}
 	}
 	
@@ -31,12 +31,12 @@ public class PlayerEvents{
 	{
 		if (event.crafting.getItem().equals(UselessItems.useless_bro))
 		{
-			event.player.triggerAchievement(UselessAchievements.uselessBro);
+			event.player.addStat(UselessAchievements.uselessBro, 1);
 		}
 		
 		if (event.crafting.getItem().equals(UselessItems.useless_multitool))
 		{
-			event.player.triggerAchievement(UselessAchievements.uselessMultitool);
+			event.player.addStat(UselessAchievements.uselessMultitool, 1);
 		}
 	
 	}
@@ -44,16 +44,13 @@ public class PlayerEvents{
 	@SubscribeEvent
 	public void loggedOut(PlayerLoggedOutEvent event)
 	{
-		if (event.player.dimension == UselessDimensions.dimensionId)
+		if (event.player.dimension == UselessDimensions.dimensionId && event.player instanceof EntityPlayerMP)
 		{
-			if(event.player instanceof EntityPlayerMP)
-			{
-				EntityPlayerMP playerMP = (EntityPlayerMP) event.player;
+				EntityPlayerMP playerMP = (EntityPlayerMP)event.player;
 				
 				playerMP.mcServer.getConfigurationManager().transferPlayerToDimension(playerMP, 0, new TeleporterUseless(playerMP.mcServer.worldServerForDimension(0)));
 				event.player.setPositionAndUpdate(UselessMachine.x1, UselessMachine.y1, UselessMachine.z1);
 				Log.warn("Player teleported back to the overworld");
-			}
 		}
 	}
 		
