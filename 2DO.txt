@@ -1,5 +1,5 @@
 Fix:
-- Saving achievements
+- Teleporter laziness
 - Unfound problems
 
 Test:

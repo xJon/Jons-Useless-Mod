@@ -78,7 +78,7 @@ public class UselessMachine extends Block {
 						playerIn.setPositionAndUpdate(playerIn.getPosition().getX(), playerIn.getPosition().getY() + 1, playerIn.getPosition().getZ() + 1);	
 					} else if (x1 != 0 && y1 != 0 && z1 != 0) {
 						playerMP.mcServer.getConfigurationManager().transferPlayerToDimension(playerMP, 0, new TeleporterUseless(playerMP.mcServer.worldServerForDimension(0)));
-						playerIn.setPositionAndUpdate(x1, y1 + 1, z1);
+						//playerIn.setPositionAndUpdate(x1, y1 + 1, z1);
 					}
 					  else if (x1 == 0 && y1 == 0 && z1 == 0)
 					  {
