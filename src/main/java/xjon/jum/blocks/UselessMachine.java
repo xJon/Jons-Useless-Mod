@@ -86,7 +86,6 @@ public class UselessMachine extends Block {
 									if(playerIn.worldObj.getBlockState(new BlockPos(playerIn.posX + x, playerIn.posY + y, playerIn.posZ + z)).equals(UselessBlocks.useless_machine.getDefaultState()))
 									{
 										playerIn.setPositionAndUpdate(playerIn.posX + x, playerIn.posY + y + 1, playerIn.posZ + z + 1.5);
-										Log.info("Found");
 										break;
 									}
 								}
