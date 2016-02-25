@@ -1,2 +1,6 @@
 Fix:
+- Teleporter laziness
 - Unfound problems
+
+Test:
+Everything else

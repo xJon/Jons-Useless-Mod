@@ -1,11 +1,16 @@
 package xjon.jum.blocks;
 
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.audio.ISound;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -15,16 +20,21 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.MathHelper;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import xjon.jum.client.gui.GuiUselessMachine;
 import xjon.jum.init.UselessAchievements;
 import xjon.jum.init.UselessBlocks;
 import xjon.jum.init.UselessDimensions;
+import xjon.jum.tileentity.TileEntityUselessChest;
 import xjon.jum.util.Log;
 import xjon.jum.util.UselessConfiguration;
 import xjon.jum.world.dimension.TeleporterUseless;
-
 
 public class UselessMachine extends Block {
 		
@@ -69,14 +79,13 @@ public class UselessMachine extends Block {
 						flag = true;
 						playerMP.mcServer.getConfigurationManager().transferPlayerToDimension(playerMP, UselessDimensions.dimensionId, new TeleporterUseless(playerMP.mcServer.worldServerForDimension(UselessDimensions.dimensionId)));
 						playerIn.setPositionAndUpdate(playerIn.posX, playerIn.posY + 1, playerIn.posZ);
-						for (int x = -5; x <= 5; ++x)
-						{ for (int y = -3; y <= 3; ++y)
-							{ for (int z = -5; z <= 5; ++z)
+						for (int x = -2; x <= 2; ++x)
+						{ for (int y = -1; y <= 1; ++y)
+							{ for (int z = -2; z <= 2; ++z)
 								{
 									if(playerIn.worldObj.getBlockState(new BlockPos(playerIn.posX + x, playerIn.posY + y, playerIn.posZ + z)).equals(UselessBlocks.useless_machine.getDefaultState()))
 									{
 										playerIn.setPositionAndUpdate(playerIn.posX + x, playerIn.posY + y + 1, playerIn.posZ + z + 1.5);
-										Log.info("Found");
 										break;
 									}
 								}
