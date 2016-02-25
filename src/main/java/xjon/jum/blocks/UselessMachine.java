@@ -69,9 +69,9 @@ public class UselessMachine extends Block {
 						flag = true;
 						playerMP.mcServer.getConfigurationManager().transferPlayerToDimension(playerMP, UselessDimensions.dimensionId, new TeleporterUseless(playerMP.mcServer.worldServerForDimension(UselessDimensions.dimensionId)));
 						playerIn.setPositionAndUpdate(playerIn.posX, playerIn.posY + 1, playerIn.posZ);
-						for (int x = -4; x <= 4; ++x)
+						for (int x = -6; x <= 6; ++x)
 						{ for (int y = -2; y <= 2; ++y)
-							{ for (int z = -4; z <= 4; ++z)
+							{ for (int z = -6; z <= 6; ++z)
 								{
 									if(playerIn.worldObj.getBlockState(new BlockPos(playerIn.posX + x, playerIn.posY + y, playerIn.posZ + z)).equals(UselessBlocks.useless_machine.getDefaultState()))
 									{
