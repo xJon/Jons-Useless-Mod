@@ -10,6 +10,7 @@ import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.ISound;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -28,6 +29,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import xjon.jum.client.gui.GuiUselessMachine;
 import xjon.jum.init.UselessAchievements;
+import xjon.jum.init.UselessBlocks;
 import xjon.jum.init.UselessDimensions;
 import xjon.jum.tileentity.TileEntityUselessChest;
 import xjon.jum.util.Log;
@@ -37,7 +39,7 @@ import xjon.jum.world.dimension.TeleporterUseless;
 public class UselessMachine extends Block {
 		
 	public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
-		
+	private boolean flag; 
 	public static int x1, y1, z1;
 	
 	public  UselessMachine(Material material) {
@@ -64,7 +66,7 @@ public class UselessMachine extends Block {
 	
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
-	{
+	{		
 		if(!UselessConfiguration.isUseless)		
 		{
 			if(playerIn instanceof EntityPlayerMP)
@@ -74,17 +76,39 @@ public class UselessMachine extends Block {
 						x1 = playerIn.getPosition().getX();
 						y1 = playerIn.getPosition().getY() + 1;
 						z1 = playerIn.getPosition().getZ();
+						flag = true;
 						playerMP.mcServer.getConfigurationManager().transferPlayerToDimension(playerMP, UselessDimensions.dimensionId, new TeleporterUseless(playerMP.mcServer.worldServerForDimension(UselessDimensions.dimensionId)));
-						playerIn.setPositionAndUpdate(playerIn.getPosition().getX(), playerIn.getPosition().getY() + 1, playerIn.getPosition().getZ() + 1);	
-					} else if (x1 != 0 && y1 != 0 && z1 != 0) {
+						playerIn.setPositionAndUpdate(playerIn.posX, playerIn.posY + 1, playerIn.posZ);
+						for (int x = -2; x <= 2; ++x)
+						{ for (int y = -1; y <= 1; ++y)
+							{ for (int z = -2; z <= 2; ++z)
+								{
+									if(playerIn.worldObj.getBlockState(new BlockPos(playerIn.posX + x, playerIn.posY + y, playerIn.posZ + z)).equals(UselessBlocks.useless_machine.getDefaultState()))
+									{
+										playerIn.setPositionAndUpdate(playerIn.posX + x, playerIn.posY + y + 1, playerIn.posZ + z + 1.5);
+										Log.info("Found");
+										break;
+									}
+								}
+							}
+						}
+					} else if (flag == true) {
 						playerMP.mcServer.getConfigurationManager().transferPlayerToDimension(playerMP, 0, new TeleporterUseless(playerMP.mcServer.worldServerForDimension(0)));
-						//playerIn.setPositionAndUpdate(x1, y1 + 1, z1);
+						playerIn.setPositionAndUpdate(x1, y1 + 1, z1);	
+						flag = false;
 					}
-					  else if (x1 == 0 && y1 == 0 && z1 == 0)
+					  else
 					  {
 						  playerMP.mcServer.getConfigurationManager().transferPlayerToDimension(playerMP, 0, new TeleporterUseless(playerMP.mcServer.worldServerForDimension(0)));
 						  playerIn.setPositionAndUpdate(worldIn.getSpawnPoint().getX(), worldIn.getSpawnPoint().getY(), worldIn.getSpawnPoint().getZ());
-						  playerIn.setPositionAndUpdate(playerIn.posX, worldIn.getTopSolidOrLiquidBlock(new BlockPos(playerIn.posX, playerIn.posY, playerIn.posZ)).getY() + 1, playerIn.posZ);
+						  for (int y = playerIn.getPosition().getY(); y < 255; ++y)
+						  {
+							  if (worldIn.getBlockState(new BlockPos(playerIn.posX, y, playerIn.posZ)).equals(Blocks.air) && worldIn.getBlockState(new BlockPos(playerIn.posX, y + 1, playerIn.posZ)).equals(Blocks.air))
+							  {
+								  playerIn.setPositionAndUpdate(playerIn.posX, y + 2, playerIn.posZ);
+								  break;
+							  }
+						  }
 						  Log.error("No coordinates were found, teleporting player back to spawn point");
 					  }
 			}

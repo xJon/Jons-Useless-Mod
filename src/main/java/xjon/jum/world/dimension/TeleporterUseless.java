@@ -36,10 +36,8 @@ public class TeleporterUseless extends Teleporter {
 	@Override
 	public void placeInPortal(Entity entityIn, float rotationYaw) {		
 			for (int x = -5; x <= 5; ++x)
-				{
-					for (int y = -2; y <= 2; ++y)
-					{
-						for(int z = -5; z <= 5; ++z)
+				{ for (int y = -3; y <= 3; ++y)
+					{ for(int z = -5; z <= 5; ++z)
 						{
 							if(!this.worldServerInstance.getBlockState(new BlockPos(entityIn.posX + x, entityIn.posY + y, entityIn.posZ + z)).equals(UselessBlocks.useless_machine.getDefaultState()))
 									{
@@ -48,12 +46,10 @@ public class TeleporterUseless extends Teleporter {
 						}
 					}
 				}
-				if(i == 605 && entityIn.dimension == UselessDimensions.dimensionId) {
+				if(i == 847 && entityIn.dimension == UselessDimensions.dimensionId) {
 					for (int x = -1; x <= 1; ++x)
-					{
-						for (int z = -1; z <= 1; ++z)
-						{
-							for (int y = -1; y <= 2; ++y)
+					{ for (int z = -1; z <= 1; ++z)
+						{ for (int y = -1; y <= 2; ++y)
 							{
 								this.worldServerInstance.setBlockToAir(new BlockPos(entityIn.posX + x, entityIn.posY + y, entityIn.posZ + z));
 							}
