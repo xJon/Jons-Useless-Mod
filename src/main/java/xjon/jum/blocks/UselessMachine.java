@@ -1,16 +1,11 @@
 package xjon.jum.blocks;
 
-import java.util.List;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.audio.ISound;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -20,21 +15,16 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import xjon.jum.client.gui.GuiUselessMachine;
 import xjon.jum.init.UselessAchievements;
 import xjon.jum.init.UselessBlocks;
 import xjon.jum.init.UselessDimensions;
-import xjon.jum.tileentity.TileEntityUselessChest;
 import xjon.jum.util.Log;
 import xjon.jum.util.UselessConfiguration;
 import xjon.jum.world.dimension.TeleporterUseless;
+
 
 public class UselessMachine extends Block {
 		
