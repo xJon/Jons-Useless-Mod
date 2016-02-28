@@ -34,7 +34,7 @@ public class UselessMachine extends Block {
 	
 	public  UselessMachine(Material material) {
 		super(material);
-		setHardness(3.0F);
+		setHardness(220.0F);
 		setHarvestLevel("pickaxe", 2);
 		this.setLightLevel(0.4F);
 		this.setStepSound(this.soundTypeMetal);
