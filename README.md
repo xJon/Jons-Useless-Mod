@@ -5,5 +5,3 @@
 
 ####Download and Information:
 * [CurseForge] (http://minecraft.curseforge.com/mc-mods/236574)
-
-![Jon's Useless Mod](http://i.imgur.com/Zx0DQyt.png)
