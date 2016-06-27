@@ -11,7 +11,7 @@ public class ConfigEvents {
 	@SubscribeEvent
 	public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event)
 	{
-		if(event.modID.equals(Reference.MOD_ID))
+		if(event.getModID().equals(Reference.MOD_ID))
 		{
 			UselessConfiguration.syncConfig();
 			Log.info("Configuration changed");

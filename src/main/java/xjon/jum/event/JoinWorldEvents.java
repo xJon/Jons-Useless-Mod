@@ -6,6 +6,7 @@ import xjon.jum.entity.mob.EntityUselessDave;
 import xjon.jum.init.UselessAchievements;
 import xjon.jum.init.UselessDimensions;
 import xjon.jum.init.UselessItems;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.monster.EntitySkeleton;
@@ -29,12 +30,14 @@ public class JoinWorldEvents {
 	  @SubscribeEvent
 	  public void EntityJoinWorldEvent(EntityJoinWorldEvent event)
 	  {
+	      Entity entity = event.getEntity();
+		  
 		  rnd = Math.random();
 		  range = random.nextInt(6);
 		  
-		  if ((rnd <= 0.04D) && ((event.entity instanceof EntityLiving)) && ((event.entity instanceof EntitySkeleton | event.entity instanceof EntityZombie | event.entity instanceof EntityUselessDave)))
+		  if ((rnd <= 0.04D) && ((entity instanceof EntityLiving)) && ((event.entity instanceof EntitySkeleton | event.entity instanceof EntityZombie | event.entity instanceof EntityUselessDave)))
 	    {
-		  EntityLiving living = (EntityLiving)event.entity;
+		  EntityLiving living = (EntityLiving)entity;
 	      
 	      if (range == 1) {
 	        living.setCurrentItemOrArmor(4, new ItemStack(UselessItems.useless_helmet));

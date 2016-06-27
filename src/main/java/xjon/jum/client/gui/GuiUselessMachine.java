@@ -1,42 +1,20 @@
 package xjon.jum.client.gui;
 
-import java.awt.Event;
 import java.io.IOException;
 
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
-import xjon.jum.init.UselessDimensions;
-import xjon.jum.util.Reference;
-import xjon.jum.util.UselessConfiguration;
-
-import com.sun.prism.paint.Color;
-
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.audio.ISound;
 import net.minecraft.client.audio.PositionedSoundRecord;
-import net.minecraft.client.audio.SoundManager;
-import net.minecraft.client.audio.SoundPoolEntry;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.command.CommandKill;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
-import net.minecraft.inventory.Container;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.client.event.sound.PlaySoundEffectEvent;
-import net.minecraftforge.client.event.sound.PlaySoundEvent;
-import net.minecraftforge.client.event.sound.SoundEvent;
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import xjon.jum.util.Reference;
+import xjon.jum.util.UselessConfiguration;
 
 public class GuiUselessMachine extends GuiScreen{
 
@@ -136,7 +114,7 @@ public class GuiUselessMachine extends GuiScreen{
 	      
 	      for ( j=255; j>=63; j--)
 	      {
-	         if (!world.getBlockState(pos.add(0, j, 0)).getBlock().equals(Blocks.air))
+	         if (!world.getBlockState(pos.add(0, j, 0)).getBlock().equals(Blocks.AIR))
 	         {
 	            topBlock=true;
 	            k++;

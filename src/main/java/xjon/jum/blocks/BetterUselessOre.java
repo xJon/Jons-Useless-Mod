@@ -14,7 +14,7 @@ public class BetterUselessOre extends Block {
 		super(materialIn);
 		this.setHarvestLevel("pickaxe", 3);
 		this.setHardness(9.0F);
-		this.setStepSound(this.soundTypeStone);
+		this.setSoundType(blockSoundType.STONE);
 	}
 
 	@Override

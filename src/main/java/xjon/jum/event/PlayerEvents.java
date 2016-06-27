@@ -48,7 +48,7 @@ public class PlayerEvents{
 		{
 				EntityPlayerMP playerMP = (EntityPlayerMP)event.player;
 				
-				playerMP.mcServer.getConfigurationManager().transferPlayerToDimension(playerMP, 0, new TeleporterUseless(playerMP.mcServer.worldServerForDimension(0)));
+				playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, 0, new TeleporterUseless(playerMP.mcServer.worldServerForDimension(0)));
 				event.player.setPositionAndUpdate(UselessMachine.x1, UselessMachine.y1, UselessMachine.z1);
 				Log.warn("Player teleported back to the overworld");
 		}

@@ -15,7 +15,7 @@ public class LegitimateDiamondOre extends Block {
 		super(materialIn);
 		this.setHarvestLevel("pickaxe", 2);
 		this.setHardness(4.5F);
-		this.setStepSound(this.soundTypeStone);
+		this.setSoundType(blockSoundType.STONE);
 	}
 
 	@Override

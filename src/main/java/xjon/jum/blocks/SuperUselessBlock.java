@@ -11,7 +11,7 @@ public class SuperUselessBlock extends Block{
 		this.setHardness(12.0F);
 		this.setLightLevel(0.4F);
 		this.setLightOpacity(10);
-		this.setStepSound(this.soundTypeMetal);
+		this.setSoundType(blockSoundType.METAL);
 		
 	}
 

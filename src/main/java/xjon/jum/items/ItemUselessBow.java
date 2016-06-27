@@ -1,25 +1,19 @@
 package xjon.jum.items;
 
-import java.util.List;
-
-import xjon.jum.entity.projectile.EntityUselessArrow;
-import xjon.jum.init.UselessItems;
-import xjon.jum.util.Reference;
-import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.init.Items;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
-import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import xjon.jum.entity.projectile.EntityUselessArrow;
+import xjon.jum.init.UselessItems;
+import xjon.jum.util.Reference;
 
 
 public class ItemUselessBow extends Item

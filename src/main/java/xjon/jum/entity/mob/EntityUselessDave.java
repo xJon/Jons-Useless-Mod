@@ -1,14 +1,8 @@
 package xjon.jum.entity.mob;
 
-import java.util.Random;
-
-import xjon.jum.init.UselessItems;
 import net.minecraft.block.Block;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIAttackOnCollide;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAIMoveThroughVillage;
 import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAIPanic;
@@ -16,24 +10,24 @@ import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAITempt;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.monster.EntityIronGolem;
+import net.minecraft.entity.ai.EntityAIZombieAttack;
 import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.monster.EntityPigZombie;
-import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.EnumDifficulty;
-import net.minecraft.world.EnumSkyBlock;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import xjon.jum.init.UselessItems;
+import xjon.jum.util.Reference;
 
 public class EntityUselessDave extends EntityMob {
 
 	public EntityUselessDave(World worldIn) {
 		super(worldIn);
 		this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(2, new EntityAIAttackOnCollide(this, EntityPlayer.class, 1.0D, false));
+        this.tasks.addTask(2, new EntityAIZombieAttack(this, 1.0D, false));
 		this.tasks.addTask(3, new EntityAIPanic(this, 1.2D));
         this.tasks.addTask(4, new EntityAITempt(this, 5.0D, UselessItems.useless_food, false));
         this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 1.0D));
@@ -60,35 +54,38 @@ public class EntityUselessDave extends EntityMob {
 	{
 		super.applyEntityAttributes();
 		
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(36.0F);
-		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(36.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.23000000417232513D);
-        this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(5.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(36.0F);
+		this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(36.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.23000000417232513D);
+        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(5.0D);
 	}
 	
-	protected String getLivingSound()
+	protected SoundEvent getAmbientSound()
     {
-        return "jum:hidave";
+        SoundEvent sound = SoundEvent.REGISTRY.getObject(new ResourceLocation(Reference.MOD_ID + ":hidave"));
+        return sound;
     }
 	
-	protected String getHurtSound()
+	protected SoundEvent getHurtSound()
 	{
-	        return "jum:hitdave";
+		SoundEvent sound = SoundEvent.REGISTRY.getObject(new ResourceLocation(Reference.MOD_ID + ":hitdave"));
+		return sound;
 	}
 	
-	protected String getDeathSound()
+	protected SoundEvent getDeathSound()
     {
-        return "jum:deathdave";
+        SoundEvent sound = SoundEvent.REGISTRY.getObject(new ResourceLocation(Reference.MOD_ID + ":deathdave"));
+        return sound;
     }
 	
 	protected void playStepSound(BlockPos p_180429_1_, Block p_180429_2_)
 	{
-	        this.playSound("mob.zombie.step", 0.15F, 1.0F);
+        this.playSound(SoundEvents.ENTITY_ZOMBIE_STEP, 0.15F, 1.0F);
 	}
 	
 	protected Item getDropItem()   
 	{
-	        return UselessItems.useless_material;
+		return UselessItems.useless_material;
 	}
 	
 	@Override
