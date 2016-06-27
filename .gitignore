@@ -2,7 +2,6 @@
 /*/
 !/src/
 !.gitignore
-!gradlew*
 !/build.gradle
 !/README.md
 !/LICENSE
