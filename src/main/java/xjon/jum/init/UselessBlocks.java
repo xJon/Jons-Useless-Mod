@@ -15,7 +15,7 @@ import xjon.jum.util.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -31,13 +31,13 @@ public class UselessBlocks {
 	
 	public static void init()
 	{
-		useless_block = new UselessBlock(Material.cloth).setUnlocalizedName("useless_block").setCreativeTab(JumCore.tabJUM);
-		super_useless_block = new SuperUselessBlock(Material.cloth).setUnlocalizedName("super_useless_block").setCreativeTab(JumCore.tabJUM);
-		useless_ore = new UselessOre(Material.rock).setUnlocalizedName("useless_ore").setCreativeTab(JumCore.tabJUM);
-		better_useless_ore = new BetterUselessOre(Material.rock).setUnlocalizedName("better_useless_ore").setCreativeTab(JumCore.tabJUM);
-		legitimate_diamond_ore = new LegitimateDiamondOre(Material.rock).setUnlocalizedName("legitimate_diamond_ore").setCreativeTab(JumCore.tabJUM);
-		useless_machine = new UselessMachine(Material.rock).setUnlocalizedName("useless_machine").setCreativeTab(JumCore.tabJUM);
-		useless_chest = new UselessChest(0).setUnlocalizedName("useless_chest").setCreativeTab(JumCore.tabJUM);
+		useless_block = new UselessBlock(Material.CLOTH).setUnlocalizedName("useless_block").setCreativeTab(JumCore.tabJUM);
+		super_useless_block = new SuperUselessBlock(Material.CLOTH).setUnlocalizedName("super_useless_block").setCreativeTab(JumCore.tabJUM);
+		useless_ore = new UselessOre(Material.ROCK).setUnlocalizedName("useless_ore").setCreativeTab(JumCore.tabJUM);
+		better_useless_ore = new BetterUselessOre(Material.ROCK).setUnlocalizedName("better_useless_ore").setCreativeTab(JumCore.tabJUM);
+		legitimate_diamond_ore = new LegitimateDiamondOre(Material.ROCK).setUnlocalizedName("legitimate_diamond_ore").setCreativeTab(JumCore.tabJUM);
+		useless_machine = new UselessMachine(Material.ROCK).setUnlocalizedName("useless_machine").setCreativeTab(JumCore.tabJUM);
+		useless_chest = new UselessChest().setUnlocalizedName("useless_chest").setCreativeTab(JumCore.tabJUM);
 	}
 	
 	public static void register()

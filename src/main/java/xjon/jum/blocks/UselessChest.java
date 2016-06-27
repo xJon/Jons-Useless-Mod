@@ -23,10 +23,13 @@ import xjon.jum.tileentity.TileEntityUselessChest;
 
 public class UselessChest extends BlockChest {
 
+	public UselessChest() 
 	{
+		super(Type.BASIC);
 		this.setHardness(1.0F);
 		this.setHarvestLevel("axe", 1);
 		this.setHardness(2.5F);
+		this.setSoundType(blockSoundType.WOOD);
 	}
 	
 	@Override

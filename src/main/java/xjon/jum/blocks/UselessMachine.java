@@ -95,6 +95,7 @@ public class UselessMachine extends Block {
 		}
 		else
 		{
+			SoundEvent sound = SoundEvent.REGISTRY.getObject(new ResourceLocation(Reference.MOD_ID + ":nope"));
 			playerMP.worldObj.playSound(playerIn, pos, sound, SoundCategory.AMBIENT, 1.0F, 1.0F);
 		}
 	}
