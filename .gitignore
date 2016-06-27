@@ -3,6 +3,7 @@
 !/src/
 !.gitignore
 !/build.gradle
+!.gitattributes
 !/README.md
 !/LICENSE
 !/2DO.txt
