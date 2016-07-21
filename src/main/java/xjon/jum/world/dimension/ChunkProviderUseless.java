@@ -1,6 +1,13 @@
 package xjon.jum.world.dimension;
 
-import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.*;
+import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.FLOWERS;
+import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.GRASS;
+import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.LAKE_WATER;
+import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.PUMPKIN;
+import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.REED;
+import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.SAND;
+import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.SAND_PASS2;
+import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.TREE;
 import static net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.SCATTERED_FEATURE;
 
 import java.util.List;
@@ -13,14 +20,14 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
 import net.minecraft.util.IProgressUpdate;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldProvider;
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraft.world.biome.BiomeGenBase.SpawnListEntry;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
+import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.ChunkProviderSettings;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
@@ -35,11 +42,13 @@ import net.minecraft.world.gen.feature.WorldGenSand;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraft.world.gen.structure.MapGenScatteredFeature;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.event.terraingen.PopulateChunkEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
 
-public class ChunkProviderUseless implements IChunkProvider {
+
+public class ChunkProviderUseless implements IChunkGenerator {
     
     private Random rand;
     private Random randomGenerator;
@@ -48,7 +57,7 @@ public class ChunkProviderUseless implements IChunkProvider {
     private World worldObj;
     private World currentWorld;
     private ChunkProviderSettings chunkProviderSettings;
-    private BiomeGenBase[] biomesForGeneration;
+    private Biome[] biomesForGeneration;
     private MapGenScatteredFeature scatteredFeatureGenerator;
     private BlockPos field_180294_c;
     private WorldGenFlowers yellowFlowerGen;
@@ -86,8 +95,8 @@ public class ChunkProviderUseless implements IChunkProvider {
             {
             	scatteredFeatureGenerator = (MapGenScatteredFeature)TerrainGen.getModdedMapGen(scatteredFeatureGenerator, SCATTERED_FEATURE);
             }
-             gravelAsSandGen = new WorldGenSand(Blocks.gravel, 6);
-             yellowFlowerGen = new WorldGenFlowers(Blocks.yellow_flower, BlockFlower.EnumFlowerType.DANDELION);
+             gravelAsSandGen = new WorldGenSand(Blocks.GRAVEL, 6);
+             yellowFlowerGen = new WorldGenFlowers(Blocks.YELLOW_FLOWER, BlockFlower.EnumFlowerType.DANDELION);
              reedGen = new WorldGenReed();
              flowersPerChunk = 2;
              grassPerChunk = 1;
@@ -97,21 +106,16 @@ public class ChunkProviderUseless implements IChunkProvider {
     }
 
     @Override
-    public boolean chunkExists(int i, int j) {
-            return true;
-    }
-
-    @Override
-    public Chunk provideChunk(int par1, int par2) {
-             rand.setSeed((long)par1 * 391279128714L + (long)par2 * 132894987741L);
+    public Chunk provideChunk(int chunkX, int chunkZ) {
+            rand.setSeed((long)chunkX * 391279128714L + (long)chunkZ * 132894987741L);
             ChunkPrimer primer = new ChunkPrimer();
-             biomesForGeneration =  worldObj.getWorldChunkManager().loadBlockGeneratorData( biomesForGeneration, par1 * 16, par2 * 16, 16, 16);
-             generateTerrain(par1, par2, primer);
-             replaceBlocksForBiome(primer);
-            Chunk chunk = new Chunk( worldObj, primer, par1, par2);
+            biomesForGeneration = worldObj.getBiomeProvider().loadBlockGeneratorData(biomesForGeneration, chunkX * 16, chunkZ * 16, 16, 16);
+            generateTerrain(chunkX, chunkZ, primer);
+            replaceBlocksForBiome(primer);
+            Chunk chunk = new Chunk( worldObj, primer, chunkX, chunkZ);
             byte[] abyte = chunk.getBiomeArray();
             for(int k = 0; k < abyte.length; ++k)
-                    abyte[k] = (byte) biomesForGeneration[k].biomeID;
+                    abyte[k] = (byte)Biome.getIdForBiome(biomesForGeneration[k]);
             chunk.generateSkylightMap();
             return chunk;
     }
@@ -147,7 +151,7 @@ public class ChunkProviderUseless implements IChunkProvider {
 							double d16 = (d11 - d10) * d14;
 							for (int j2 = 0; j2 < 8; ++j2) {
 								IBlockState iblockstate = null;
-								if(d15 > 0.0D) iblockstate = Blocks.stone.getDefaultState();
+								if(d15 > 0.0D) iblockstate = Blocks.STONE.getDefaultState();
 								int k2 = i2 + i1 * 8;
 								int l2 = l1 + k1 * 4;
 								int i3 = j2 + j1 * 8;
@@ -172,34 +176,34 @@ public class ChunkProviderUseless implements IChunkProvider {
     			for (int j = 0; j < 16; ++j) {
     				byte b0 = 1;
     				int k = -1;
-    				IBlockState iblockstate = Blocks.grass.getDefaultState();
-    				IBlockState iblockstate1 = Blocks.stone.getDefaultState();
+    				IBlockState iblockstate = Blocks.GRASS.getDefaultState();
+    				IBlockState iblockstate1 = Blocks.STONE.getDefaultState();
 
     				for (int l = 127; l >= 0; --l) {
     					IBlockState iblockstate2 = c.getBlockState(i, l, j);
-    					if (iblockstate2.getBlock().getMaterial() == Material.air) 
+    					if (iblockstate2.getBlock() == Blocks.AIR) 
     						k = -1;
 
-    					else if (iblockstate2.getBlock() == Blocks.stone) {
+    					else if (iblockstate2.getBlock() == Blocks.STONE) {
     						if (k == -1) {
     							if (b0 <= 0) {
-    								iblockstate = Blocks.air.getDefaultState();
-    								iblockstate1 = Blocks.grass.getDefaultState();
+    								iblockstate = Blocks.AIR.getDefaultState();
+    								iblockstate1 = Blocks.GRASS.getDefaultState();
     							}
     							k = b0;
     							if(l >= 0) {
     								c.setBlockState(i, l, j, iblockstate);
     							} else {
     								c.setBlockState(i, l, j, iblockstate1);
-    								if(c.getBlockState(i, l - 1, j) == Blocks.stone.getDefaultState()) c.setBlockState(i, l - 1, j, iblockstate1);
-    								if(c.getBlockState(i, l - 2, j) == Blocks.stone.getDefaultState() && rand.nextInt(2) == 0) c.setBlockState(i, l - 2, j, iblockstate1);
+    								if(c.getBlockState(i, l - 1, j) == Blocks.STONE.getDefaultState()) c.setBlockState(i, l - 1, j, iblockstate1);
+    								if(c.getBlockState(i, l - 2, j) == Blocks.STONE.getDefaultState() && rand.nextInt(2) == 0) c.setBlockState(i, l - 2, j, iblockstate1);
     							}
     						}
     						else if (k > 0) {
     							--k;
     							c.setBlockState(i, l, j, iblockstate1);
-    							if(c.getBlockState(i, l - 1, j) == Blocks.stone.getDefaultState()) c.setBlockState(i, l - 1, j, iblockstate1);
-    							if(c.getBlockState(i, l - 2, j) == Blocks.stone.getDefaultState() && rand.nextInt(2) == 0) c.setBlockState(i, l - 2, j, iblockstate1);
+    							if(c.getBlockState(i, l - 1, j) == Blocks.STONE.getDefaultState()) c.setBlockState(i, l - 1, j, iblockstate1);
+    							if(c.getBlockState(i, l - 2, j) == Blocks.STONE.getDefaultState() && rand.nextInt(2) == 0) c.setBlockState(i, l - 2, j, iblockstate1);
     						}
     					}
     				}
@@ -268,18 +272,18 @@ public class ChunkProviderUseless implements IChunkProvider {
     }
 
     @Override
-    public void populate(IChunkProvider ichunkprovider, int i, int j) {
+    public void populate(int chunkX, int chunkZ) {
     	BlockFalling.fallInstantly = true;
-    	int k = i * 16;
-        int l = j * 16;
-        BlockPos blockpos = new BlockPos(k, 0, l);
-        BiomeGenBase biomegenbase =  worldObj.getBiomeGenForCoords(blockpos.add(16, 0, 16));
+		int worldX = chunkX * 16;
+		int worldZ = chunkZ * 16;
+        BlockPos blockpos = new BlockPos(16, 0, 16);
+        Biome biomegenbase =  worldObj.getBiomeGenForCoords(blockpos.add(16, 0, 16));
          rand.setSeed( worldObj.getSeed());
         long i1 =  rand.nextLong() / 2L * 2L + 1L;
         long j1 =  rand.nextLong() / 2L * 2L + 1L;
-         rand.setSeed((long)i * i1 + (long)j * j1 ^  worldObj.getSeed());
+        rand.setSeed((long)chunkX * i1 + (long)chunkZ * j1 ^  worldObj.getSeed());
         boolean flag = false;
-        MinecraftForge.EVENT_BUS.post(new PopulateChunkEvent.Pre(ichunkprovider, worldObj, rand, i, j, flag));
+        ForgeEventFactory.onChunkPopulate(true, this, worldObj, rand, chunkX, chunkZ, flag);
 
         if (currentWorld != null)
         {
@@ -292,31 +296,31 @@ public class ChunkProviderUseless implements IChunkProvider {
 
             if (s != null)
             {
-                chunkProviderSettings = ChunkProviderSettings.Factory.jsonToFactory(s).func_177864_b();
+                chunkProviderSettings = ChunkProviderSettings.Factory.jsonToFactory(s).build();
             }
             else
             {
-                chunkProviderSettings = ChunkProviderSettings.Factory.jsonToFactory("").func_177864_b();
+                chunkProviderSettings = ChunkProviderSettings.Factory.jsonToFactory("").build();
             }
 
             randomGenerator = rand;
             field_180294_c = blockpos;
-            dirtGen = new WorldGenMinable(Blocks.dirt.getDefaultState(), chunkProviderSettings.dirtSize);
-            gravelGen = new WorldGenMinable(Blocks.gravel.getDefaultState(), chunkProviderSettings.gravelSize);
-            graniteGen = new WorldGenMinable(Blocks.stone.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.GRANITE), chunkProviderSettings.graniteSize);
-            dioriteGen = new WorldGenMinable(Blocks.stone.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.DIORITE), chunkProviderSettings.dioriteSize);
-            andesiteGen = new WorldGenMinable(Blocks.stone.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.ANDESITE), chunkProviderSettings.andesiteSize);
+            dirtGen = new WorldGenMinable(Blocks.DIRT.getDefaultState(), chunkProviderSettings.dirtSize);
+            gravelGen = new WorldGenMinable(Blocks.GRAVEL.getDefaultState(), chunkProviderSettings.gravelSize);
+            graniteGen = new WorldGenMinable(Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.GRANITE), chunkProviderSettings.graniteSize);
+            dioriteGen = new WorldGenMinable(Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.DIORITE), chunkProviderSettings.dioriteSize);
+            andesiteGen = new WorldGenMinable(Blocks.STONE.getDefaultState().withProperty(BlockStone.VARIANT, BlockStone.EnumType.ANDESITE), chunkProviderSettings.andesiteSize);
             genDecorations(biomegenbase);
             currentWorld = null;
             randomGenerator = null;
         }
 
-        MinecraftForge.EVENT_BUS.post(new PopulateChunkEvent.Post(ichunkprovider, worldObj, rand, i, j, flag));
+        ForgeEventFactory.onChunkPopulate(false, this, this.worldObj, this.rand, chunkX, chunkZ, flag);
     	BlockFalling.fallInstantly = false;
     	
     }
 
-    public void genDecorations(BiomeGenBase biomegenbase) {
+    public void genDecorations(Biome biomegenbase) {
     	MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Pre(currentWorld, randomGenerator, field_180294_c));
         int i;
         int j;
@@ -348,12 +352,12 @@ public class ChunkProviderUseless implements IChunkProvider {
             k = randomGenerator.nextInt(16) + 8;
             l = randomGenerator.nextInt(16) + 8;
             WorldGenAbstractTree worldgenabstracttree = biomegenbase.genBigTreeChance(randomGenerator);
-            worldgenabstracttree.func_175904_e();
+            worldgenabstracttree.setDecorationDefaults();
             blockpos = currentWorld.getHeight(field_180294_c.add(k, 0, l));
 
             if (worldgenabstracttree.generate(currentWorld, randomGenerator, blockpos))
             {
-                worldgenabstracttree.func_180711_a(currentWorld, randomGenerator, blockpos);
+                worldgenabstracttree.generate(currentWorld, randomGenerator, blockpos);
             }
         }
 
@@ -370,7 +374,7 @@ public class ChunkProviderUseless implements IChunkProvider {
             BlockFlower.EnumFlowerType enumflowertype = biomegenbase.pickRandomFlower(randomGenerator, blockpos);
             BlockFlower blockflower = enumflowertype.getBlockType().getBlock();
 
-            if (blockflower.getMaterial() != Material.air)
+            if (blockflower != Blocks.AIR)
             {
                 yellowFlowerGen.setGeneratedBlock(blockflower, enumflowertype);
                 yellowFlowerGen.generate(currentWorld, randomGenerator, blockpos);
@@ -422,7 +426,7 @@ public class ChunkProviderUseless implements IChunkProvider {
             for (j = 0; doGen && j < 50; ++j)
             {
                 blockpos1 =  field_180294_c.add( randomGenerator.nextInt(16) + 8, randomGenerator.nextInt(randomGenerator.nextInt(248) + 8), randomGenerator.nextInt(16) + 8);
-                (new WorldGenLiquids(Blocks.flowing_water)).generate(currentWorld, randomGenerator, blockpos1);
+                (new WorldGenLiquids(Blocks.FLOWING_WATER)).generate(currentWorld, randomGenerator, blockpos1);
             }
 
         }
@@ -437,48 +441,10 @@ public class ChunkProviderUseless implements IChunkProvider {
         return  randomGenerator.nextInt(i);
 	}
 
-	@Override
-    public boolean saveChunks(boolean par1, IProgressUpdate par2) {
-            return true;
-    }
-
-    @Override
-    public boolean unloadQueuedChunks() {
-            return false;
-    }
-
-    @Override
-    public boolean canSave() {
-            return true;
-    }
-
-    @Override
-    public String makeString() {
-            return "Useless Dimension";
-    }
-
-    @Override
-    public int getLoadedChunkCount() {
-            return 0;
-    }
-
-    @Override
-    public void saveExtraData() { }
-
-    @Override
-    public boolean func_177460_a(IChunkProvider p_177460_1_, Chunk p_177460_2_, int p_177460_3_, int p_177460_4_) {
-            return false;
-    }
-
     @Override
     public List<SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos) {
-            BiomeGenBase var5 =  worldObj.getBiomeGenForCoords(pos);
+            Biome var5 =  worldObj.getBiomeGenForCoords(pos);
             return var5 == null ? null : var5.getSpawnableList(creatureType);
-    }
-
-    @Override
-    public Chunk provideChunk(BlockPos pos) {
-            return provideChunk(pos.getX() >> 4, pos.getZ() >> 4);
     }
 
     @Override
@@ -487,5 +453,11 @@ public class ChunkProviderUseless implements IChunkProvider {
     }
 
     @Override
-    public void recreateStructures(Chunk p_180514_1_, int par1, int par2) { }
+    public void recreateStructures(Chunk p_180514_1_, int par1, int par2) { 
+    }
+
+	@Override
+	public boolean generateStructures(Chunk chunkIn, int x, int z) {
+		return false;
+	}
 }

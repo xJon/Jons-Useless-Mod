@@ -8,22 +8,19 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import xjon.jum.entity.mob.EntityUselessDave;
 
 
-public class BiomeGenUseless extends BiomeGenBase {
+public class BiomeUseless extends Biome {
 
-	public BiomeGenUseless(int biomeId) {
-		super(biomeId);
-		
-		this.setBiomeName("Useless Biome");
-		this.setColor(0xEDFCD3);
-		this.waterColorMultiplier = 13762304;
-		this.topBlock = Blocks.grass.getDefaultState();
-		this.fillerBlock = Blocks.stone.getDefaultState();
+	public BiomeUseless(Biome.BiomeProperties properties) {
+		super(properties);
+		this.topBlock = Blocks.GRASS.getDefaultState();
+		this.fillerBlock = Blocks.STONE.getDefaultState();
 		this.spawnableMonsterList.clear();
 		this.spawnableCreatureList.clear();
 		this.spawnableWaterCreatureList.clear();

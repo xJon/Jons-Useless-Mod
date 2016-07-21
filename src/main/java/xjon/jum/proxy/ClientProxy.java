@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.relauncher.Side;
@@ -35,8 +36,13 @@ public class ClientProxy extends CommonProxy {
 		UselessBlocks.registerRenders();
 		UselessItems.registerRenders();
 		
+		ResourceLocation[] namesUselessBow = new ResourceLocation[4];
+		namesUselessBow[0] = new ResourceLocation(Reference.MOD_ID + ":useless_bow");
+		namesUselessBow[1] = new ResourceLocation(Reference.MOD_ID + ":bow_useless_pulling_0");
+		namesUselessBow[2] = new ResourceLocation(Reference.MOD_ID + ":bow_useless_pulling_1");
+		namesUselessBow[3] = new ResourceLocation(Reference.MOD_ID + ":bow_useless_pulling_2");
 		
-		ModelBakery.addVariantName(UselessItems.useless_bow, new String[] {Reference.MOD_ID + ":useless_bow", Reference.MOD_ID + ":bow_useless_pulling_0", Reference.MOD_ID + ":bow_useless_pulling_1", Reference.MOD_ID + ":bow_useless_pulling_2"});
+		ModelBakery.registerItemVariants(UselessItems.useless_bow, namesUselessBow);
 		 registerItem(UselessItems.useless_bow, 0, Reference.MOD_ID + ":useless_bow");
 		 registerItem(UselessItems.useless_bow, 1, Reference.MOD_ID + ":bow_useless_pulling_0");
          registerItem(UselessItems.useless_bow, 2, Reference.MOD_ID + ":bow_useless_pulling_1");

@@ -3,9 +3,14 @@ package xjon.jum.world.dimension;
 import xjon.jum.init.UselessBiomes;
 import xjon.jum.init.UselessDimensions;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.util.Vec3;
+import net.minecraft.init.Biomes;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.DimensionType;
+import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
-import net.minecraft.world.biome.WorldChunkManagerHell;
+import net.minecraft.world.WorldType;
+import net.minecraft.world.biome.BiomeProviderSingle;
+import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.common.BiomeManager.BiomeType;
@@ -15,9 +20,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class WorldProviderUseless extends WorldProvider {
 
 	@Override
-	public void registerWorldChunkManager() {
-		this.worldChunkMgr = new WorldChunkManagerHell(UselessBiomes.biomeUseless, 1.2F);
-		this.dimensionId = UselessDimensions.dimensionId;
+	public void createBiomeProvider() {
+		this.biomeProvider = new BiomeProviderSingle(UselessBiomes.biomeUseless);
+		this.setDimension(UselessDimensions.dimensionId);
 		isHellWorld = false;
 	}
 
@@ -39,12 +44,12 @@ public class WorldProviderUseless extends WorldProvider {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public Vec3 getFogColor(float f1, float f2) {
-		return new Vec3(1.2, 1.2, 1);
+	public Vec3d getFogColor(float f1, float f2) {
+		return new Vec3d(1.2, 1.2, 1);
 	}
 
 	@Override
-	public IChunkProvider createChunkGenerator() {
+	public IChunkGenerator createChunkGenerator() {
 		return new ChunkProviderUseless(this.worldObj, this.worldObj.getSeed());
 	}
 
@@ -74,20 +79,15 @@ public class WorldProviderUseless extends WorldProvider {
 	public int getRespawnDimension(EntityPlayerMP player) {
 		return 0;
 	}
-
-	@Override
-	public String getDimensionName() {
-		return "Useless Dimension";
-	}
-
-	@Override
-	public String getInternalNameSuffix() {
-		return "Useless Dimension";
-	}
 	
 	@Override
 	public String getWelcomeMessage() {
 		return "You are wasting your time.";
+	}
+
+	@Override
+	public DimensionType getDimensionType() {
+		return null;
 	}
 
 

@@ -1,27 +1,13 @@
 package xjon.jum.world.dimension;
 
-import java.util.List;
-import java.util.Random;
-import java.util.logging.Level;
-
-import com.google.common.collect.Lists;
-
-import xjon.jum.blocks.UselessMachine;
+import net.minecraft.entity.Entity;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.Teleporter;
+import net.minecraft.world.WorldServer;
 import xjon.jum.init.UselessBlocks;
 import xjon.jum.init.UselessDimensions;
 import xjon.jum.util.Log;
-import net.minecraft.block.BlockPortal;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.LongHashMap;
-import net.minecraft.util.MathHelper;
-import net.minecraft.world.ChunkCoordIntPair;
-import net.minecraft.world.Teleporter;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldServer;
 
 public class TeleporterUseless extends Teleporter {
 
@@ -58,7 +44,7 @@ public class TeleporterUseless extends Teleporter {
 					}
 					this.worldServerInstance.setBlockState(new BlockPos(entityIn.posX, entityIn.posY, entityIn.posZ - 1), UselessBlocks.useless_machine.getDefaultState());
 					Log.info("Useless Machine spawned at x: " + entityIn.posX + " y: " + (entityIn.posY) + " z: " + (entityIn.posZ - 1));
-					this.worldServerInstance.setBlockState(new BlockPos(entityIn.posX, entityIn.posY, entityIn.posZ + 1), Blocks.torch.getDefaultState());
+					this.worldServerInstance.setBlockState(new BlockPos(entityIn.posX, entityIn.posY, entityIn.posZ + 1), Blocks.TORCH.getDefaultState());
 					i = 0;
 						}
 				else
