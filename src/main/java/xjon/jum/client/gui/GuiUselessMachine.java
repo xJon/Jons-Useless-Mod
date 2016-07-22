@@ -60,7 +60,7 @@ public class GuiUselessMachine extends GuiScreen{
 	@Override
 	protected void actionPerformed(GuiButton button) throws IOException 
 	{
-		switch(button.id)
+		/*switch(button.id)
 		{
 		case 0:
 			if(!UselessConfiguration.isUseless)
@@ -72,7 +72,7 @@ public class GuiUselessMachine extends GuiScreen{
 			Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.create(new ResourceLocation("jum:nope")));
 			}
 			break;
-		}
+		}*/
 		super.actionPerformed(button);
 	}
 

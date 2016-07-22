@@ -2,6 +2,7 @@ package xjon.jum.entity.mob;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.EntityAIAttackMelee;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
@@ -27,7 +28,7 @@ public class EntityUselessDave extends EntityMob {
 	public EntityUselessDave(World worldIn) {
 		super(worldIn);
 		this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(2, new EntityAIZombieAttack(this, 1.0D, false));
+        this.tasks.addTask(2, new EntityAIAttackMelee(this, 1.0D, false));
 		this.tasks.addTask(3, new EntityAIPanic(this, 1.2D));
         this.tasks.addTask(4, new EntityAITempt(this, 5.0D, UselessItems.useless_food, false));
         this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 1.0D));

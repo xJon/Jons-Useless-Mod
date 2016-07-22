@@ -1,20 +1,16 @@
 package xjon.jum.client.render.projectile;
 
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import org.lwjgl.opengl.GL11;
-
 import xjon.jum.entity.projectile.EntityUselessArrow;
 import xjon.jum.util.Reference;
 
@@ -30,7 +26,7 @@ public class RenderArrow extends Render<EntityUselessArrow> {
 
     @Override
     public void doRender(EntityUselessArrow entity, double x, double y, double z, float entityYaw, float partialTicks) {
-    	this.bindEntityTexture(entity);
+    	/*this.bindEntityTexture(entity);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         GlStateManager.pushMatrix();
         GlStateManager.translate((float)x, (float)y, (float)z);
@@ -88,7 +84,7 @@ public class RenderArrow extends Render<EntityUselessArrow> {
         }
 
         GlStateManager.disableRescaleNormal();
-        GlStateManager.popMatrix();
+        GlStateManager.popMatrix();*/
         super.doRender(entity, x, y, z, entityYaw, partialTicks);
     }
 

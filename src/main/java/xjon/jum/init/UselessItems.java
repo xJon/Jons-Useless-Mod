@@ -1,20 +1,17 @@
 package xjon.jum.init;
 
-import java.util.Set;
-
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemFood;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import xjon.jum.JumCore;
-import xjon.jum.entity.projectile.EntityUselessArrow;
 import xjon.jum.items.ItemSuperUselessMaterial;
-import xjon.jum.items.ItemUselessAxe;
 import xjon.jum.items.ItemUselessArmor;
+import xjon.jum.items.ItemUselessAxe;
 import xjon.jum.items.ItemUselessBow;
 import xjon.jum.items.ItemUselessBro;
 import xjon.jum.items.ItemUselessHoe;
@@ -96,7 +93,7 @@ public class UselessItems {
 	public static void init()
 	{
 		uselessToolMaterial = EnumHelper.addToolMaterial("uselessToolMaterial", harvestLevel, maxUses, efficiency, damage, enchantability);
-	    uselessArmorMaterial = EnumHelper.addArmorMaterial("uselessArmorMaterial", "useless_armor", maxUses, new int []{armorHelm,armorChest,armorLeg,armorBoot}, enchantability);
+	    uselessArmorMaterial = EnumHelper.addArmorMaterial("uselessArmorMaterial", "useless_armor", maxUses, new int []{armorHelm,armorChest,armorLeg,armorBoot}, enchantability, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, damage);
 		
 		useless_material = new Item().setUnlocalizedName("useless_material").setCreativeTab(JumCore.tabJUM);
 		super_useless_material = new ItemSuperUselessMaterial().setUnlocalizedName("super_useless_material").setCreativeTab(JumCore.tabJUM);

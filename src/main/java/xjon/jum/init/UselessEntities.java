@@ -5,6 +5,7 @@ import com.google.common.collect.Iterators;
 
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import xjon.jum.JumCore;
 import xjon.jum.entity.mob.EntityUselessDave;
@@ -28,7 +29,7 @@ public class UselessEntities {
 	
 	public static void createEntity(Class entityClass, String entityName, int solidColor, int spotColor)
 	{
-		BiomeGenBase[] allBiomes = Iterators.toArray(Iterators.filter(Iterators.forArray(BiomeGenBase.getBiomeGenArray()), Predicates.notNull()), BiomeGenBase.class);
+		Biome[] allBiomes = Iterators.toArray(Iterators.filter(Iterators.forArray(Biome.getBiomeGenArray()), Predicates.notNull()), Biome.class);
 		
 		EntityRegistry.registerModEntity(entityClass, entityName, randomId, JumCore.instance, 64, 1, true);
 		
@@ -39,6 +40,6 @@ public class UselessEntities {
 	
 	private static void createEgg(int randomId, int solidColor, int spotColor)
 	{
-		EntityList.entityEggs.put(Integer.valueOf(randomId), new EntityList.EntityEggInfo(randomId, solidColor, spotColor));
+		EntityList.ENTITY_EGGS.put(Integer.valueOf(randomId), new EntityList.EntityEggInfo(randomId, solidColor, spotColor));
 	}
 }
