@@ -2,6 +2,8 @@ package xjon.jum.items;
 
 import java.util.List;
 
+import com.mojang.realmsclient.gui.ChatFormatting;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -18,7 +20,7 @@ public class ItemUselessBro extends Item {
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, EntityPlayer playerIn, List toolTip, boolean advanced)
 	{
-		stack.setStackDisplayName(EnumChatFormatting.DARK_AQUA + "Useless Bro");
+		stack.setStackDisplayName(ChatFormatting.DARK_AQUA + "Useless Bro");
     	toolTip.add("I'm very useless");
 	}
 }

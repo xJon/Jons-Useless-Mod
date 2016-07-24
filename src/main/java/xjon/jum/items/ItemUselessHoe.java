@@ -2,6 +2,8 @@ package xjon.jum.items;
 
 import java.util.List;
 
+import com.mojang.realmsclient.gui.ChatFormatting;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemStack;
@@ -18,7 +20,7 @@ public class ItemUselessHoe extends ItemHoe {
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, EntityPlayer playerIn, List toolTip, boolean advanced)
 	{
-		stack.setStackDisplayName(EnumChatFormatting.DARK_RED + "Useless Hoe");
+		stack.setStackDisplayName(ChatFormatting.DARK_RED + "Useless Hoe");
     	toolTip.add("You never listen to me!");
 	}
 

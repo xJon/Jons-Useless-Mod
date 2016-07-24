@@ -2,6 +2,8 @@ package xjon.jum.items;
 
 import java.util.List;
 
+import com.mojang.realmsclient.gui.ChatFormatting;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
@@ -18,7 +20,7 @@ public class ItemBlockBetterUselessOre extends ItemBlock {
 	@SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer playerIn, List toolTip, boolean advanced)
     {
-		stack.setStackDisplayName(EnumChatFormatting.WHITE + "Better Useless Ore");
+		stack.setStackDisplayName(ChatFormatting.WHITE + "Better Useless Ore");
     	toolTip.add("Generates in the Useless Dimension");
     }
 

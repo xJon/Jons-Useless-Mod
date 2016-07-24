@@ -13,7 +13,7 @@ public class FOVEvents {
 		
 		if(player.getHeldItemMainhand() != null){
 			if(player.getHeldItemMainhand().getItem() instanceof ItemUselessBow){
-	            int i = player.getItemInUseDuration();
+	            int i = player.getItemInUseCount();
 	            float f1 = (float)i / 20.0F;
 
 	            if (f1 > 1.0F)

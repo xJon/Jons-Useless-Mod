@@ -226,19 +226,6 @@ public class TileEntityUselessChest extends TileEntityLockable implements ITicka
         }
     }
 
-    private boolean isChestAt(BlockPos posIn)
-    {
-        if (this.worldObj == null)
-        {
-            return false;
-        }
-        else
-        {
-            Block block = this.worldObj.getBlockState(posIn).getBlock();
-            return block instanceof UselessChest && ((UselessChest)block).chestType == this.getChestType();
-        }
-    }
-
     public void update()
     {
         int i = this.pos.getX();
@@ -379,21 +366,6 @@ public class TileEntityUselessChest extends TileEntityLockable implements ITicka
     {
         super.invalidate();
         this.updateContainingBlockInfo();
-    }
-
-    public int getChestType()
-    {
-        if (this.cachedChestType == -1)
-        {
-            if (this.worldObj == null || !(this.getBlockType() instanceof UselessChest))
-            {
-                return 0;
-            }
-
-            this.cachedChestType = ((UselessChest)this.getBlockType()).chestType;
-        }
-
-        return this.cachedChestType;
     }
 
     public String getGuiID()

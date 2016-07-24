@@ -9,6 +9,7 @@ import xjon.jum.init.UselessItems;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.player.EntityPlayer;
@@ -35,28 +36,35 @@ public class JoinWorldEvents {
 		  rnd = Math.random();
 		  range = random.nextInt(6);
 		  
-		  if ((rnd <= 0.04D) && ((entity instanceof EntityLiving)) && ((event.entity instanceof EntitySkeleton | event.entity instanceof EntityZombie | event.entity instanceof EntityUselessDave)))
+		  if ((rnd <= 0.04D) && ((entity instanceof EntityLiving)) && ((event.getEntity() instanceof EntitySkeleton || event.getEntity() instanceof EntityZombie || event.getEntity() instanceof EntityUselessDave)))
 	    {
 		  EntityLiving living = (EntityLiving)entity;
 	      
-	      if (range == 1) {
-	        living.setCurrentItemOrArmor(4, new ItemStack(UselessItems.useless_helmet));
-	      }
+	      switch (range)
+	      {
+	      	case 0:
+	      	  living.setItemStackToSlot(EntityEquipmentSlot.HEAD, new ItemStack(UselessItems.useless_helmet));
+	      	  break;
 
-	      if (range == 2) {
-	        living.setCurrentItemOrArmor(3, new ItemStack(UselessItems.useless_chestplate));
-	      }
+	        case 1:
+	    	  living.setItemStackToSlot(EntityEquipmentSlot.CHEST, new ItemStack(UselessItems.useless_chestplate));
+	    	  break;
 
-	      if (range == 3) {
-	        living.setCurrentItemOrArmor(2, new ItemStack(UselessItems.useless_leggings));
-	      }
+	        case 2:
+	    	  living.setItemStackToSlot(EntityEquipmentSlot.LEGS, new ItemStack(UselessItems.useless_leggings));
+	    	  break;
+	    	  
+	        case 3:
+	    	  living.setItemStackToSlot(EntityEquipmentSlot.FEET, new ItemStack(UselessItems.useless_boots));
+	    	  break;
 
-	      if (range == 4) {
-	        living.setCurrentItemOrArmor(1, new ItemStack(UselessItems.useless_boots));
-	      }
-
-	      if (range == 5) {
-	        living.setCurrentItemOrArmor(0, new ItemStack(UselessItems.useless_food));
+	        case 4:
+	    	  living.setItemStackToSlot(EntityEquipmentSlot.OFFHAND, new ItemStack(UselessItems.useless_food));
+	    	  break;
+	      
+	        case 5:
+	    	  living.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(UselessItems.useless_axe));
+	    	  break;
 	      }
 	    
 	    }

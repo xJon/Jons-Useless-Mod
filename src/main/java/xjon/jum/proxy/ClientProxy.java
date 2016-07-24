@@ -36,18 +36,6 @@ public class ClientProxy extends CommonProxy {
 		UselessBlocks.registerRenders();
 		UselessItems.registerRenders();
 		
-		ResourceLocation[] namesUselessBow = new ResourceLocation[4];
-		namesUselessBow[0] = new ResourceLocation(Reference.MOD_ID + ":useless_bow");
-		namesUselessBow[1] = new ResourceLocation(Reference.MOD_ID + ":bow_useless_pulling_0");
-		namesUselessBow[2] = new ResourceLocation(Reference.MOD_ID + ":bow_useless_pulling_1");
-		namesUselessBow[3] = new ResourceLocation(Reference.MOD_ID + ":bow_useless_pulling_2");
-		
-		ModelBakery.registerItemVariants(UselessItems.useless_bow, namesUselessBow);
-		 registerItem(UselessItems.useless_bow, 0, Reference.MOD_ID + ":useless_bow");
-		 registerItem(UselessItems.useless_bow, 1, Reference.MOD_ID + ":bow_useless_pulling_0");
-         registerItem(UselessItems.useless_bow, 2, Reference.MOD_ID + ":bow_useless_pulling_1");
-         registerItem(UselessItems.useless_bow, 3, Reference.MOD_ID + ":bow_useless_pulling_2");
-		
 		TileEntitySpecialRenderer mcr = new UselessChestRenderer(Minecraft.getMinecraft().getRenderManager());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityUselessChest.class, mcr);
 		TileEntityItemStackRenderer.instance = new ModeledBlockInventoryRenderer();

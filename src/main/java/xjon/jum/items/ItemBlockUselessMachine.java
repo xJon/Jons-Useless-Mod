@@ -2,6 +2,8 @@ package xjon.jum.items;
 
 import java.util.List;
 
+import com.mojang.realmsclient.gui.ChatFormatting;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
@@ -19,7 +21,7 @@ public class ItemBlockUselessMachine extends ItemBlock {
 	@SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer playerIn, List toolTip, boolean advanced)
     {
-		stack.setStackDisplayName(EnumChatFormatting.DARK_PURPLE + "Useless Machine");
+		stack.setStackDisplayName(ChatFormatting.DARK_PURPLE + "Useless Machine");
     	toolTip.add("Teleports you to the Useless Dimension!");
     }
 	
