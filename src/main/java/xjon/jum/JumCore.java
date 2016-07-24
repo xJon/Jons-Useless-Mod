@@ -54,9 +54,10 @@ public class JumCore {
 		UselessConfiguration.syncConfig();
 		UselessItems.checks();
 		UselessItems.init();
-		UselessItems.register();
+		UselessItems.registerItems();
 		UselessBlocks.init();
 		UselessBlocks.register();
+		UselessItems.registerItemBlocks();
 		UselessEntities.init();
 		UselessBiomes.init();
 		UselessDimensions.init();

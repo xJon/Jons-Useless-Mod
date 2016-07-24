@@ -1,9 +1,11 @@
 package xjon.jum.blocks;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,6 +16,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
@@ -28,14 +31,13 @@ import xjon.jum.util.Reference;
 import xjon.jum.util.UselessConfiguration;
 import xjon.jum.world.dimension.TeleporterUseless;
 
-
 public class UselessMachine extends Block {
 		
-	public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
+	public static final PropertyDirection FACING = BlockHorizontal.FACING;
 	private boolean flag; 
 	public static int x1, y1, z1;
 	
-	public  UselessMachine(Material material) {
+	public UselessMachine(Material material) {
 		super(material);
 		setHardness(220.0F);
 		setHarvestLevel("pickaxe", 2);
@@ -106,16 +108,17 @@ public class UselessMachine extends Block {
 		return super.createTileEntity(world, state);
 	}
 	
-	 public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
-	    {
+	@Override
+	public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state) {
 	        this.setDefaultFacing(worldIn, pos, state);
 	    }
 	
+	
 	private void setDefaultFacing(World worldIn, BlockPos pos, IBlockState state)
     {
-        if (!worldIn.isRemote)
+		if (!worldIn.isRemote)
         {
-        	IBlockState iblockstate = worldIn.getBlockState(pos.north());
+            IBlockState iblockstate = worldIn.getBlockState(pos.north());
             IBlockState iblockstate1 = worldIn.getBlockState(pos.south());
             IBlockState iblockstate2 = worldIn.getBlockState(pos.west());
             IBlockState iblockstate3 = worldIn.getBlockState(pos.east());
@@ -123,43 +126,36 @@ public class UselessMachine extends Block {
 
             if (enumfacing == EnumFacing.NORTH && iblockstate.isFullBlock() && !iblockstate1.isFullBlock())
             {
-                enumfacing = EnumFacing.NORTH;
+                enumfacing = EnumFacing.SOUTH;
             }
             else if (enumfacing == EnumFacing.SOUTH && iblockstate1.isFullBlock() && !iblockstate.isFullBlock())
             {
-                enumfacing = EnumFacing.SOUTH;
+                enumfacing = EnumFacing.NORTH;
             }
             else if (enumfacing == EnumFacing.WEST && iblockstate2.isFullBlock() && !iblockstate3.isFullBlock())
             {
-                enumfacing = EnumFacing.WEST;
+                enumfacing = EnumFacing.EAST;
             }
             else if (enumfacing == EnumFacing.EAST && iblockstate3.isFullBlock() && !iblockstate2.isFullBlock())
             {
-                enumfacing = EnumFacing.EAST;
+                enumfacing = EnumFacing.WEST;
             }
 
             worldIn.setBlockState(pos, state.withProperty(FACING, enumfacing), 2);
         }
     }
 	
+	@Override
 	public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
     {
-        return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing());
+		return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing());
     }
 
+	@Override
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
         worldIn.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing()), 2);
 
-        if (stack.hasDisplayName())
-        {
-            TileEntity tileentity = worldIn.getTileEntity(pos);
-
-            if (tileentity instanceof TileEntityFurnace)
-            {
-                ((TileEntityFurnace)tileentity).setCustomInventoryName(stack.getDisplayName());
-            }
-        }
         ((EntityPlayer)placer).addStat(UselessAchievements.uselessMachine, 1);
     }
             
@@ -206,4 +202,16 @@ public class UselessMachine extends Block {
                 }
             }
         }
+    
+    @Override
+    public int getMetaFromState(IBlockState state)
+    {
+        return ((EnumFacing)state.getValue(FACING)).getIndex();
+    }
+    
+    @Override
+    protected BlockStateContainer createBlockState()
+    {
+        return new BlockStateContainer(this, new IProperty[] {FACING});
+    }
 }

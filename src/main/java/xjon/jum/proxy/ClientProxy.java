@@ -30,8 +30,8 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public void registerRenders()
 	{
-		RenderingRegistry.registerEntityRenderingHandler(EntityUselessDave.class, new RenderUselessDave(Minecraft.getMinecraft().getRenderManager(), new ModelUselessDave(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityUselessArrow.class, new RenderArrow());
+		 RenderingRegistry.registerEntityRenderingHandler(EntityUselessDave.class, manager -> new RenderUselessDave(manager, new ModelUselessDave(), 0));
+		RenderingRegistry.registerEntityRenderingHandler(EntityUselessArrow.class, manager -> new RenderArrow(manager));
 		
 		UselessBlocks.registerRenders();
 		UselessItems.registerRenders();
