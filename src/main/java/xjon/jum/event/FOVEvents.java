@@ -27,7 +27,7 @@ public class FOVEvents {
 	    } else {
 	      ratio *= ratio;
 	    }
-	    fovEvt.setNewfov((1.0F - ratio * 0.35F));
+	    fovEvt.setNewfov((1.0F - ratio * 0.15F));
 
 	  }
 
