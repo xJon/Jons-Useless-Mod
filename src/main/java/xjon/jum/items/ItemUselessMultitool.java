@@ -38,7 +38,7 @@ public class ItemUselessMultitool extends ItemTool {
 	
 	public ItemUselessMultitool(ToolMaterial material) 
 	{
-		super(5.0F, 5.0F, material, effectiveBlocks);
+		super(4.0F, 0.15F, material, effectiveBlocks);
 		this.setMaxDamage(3141);
 	}
 	
@@ -64,7 +64,7 @@ public class ItemUselessMultitool extends ItemTool {
 			ItemStack equipped = player.getHeldItemMainhand();
 			if (equipped == stack)
 				{
-					player.addPotionEffect(new PotionEffect(MobEffects.HASTE, 5, 0));
+					player.addPotionEffect(new PotionEffect(MobEffects.HASTE, 10, 0));
 				}
 		
 		}

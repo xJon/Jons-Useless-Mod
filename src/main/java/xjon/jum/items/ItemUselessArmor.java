@@ -34,25 +34,25 @@ public class ItemUselessArmor extends ItemArmor {
 		
 		if (!world.isRemote)
 		{
-		
-			if (player.getArmorInventoryList()!= null)
-				{
-					ItemStack boots = player.getItemStackFromSlot(EntityEquipmentSlot.FEET);
-					ItemStack leggings = player.getItemStackFromSlot(EntityEquipmentSlot.LEGS);
-					ItemStack chestplate = player.getItemStackFromSlot(EntityEquipmentSlot.CHEST);
-					ItemStack helmet = player.getItemStackFromSlot(EntityEquipmentSlot.HEAD);
 			
-				if (boots.getItem() == UselessItems.useless_boots && leggings.getItem() == UselessItems.useless_leggings && chestplate.getItem() == UselessItems.useless_chestplate && helmet.getItem() == UselessItems.useless_helmet)
+			ItemStack currentBoots = player.getItemStackFromSlot(EntityEquipmentSlot.FEET);
+			ItemStack currentLeggings = player.getItemStackFromSlot(EntityEquipmentSlot.LEGS);
+			ItemStack currentChestplate = player.getItemStackFromSlot(EntityEquipmentSlot.CHEST);
+			ItemStack currentHelmet = player.getItemStackFromSlot(EntityEquipmentSlot.HEAD);
+		
+			if (currentBoots != null && currentLeggings != null && currentChestplate != null && currentHelmet != null)
+				{
+				if (currentBoots.getItem() == UselessItems.useless_boots && currentLeggings.getItem() == UselessItems.useless_leggings && currentChestplate.getItem() == UselessItems.useless_chestplate && currentHelmet.getItem() == UselessItems.useless_helmet)
 					{
 						if (player.getActivePotionEffect(MobEffects.REGENERATION) == null)
 						{
-							player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 50, 0));
+							player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 1, 0));
 						}
 						if (world.getWorldTime() % 50 > 0)
 						{
 							return;
 						}
-						player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 50, 0));
+						player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 1, 0));
 					}
 			
 				}

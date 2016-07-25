@@ -65,14 +65,13 @@ public class JumCore {
 		FMLCommonHandler.instance().bus().register(new PlayerEvents());
 		FMLCommonHandler.instance().bus().register(new JoinWorldEvents());
 		MinecraftForge.EVENT_BUS.register(new FOVEvents());
-		
+		proxy.registerRenders();
 	}
 	
 	@EventHandler
 	public void Init(FMLInitializationEvent event)
 	{
 		UselessAchievements.loadAchievements();
-		proxy.registerRenders();
 		UselessRecipes.register();
 		UselessTileEntities.register();
 		GameRegistry.registerWorldGenerator(new UselessGeneration(), 0);

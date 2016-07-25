@@ -1,5 +1,5 @@
 {
-    "parent": "builtin/generated",
+    "parent": "item/handheld",
     "textures": {
         "layer0": "jum:items/bow_useless_pulling_2"
     },

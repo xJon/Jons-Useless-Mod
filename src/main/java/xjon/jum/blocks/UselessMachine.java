@@ -214,4 +214,10 @@ public class UselessMachine extends Block {
     {
         return new BlockStateContainer(this, new IProperty[] {FACING});
     }
+    
+    @Override
+    public boolean isFullyOpaque(IBlockState state)
+    {
+        return false;
+    }
 }

@@ -17,6 +17,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class UselessBlocks {
@@ -31,13 +32,13 @@ public class UselessBlocks {
 	
 	public static void init()
 	{
-		useless_block = new UselessBlock(Material.CLOTH).setUnlocalizedName("useless_block").setRegistryName(Reference.MOD_ID, "useless_block").setCreativeTab(JumCore.tabJUM);
-		super_useless_block = new SuperUselessBlock(Material.CLOTH).setUnlocalizedName("super_useless_block").setRegistryName(Reference.MOD_ID, "super_useless_block").setCreativeTab(JumCore.tabJUM);
-		useless_ore = new UselessOre(Material.ROCK).setUnlocalizedName("useless_ore").setRegistryName(Reference.MOD_ID, "useless_ore").setCreativeTab(JumCore.tabJUM);
-		better_useless_ore = new BetterUselessOre(Material.ROCK).setUnlocalizedName("better_useless_ore").setRegistryName(Reference.MOD_ID, "better_useless_ore").setCreativeTab(JumCore.tabJUM);
-		legitimate_diamond_ore = new LegitimateDiamondOre(Material.ROCK).setUnlocalizedName("legitimate_diamond_ore").setRegistryName(Reference.MOD_ID, "legitimate_diamond_ore").setCreativeTab(JumCore.tabJUM);
-		useless_machine = new UselessMachine(Material.ROCK).setUnlocalizedName("useless_machine").setRegistryName(Reference.MOD_ID, "useless_machine").setCreativeTab(JumCore.tabJUM);
-		useless_chest = new UselessChest().setUnlocalizedName("useless_chest").setRegistryName(Reference.MOD_ID, "useless_chest").setCreativeTab(JumCore.tabJUM);
+		useless_block = new UselessBlock(Material.CLOTH).setUnlocalizedName("useless_block").setRegistryName("useless_block").setCreativeTab(JumCore.tabJUM);
+		super_useless_block = new SuperUselessBlock(Material.CLOTH).setUnlocalizedName("super_useless_block").setRegistryName("super_useless_block").setCreativeTab(JumCore.tabJUM);
+		useless_ore = new UselessOre(Material.ROCK).setUnlocalizedName("useless_ore").setRegistryName("useless_ore").setCreativeTab(JumCore.tabJUM);
+		better_useless_ore = new BetterUselessOre(Material.ROCK).setUnlocalizedName("better_useless_ore").setRegistryName("better_useless_ore").setCreativeTab(JumCore.tabJUM);
+		legitimate_diamond_ore = new LegitimateDiamondOre(Material.ROCK).setUnlocalizedName("legitimate_diamond_ore").setRegistryName("legitimate_diamond_ore").setCreativeTab(JumCore.tabJUM);
+		useless_machine = new UselessMachine(Material.ROCK).setUnlocalizedName("useless_machine").setRegistryName("useless_machine").setCreativeTab(JumCore.tabJUM);
+		useless_chest = new UselessChest().setUnlocalizedName("useless_chest").setRegistryName("useless_chest").setCreativeTab(JumCore.tabJUM);
 	}
 	
 	public static void register()
@@ -53,10 +54,10 @@ public class UselessBlocks {
 	
 	public static void registerRenders()
 	{
-		registerRender(useless_block);
-		registerRender(super_useless_block);
 		registerRender(useless_ore);
 		registerRender(better_useless_ore);
+		registerRender(useless_block);
+		registerRender(super_useless_block);
 		registerRender(legitimate_diamond_ore);
 		registerRender(useless_machine);
 		registerRender(useless_chest);
@@ -64,6 +65,6 @@ public class UselessBlocks {
 	
 	public static void registerRender(Block block)
 	{
-		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(block), 0, new ModelResourceLocation(Reference.MOD_ID + ":" + block.getRegistryName(), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0, new ModelResourceLocation(block.getRegistryName(), "inventory"));
 	}
 }

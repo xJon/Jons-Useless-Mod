@@ -6,7 +6,9 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemFood;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import xjon.jum.JumCore;
@@ -99,23 +101,23 @@ public class UselessItems {
 		uselessToolMaterial = EnumHelper.addToolMaterial("uselessToolMaterial", harvestLevel, maxUses, efficiency, damage, enchantability);
 	    uselessArmorMaterial = EnumHelper.addArmorMaterial("uselessArmorMaterial", "useless_armor", maxUses, new int []{armorHelm,armorChest,armorLeg,armorBoot}, enchantability, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, damage);
 		
-		useless_material = new Item().setUnlocalizedName("useless_material").setRegistryName(Reference.MOD_ID, "useless_material").setCreativeTab(JumCore.tabJUM);
-		super_useless_material = new ItemSuperUselessMaterial().setUnlocalizedName("super_useless_material").setRegistryName(Reference.MOD_ID, "super_useless_material").setCreativeTab(JumCore.tabJUM);
-		legitimate_diamond = new Item().setUnlocalizedName("legitimate_diamond").setRegistryName(Reference.MOD_ID, "legitimate_diamond").setCreativeTab(JumCore.tabJUM);
-		useless_sword = new ItemUselessSword(uselessToolMaterial).setUnlocalizedName("useless_sword").setRegistryName(Reference.MOD_ID, "useless_sword").setCreativeTab(JumCore.tabJUM);
-		useless_shovel = new ItemUselessShovel(uselessToolMaterial).setUnlocalizedName("useless_shovel").setRegistryName(Reference.MOD_ID, "useless_shovel").setCreativeTab(JumCore.tabJUM);
-		useless_axe = new ItemUselessAxe(uselessToolMaterial).setUnlocalizedName("useless_axe").setRegistryName(Reference.MOD_ID, "useless_axe").setCreativeTab(JumCore.tabJUM);
-		useless_hoe = new ItemUselessHoe(uselessToolMaterial).setUnlocalizedName("useless_hoe").setRegistryName(Reference.MOD_ID, "useless_hoe").setCreativeTab(JumCore.tabJUM);
-		useless_bro = new ItemUselessBro().setUnlocalizedName("useless_bro").setRegistryName(Reference.MOD_ID, "useless_bro").setCreativeTab(JumCore.tabJUM);
-		useless_pickaxe = new ItemUselessPickaxe(uselessToolMaterial).setUnlocalizedName("useless_pickaxe").setRegistryName(Reference.MOD_ID, "useless_pickaxe").setCreativeTab(JumCore.tabJUM);
-		useless_food = new ItemFood(foodAmount, foodSaturation, true).setUnlocalizedName("useless_food").setRegistryName(Reference.MOD_ID, "useless_food").setCreativeTab(JumCore.tabJUM);
-		useless_helmet = new ItemUselessArmor(uselessArmorMaterial, 0, EntityEquipmentSlot.HEAD).setUnlocalizedName("useless_helmet").setRegistryName(Reference.MOD_ID, "useless_helmet").setCreativeTab(JumCore.tabJUM);
-		useless_chestplate = new ItemUselessArmor(uselessArmorMaterial, 0, EntityEquipmentSlot.CHEST).setUnlocalizedName("useless_chestplate").setRegistryName(Reference.MOD_ID, "useless_chestplate").setCreativeTab(JumCore.tabJUM);
-		useless_leggings = new ItemUselessArmor(uselessArmorMaterial, 0, EntityEquipmentSlot.LEGS).setUnlocalizedName("useless_leggings").setRegistryName(Reference.MOD_ID, "useless_leggings").setCreativeTab(JumCore.tabJUM);
-		useless_boots = new ItemUselessArmor(uselessArmorMaterial, 0, EntityEquipmentSlot.FEET).setUnlocalizedName("useless_boots").setRegistryName(Reference.MOD_ID, "useless_boots").setCreativeTab(JumCore.tabJUM);
-		useless_multitool = new ItemUselessMultitool(uselessToolMaterial).setUnlocalizedName("useless_multitool").setRegistryName(Reference.MOD_ID, "useless_multitool").setCreativeTab(JumCore.tabJUM);
-		useless_bow = new ItemUselessBow().setUnlocalizedName("useless_bow").setRegistryName(Reference.MOD_ID, "useless_bow").setCreativeTab(JumCore.tabJUM);
-		useless_arrow = new Item().setUnlocalizedName("useless_arrow").setRegistryName(Reference.MOD_ID, "useless_arrow").setCreativeTab(JumCore.tabJUM);
+		useless_material = new Item().setUnlocalizedName("useless_material").setRegistryName("useless_material").setCreativeTab(JumCore.tabJUM);
+		super_useless_material = new ItemSuperUselessMaterial().setUnlocalizedName("super_useless_material").setRegistryName("super_useless_material").setCreativeTab(JumCore.tabJUM);
+		legitimate_diamond = new Item().setUnlocalizedName("legitimate_diamond").setRegistryName("legitimate_diamond").setCreativeTab(JumCore.tabJUM);
+		useless_sword = new ItemUselessSword(uselessToolMaterial).setUnlocalizedName("useless_sword").setRegistryName("useless_sword").setCreativeTab(JumCore.tabJUM);
+		useless_shovel = new ItemUselessShovel(uselessToolMaterial).setUnlocalizedName("useless_shovel").setRegistryName("useless_shovel").setCreativeTab(JumCore.tabJUM);
+		useless_axe = new ItemUselessAxe(uselessToolMaterial).setUnlocalizedName("useless_axe").setRegistryName("useless_axe").setCreativeTab(JumCore.tabJUM);
+		useless_hoe = new ItemUselessHoe(uselessToolMaterial).setUnlocalizedName("useless_hoe").setRegistryName("useless_hoe").setCreativeTab(JumCore.tabJUM);
+		useless_bro = new ItemUselessBro().setUnlocalizedName("useless_bro").setRegistryName("useless_bro").setCreativeTab(JumCore.tabJUM);
+		useless_pickaxe = new ItemUselessPickaxe(uselessToolMaterial).setUnlocalizedName("useless_pickaxe").setRegistryName("useless_pickaxe").setCreativeTab(JumCore.tabJUM);
+		useless_food = new ItemFood(foodAmount, foodSaturation, true).setUnlocalizedName("useless_food").setRegistryName("useless_food").setCreativeTab(JumCore.tabJUM);
+		useless_helmet = new ItemUselessArmor(uselessArmorMaterial, 0, EntityEquipmentSlot.HEAD).setUnlocalizedName("useless_helmet").setRegistryName("useless_helmet").setCreativeTab(JumCore.tabJUM);
+		useless_chestplate = new ItemUselessArmor(uselessArmorMaterial, 0, EntityEquipmentSlot.CHEST).setUnlocalizedName("useless_chestplate").setRegistryName("useless_chestplate").setCreativeTab(JumCore.tabJUM);
+		useless_leggings = new ItemUselessArmor(uselessArmorMaterial, 0, EntityEquipmentSlot.LEGS).setUnlocalizedName("useless_leggings").setRegistryName("useless_leggings").setCreativeTab(JumCore.tabJUM);
+		useless_boots = new ItemUselessArmor(uselessArmorMaterial, 0, EntityEquipmentSlot.FEET).setUnlocalizedName("useless_boots").setRegistryName("useless_boots").setCreativeTab(JumCore.tabJUM);
+		useless_multitool = new ItemUselessMultitool(uselessToolMaterial).setUnlocalizedName("useless_multitool").setRegistryName("useless_multitool").setCreativeTab(JumCore.tabJUM);
+		useless_bow = new ItemUselessBow().setUnlocalizedName("useless_bow").setRegistryName("useless_bow").setCreativeTab(JumCore.tabJUM);
+		useless_arrow = new Item().setUnlocalizedName("useless_arrow").setRegistryName("useless_arrow").setCreativeTab(JumCore.tabJUM);
 	}
 	
 	public static void registerItems()
@@ -144,6 +146,11 @@ public class UselessItems {
 		GameRegistry.register(new ItemBlockBetterUselessOre(UselessBlocks.better_useless_ore), UselessBlocks.better_useless_ore.getRegistryName());
 		GameRegistry.register(new ItemBlockUselessMachine(UselessBlocks.useless_machine), UselessBlocks.useless_machine.getRegistryName());
 		GameRegistry.register(new ItemBlockUselessOre(UselessBlocks.useless_ore), UselessBlocks.useless_ore.getRegistryName());
+		GameRegistry.register(new ItemBlock(UselessBlocks.legitimate_diamond_ore), UselessBlocks.legitimate_diamond_ore.getRegistryName());
+		GameRegistry.register(new ItemBlock(UselessBlocks.useless_block), UselessBlocks.useless_block.getRegistryName());
+		GameRegistry.register(new ItemBlock(UselessBlocks.useless_chest), UselessBlocks.useless_chest.getRegistryName());
+		GameRegistry.register(new ItemBlock(UselessBlocks.super_useless_block), UselessBlocks.super_useless_block.getRegistryName());
+		
 	}
 
 	public static void registerRenders()
@@ -169,6 +176,6 @@ public class UselessItems {
 	
 	public static void registerRender(Item item)
 	{
-		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, new ModelResourceLocation(Reference.MOD_ID + ":" + item.getRegistryName(), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
 	}
 }

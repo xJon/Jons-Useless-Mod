@@ -1,2 +1,8 @@
+Add:
+- Configurable useless dimension id
+
 Fix:
-- Unfound problems
+- Last texture errors
+- Dave sounds
+- Dave spawn egg creative tab, name
+- Useless Machine view
