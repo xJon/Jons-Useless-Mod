@@ -6,7 +6,6 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.init.Blocks;
@@ -48,11 +47,9 @@ public class GuiUselessMachine extends GuiScreen{
 		if(!UselessConfiguration.isUseless)
 		{
 			buttonList.add(tpButton = new GuiButton(0, guiX + guiWidth / 2 - 30, guiY + guiWidth / 2 - 30, 60, 20, "Click to go!"));
-		}
-		else
-			{
+		} else {
 			buttonList.add(tpButton = new GuiButton(0, guiX + guiWidth / 2 - 30, guiY + guiWidth / 2 - 30, 120, 20, "Click to NOPE!"));
-			};
+		}
 		
 		super.initGui();
 	}

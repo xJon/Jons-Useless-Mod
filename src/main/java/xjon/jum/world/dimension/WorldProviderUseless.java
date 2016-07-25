@@ -3,17 +3,12 @@ package xjon.jum.world.dimension;
 import xjon.jum.init.UselessBiomes;
 import xjon.jum.init.UselessDimensions;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.Biomes;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DimensionType;
-import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
-import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.BiomeProviderSingle;
 import net.minecraft.world.chunk.IChunkGenerator;
-import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.client.IRenderHandler;
-import net.minecraftforge.common.BiomeManager.BiomeType;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 

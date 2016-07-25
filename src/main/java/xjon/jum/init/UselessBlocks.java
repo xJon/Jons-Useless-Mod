@@ -1,5 +1,11 @@
 package xjon.jum.init;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.item.Item;
+import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import xjon.jum.JumCore;
 import xjon.jum.blocks.BetterUselessOre;
 import xjon.jum.blocks.LegitimateDiamondOre;
@@ -8,17 +14,6 @@ import xjon.jum.blocks.UselessBlock;
 import xjon.jum.blocks.UselessChest;
 import xjon.jum.blocks.UselessMachine;
 import xjon.jum.blocks.UselessOre;
-import xjon.jum.items.ItemBlockBetterUselessOre;
-import xjon.jum.items.ItemBlockUselessMachine;
-import xjon.jum.items.ItemBlockUselessOre;
-import xjon.jum.util.Reference;
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.item.Item;
-import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class UselessBlocks {
 
@@ -54,10 +49,10 @@ public class UselessBlocks {
 	
 	public static void registerRenders()
 	{
-		registerRender(useless_ore);
-		registerRender(better_useless_ore);
 		registerRender(useless_block);
 		registerRender(super_useless_block);
+		registerRender(useless_ore);
+		registerRender(better_useless_ore);
 		registerRender(legitimate_diamond_ore);
 		registerRender(useless_machine);
 		registerRender(useless_chest);

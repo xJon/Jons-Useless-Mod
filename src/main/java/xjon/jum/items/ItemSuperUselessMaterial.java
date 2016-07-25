@@ -14,7 +14,7 @@ public class ItemSuperUselessMaterial extends Item {
 	
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack stack, EntityPlayer playerIn, List toolTip, boolean advanced)
+	public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String>  toolTip, boolean advanced)
 	{
 		stack.setStackDisplayName(ChatFormatting.WHITE + "Super Useless Material");
 		toolTip.add("It's so useless, it's used for only one recipe");

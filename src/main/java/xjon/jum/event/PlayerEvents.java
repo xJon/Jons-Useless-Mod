@@ -1,15 +1,12 @@
 package xjon.jum.event;
 
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.ItemCraftedEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.ItemPickupEvent;
-import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedOutEvent;
 import xjon.jum.blocks.UselessMachine;
 import xjon.jum.init.UselessAchievements;
-import xjon.jum.init.UselessBlocks;
 import xjon.jum.init.UselessDimensions;
 import xjon.jum.init.UselessItems;
 import xjon.jum.util.Log;

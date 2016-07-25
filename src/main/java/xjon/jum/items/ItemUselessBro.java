@@ -18,7 +18,7 @@ public class ItemUselessBro extends Item {
 	
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack stack, EntityPlayer playerIn, List toolTip, boolean advanced)
+	public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> toolTip, boolean advanced)
 	{
 		stack.setStackDisplayName(ChatFormatting.DARK_AQUA + "Useless Bro");
     	toolTip.add("I'm very useless");

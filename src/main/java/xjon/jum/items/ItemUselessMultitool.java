@@ -17,7 +17,6 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
-import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
@@ -27,7 +26,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import xjon.jum.util.UselessConfiguration;
 
 
 public class ItemUselessMultitool extends ItemTool {
@@ -103,7 +101,7 @@ public class ItemUselessMultitool extends ItemTool {
 
                 if (block == Blocks.DIRT)
                 {
-                    switch ((BlockDirt.DirtType)iblockstate.getValue(BlockDirt.VARIANT))
+                    switch (iblockstate.getValue(BlockDirt.VARIANT))
                     {
                         case DIRT:
                             this.setBlock(stack, playerIn, worldIn, pos, Blocks.FARMLAND.getDefaultState());
@@ -130,35 +128,10 @@ public class ItemUselessMultitool extends ItemTool {
 	            stack.damageItem(1, player);
 	        }
 	    }
-
-	    static final class SwitchDirtType
-	        {
-	            static final int[] TYPE_LOOKUP = new int[BlockDirt.DirtType.values().length];
-	            static
-	            {
-	                try
-	                {
-	                    TYPE_LOOKUP[BlockDirt.DirtType.DIRT.ordinal()] = 1;
-	                }
-	                catch (NoSuchFieldError var2)
-	                {
-	                    ;
-	                }
-
-	                try
-	                {
-	                    TYPE_LOOKUP[BlockDirt.DirtType.COARSE_DIRT.ordinal()] = 2;
-	                }
-	                catch (NoSuchFieldError var1)
-	                {
-	                    ;
-	                }
-	            }
-	        }
 	    
 	    @Override
 		@SideOnly(Side.CLIENT)
-		public void addInformation(ItemStack stack, EntityPlayer playerIn, List toolTip, boolean advanced)
+		public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> toolTip, boolean advanced)
 		{
 			stack.setStackDisplayName(ChatFormatting.AQUA + "Useless Multi-Tool");
 	    	toolTip.add("Can mine pretty much anything");

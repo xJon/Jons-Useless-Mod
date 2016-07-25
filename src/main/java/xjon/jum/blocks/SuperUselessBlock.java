@@ -1,6 +1,7 @@
 package xjon.jum.blocks;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 
 public class SuperUselessBlock extends Block{
@@ -11,7 +12,7 @@ public class SuperUselessBlock extends Block{
 		this.setHardness(12.0F);
 		this.setLightLevel(0.4F);
 		this.setLightOpacity(10);
-		this.setSoundType(blockSoundType.METAL);
+		this.setSoundType(SoundType.METAL);
 		
 	}
 

@@ -18,7 +18,7 @@ public class ItemBlockBetterUselessOre extends ItemBlock {
 	}
 	
 	@SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer playerIn, List toolTip, boolean advanced)
+    public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> toolTip, boolean advanced)
     {
 		stack.setStackDisplayName(ChatFormatting.WHITE + "Better Useless Ore");
     	toolTip.add("Generates in the Useless Dimension");

@@ -1,7 +1,6 @@
 package xjon.jum.proxy;
 
 import xjon.jum.init.UselessBlocks;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class CommonProxy {

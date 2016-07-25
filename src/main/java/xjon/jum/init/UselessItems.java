@@ -1,6 +1,5 @@
 package xjon.jum.init;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -25,7 +24,6 @@ import xjon.jum.items.ItemUselessMultitool;
 import xjon.jum.items.ItemUselessPickaxe;
 import xjon.jum.items.ItemUselessShovel;
 import xjon.jum.items.ItemUselessSword;
-import xjon.jum.util.Reference;
 import xjon.jum.util.UselessConfiguration;
 
 public class UselessItems {

@@ -1,6 +1,5 @@
  package xjon.jum.proxy;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntityItemStackRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -22,9 +21,9 @@ public class ClientProxy extends CommonProxy {
 	public void registerRenders()
 	{
 		RenderingRegistry.registerEntityRenderingHandler(EntityUselessDave.class, manager -> new RenderUselessDave(manager, new ModelUselessDave(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityUselessArrow.class, manager -> new RenderArrow(manager));
-				
-		TileEntitySpecialRenderer mcr = new UselessChestRenderer(Minecraft.getMinecraft().getRenderManager());
+		RenderingRegistry.registerEntityRenderingHandler(EntityUselessArrow.class, RenderArrow::new);
+
+		TileEntitySpecialRenderer<TileEntityUselessChest> mcr = new UselessChestRenderer();
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityUselessChest.class, mcr);
 		TileEntityItemStackRenderer.instance = new ModeledBlockInventoryRenderer();
 		
