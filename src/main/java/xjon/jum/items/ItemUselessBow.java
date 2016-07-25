@@ -12,7 +12,6 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemArrow;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.util.ActionResult;
@@ -88,7 +87,7 @@ public class ItemUselessBow extends Item
     
     protected boolean isArrow(@Nullable ItemStack stack)
     {
-        return stack != null && stack.getItem() instanceof ItemArrow;
+        return stack != null && stack.getItem() instanceof ItemUselessArrow;
     }
     
 	@Override
@@ -108,7 +107,7 @@ public class ItemUselessBow extends Item
             {
                 if (itemstack == null)
                 {
-                    itemstack = new ItemStack(Items.ARROW);
+                    itemstack = new ItemStack(UselessItems.useless_arrow);
                 }
 
                 float f = getArrowVelocity(i);
@@ -119,7 +118,7 @@ public class ItemUselessBow extends Item
 
                     if (!worldIn.isRemote)
                     {
-                        ItemUselessArrow itemarrow = (ItemUselessArrow)((ItemUselessArrow)(itemstack.getItem() instanceof ItemUselessArrow ? itemstack.getItem() : Items.ARROW));
+                        ItemUselessArrow itemarrow = (ItemUselessArrow)((ItemUselessArrow)(itemstack.getItem() instanceof ItemUselessArrow ? itemstack.getItem() : UselessItems.useless_arrow));
                         EntityUselessArrow entityarrow = itemarrow.createArrow(worldIn, itemstack, entityplayer);
                         entityarrow.setAim(entityplayer, entityplayer.rotationPitch, entityplayer.rotationYaw, 0.0F, f * 3.0F, 1.0F);
 
@@ -187,11 +186,6 @@ public class ItemUselessBow extends Item
 
         return f;
     }
-
-	@Override
-	public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving) {
-		return stack;
-	}
 
 	@Override
 	public int getMaxItemUseDuration(ItemStack stack) {

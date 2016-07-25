@@ -25,7 +25,7 @@ public class FOVEvents {
 	                f1 *= f1;
 	            }
 
-	            event.setNewfov(event.getNewfov() * (1.0F - f1 * 0.15F));
+	            event.setNewfov(event.getFov() * (1.0F - f1 * 0.15F));
 			}
 		}
 	}
