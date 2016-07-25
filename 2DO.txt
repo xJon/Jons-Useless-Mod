@@ -3,5 +3,5 @@ Add:
 
 Fix:
 - Useless Block texture
-- Dave spawn egg in custom creative tab
-- Bow aiming FOV
+- Useless Machine right click
+- Bow shooting arrow + aiming FOV
