@@ -1,6 +1,6 @@
 {
-   "nope": {"category": "master","sounds": [{"name": "nope","stream": false}]},
-   "hidave": {"category": "master","sounds": [{"name": "hidave","stream": false}]},
-   "hitdave": {"category": "master","sounds": [{"name": "hitdave","stream": false}]},
-   "deathdave": {"category": "master","sounds": [{"name": "deathdave","stream": false}]}
+   "nope": {"category": "master","sounds": [{"name": "jum:nope","stream": false}]},
+   "hidave": {"category": "master","sounds": [{"name": "jum:hidave","stream": false}]},
+   "hitdave": {"category": "master","sounds": [{"name": "jum:hitdave","stream": false}]},
+   "deathdave": {"category": "master","sounds": [{"name": "jum:deathdave","stream": false}]}
 }

@@ -63,20 +63,17 @@ public class EntityUselessDave extends EntityMob {
 	
 	protected SoundEvent getAmbientSound()
     {
-        SoundEvent sound = SoundEvent.REGISTRY.getObject(new ResourceLocation(Reference.MOD_ID + ":hidave"));
-        return sound;
+        return new SoundEvent(new ResourceLocation(Reference.MOD_ID, "hidave"));
     }
 	
 	protected SoundEvent getHurtSound()
 	{
-		SoundEvent sound = SoundEvent.REGISTRY.getObject(new ResourceLocation(Reference.MOD_ID + ":hitdave"));
-		return sound;
+		return new SoundEvent(new ResourceLocation(Reference.MOD_ID, "hitdave"));
 	}
 	
 	protected SoundEvent getDeathSound()
     {
-        SoundEvent sound = SoundEvent.REGISTRY.getObject(new ResourceLocation(Reference.MOD_ID + ":deathdave"));
-        return sound;
+		return new SoundEvent(new ResourceLocation(Reference.MOD_ID, "deathdave"));
     }
 	
 	protected void playStepSound(BlockPos p_180429_1_, Block p_180429_2_)

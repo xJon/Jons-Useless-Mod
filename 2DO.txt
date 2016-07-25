@@ -2,7 +2,6 @@ Add:
 - Configurable useless dimension id
 
 Fix:
-- Last texture errors
-- Dave sounds
-- Dave spawn egg creative tab, name
-- Useless Machine view
+- Useless Block texture
+- Dave spawn egg in custom creative tab
+- Bow aiming FOV

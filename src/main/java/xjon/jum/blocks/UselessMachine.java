@@ -216,8 +216,7 @@ public class UselessMachine extends Block {
     }
     
     @Override
-    public boolean isFullyOpaque(IBlockState state)
-    {
-        return false;
+    public boolean isOpaqueCube(IBlockState state) {
+    	return false;
     }
 }

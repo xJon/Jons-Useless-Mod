@@ -38,7 +38,7 @@ public class ItemUselessMultitool extends ItemTool {
 	
 	public ItemUselessMultitool(ToolMaterial material) 
 	{
-		super(4.0F, 0.15F, material, effectiveBlocks);
+		super(4.0F, 0.005F, material, effectiveBlocks);
 		this.setMaxDamage(3141);
 	}
 	
