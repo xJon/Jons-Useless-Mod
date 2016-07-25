@@ -4,4 +4,4 @@ Add:
 Fix:
 - Useless Block texture
 - Useless Machine right click
-- Bow shooting arrow + aiming FOV
+- EntityArrow

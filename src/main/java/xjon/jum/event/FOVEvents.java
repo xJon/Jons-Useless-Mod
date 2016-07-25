@@ -1,34 +1,35 @@
 package xjon.jum.event;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.FOVUpdateEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import xjon.jum.init.UselessItems;
 import xjon.jum.items.ItemUselessBow;
 
 public class FOVEvents {
 
-	@SubscribeEvent
-    public void FOVBowUpdate(FOVUpdateEvent event){
-		EntityPlayer player = event.getEntity();
-		
-		if(player.getHeldItemMainhand() != null){
-			if(player.getHeldItemMainhand().getItem() instanceof ItemUselessBow){
-	            int i = player.getItemInUseCount();
-	            float f1 = (float)i / 20.0F;
+	  @SideOnly(Side.CLIENT)
+	  @SubscribeEvent
+	  public void onFovUpdateEvent(FOVUpdateEvent fovEvt) {
+	    ItemStack currentItem = fovEvt.getEntity().getHeldItemMainhand();
+	    if(currentItem == null || currentItem.getItem() != UselessItems.useless_bow || fovEvt.getEntity().getItemInUseCount() <= 0) {
+	      return;
+	    }
 
-	            if (f1 > 1.0F)
-	            {
-	                f1 = 1.0F;
-	            }
-	            else
-	            {
-	                f1 *= f1;
-	            }
+	    int drawDuration = 72000 - fovEvt.getEntity().getItemInUseCount();
+	    float ratio = drawDuration / (float) 14;
 
-	            event.setNewfov(event.getFov() * (1.0F - f1 * 0.15F));
-			}
-		}
-	}
+	    if(ratio > 1.0F) {
+	      ratio = 1.0F;
+	    } else {
+	      ratio *= ratio;
+	    }
+	    fovEvt.setNewfov((1.0F - ratio * 0.35F));
+
+	  }
 
 
 }

@@ -6,12 +6,14 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Enchantments;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemArrow;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.util.ActionResult;
@@ -118,8 +120,8 @@ public class ItemUselessBow extends Item
 
                     if (!worldIn.isRemote)
                     {
-                        ItemUselessArrow itemarrow = (ItemUselessArrow)((ItemUselessArrow)(itemstack.getItem() instanceof ItemUselessArrow ? itemstack.getItem() : UselessItems.useless_arrow));
-                        EntityUselessArrow entityarrow = itemarrow.createArrow(worldIn, itemstack, entityplayer);
+                    	ItemUselessArrow itemarrow = (ItemUselessArrow)((ItemUselessArrow)(itemstack.getItem() instanceof ItemUselessArrow ? itemstack.getItem() : UselessItems.useless_arrow));
+                        EntityUselessArrow entityarrow = new EntityUselessArrow(worldIn);
                         entityarrow.setAim(entityplayer, entityplayer.rotationPitch, entityplayer.rotationYaw, 0.0F, f * 3.0F, 1.0F);
 
                         if (f == 1.0F)
