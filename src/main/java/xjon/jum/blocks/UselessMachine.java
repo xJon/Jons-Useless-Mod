@@ -1,5 +1,7 @@
 package xjon.jum.blocks;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.SoundType;
@@ -14,6 +16,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
@@ -43,14 +46,13 @@ public class UselessMachine extends Block {
 	}
 	
 	@Override
-	public void onBlockClicked(World worldIn, BlockPos pos, EntityPlayer playerIn)
-	{		
-		EntityPlayerMP playerMP = (EntityPlayerMP) playerIn;
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)	{		
 		
 		if(!UselessConfiguration.isUseless)		
 		{
 			if(playerIn instanceof EntityPlayerMP)
 			{
+				EntityPlayerMP playerMP = (EntityPlayerMP) playerIn;
 					if (worldIn.provider.getDimension() != UselessConfiguration.uselessDimensionId) {
 						x1 = playerIn.getPosition().getX();
 						y1 = playerIn.getPosition().getY() + 1;
@@ -93,15 +95,10 @@ public class UselessMachine extends Block {
 		}
 		else
 		{
-			SoundEvent sound = SoundEvent.REGISTRY.getObject(new ResourceLocation(Reference.MOD_ID + ":nope"));
-			playerMP.worldObj.playSound(playerIn, pos, sound, SoundCategory.AMBIENT, 1.0F, 1.0F);
+			EntityPlayerMP playerMP = (EntityPlayerMP) playerIn;
+			playerMP.worldObj.playSound(playerIn, pos, new SoundEvent(new ResourceLocation(Reference.MOD_ID, "nope")), SoundCategory.AMBIENT, 1.0F, 1.0F);
 		}
-	}
-	
-	@Override
-	public TileEntity createTileEntity(World world, IBlockState state) {
-
-		return super.createTileEntity(world, state);
+		return true;
 	}
 	
 	@Override

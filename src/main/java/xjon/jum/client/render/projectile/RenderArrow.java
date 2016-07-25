@@ -18,14 +18,6 @@ public class RenderArrow extends Render<EntityUselessArrow> {
         super(manager);
     }
 
-	@Override
-    public void doRender(EntityUselessArrow entity, double x, double y, double z, float entityYaw, float partialTicks) {
-        if (!this.renderOutlines)
-        {
-            this.renderName(entity, x, y, z);
-        }
-    }
-
     @Override
     protected ResourceLocation getEntityTexture(EntityUselessArrow p_180550_1_)
     {

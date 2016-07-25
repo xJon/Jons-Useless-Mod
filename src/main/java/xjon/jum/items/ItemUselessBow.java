@@ -22,6 +22,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import xjon.jum.entity.projectile.EntityUselessArrow;
 import xjon.jum.init.UselessItems;
+import xjon.jum.util.Log;
 
 public class ItemUselessBow extends Item
 {
@@ -84,7 +85,7 @@ public class ItemUselessBow extends Item
     
     protected boolean isArrow(@Nullable ItemStack stack)
     {
-        return stack != null && stack.getItem() instanceof ItemUselessArrow;
+    	return stack != null && stack.getItem() instanceof ItemUselessArrow;
     }
     
 	@Override
