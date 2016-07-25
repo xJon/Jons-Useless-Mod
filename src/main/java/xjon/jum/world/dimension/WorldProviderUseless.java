@@ -2,6 +2,7 @@ package xjon.jum.world.dimension;
 
 import xjon.jum.init.UselessBiomes;
 import xjon.jum.init.UselessDimensions;
+import xjon.jum.util.UselessConfiguration;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DimensionType;
@@ -17,7 +18,7 @@ public class WorldProviderUseless extends WorldProvider {
 	@Override
 	public void createBiomeProvider() {
 		this.biomeProvider = new BiomeProviderSingle(UselessBiomes.biomeUseless);
-		this.setDimension(UselessDimensions.dimensionId);
+		this.setDimension(UselessConfiguration.uselessDimensionId);
 		isHellWorld = false;
 	}
 
@@ -82,7 +83,7 @@ public class WorldProviderUseless extends WorldProvider {
 
 	@Override
 	public DimensionType getDimensionType() {
-		return DimensionType.getById(UselessDimensions.dimensionId);
+		return DimensionType.register("Useless Dimension", "", UselessConfiguration.uselessDimensionId, WorldProviderUseless.class, false);
 	}
 
 

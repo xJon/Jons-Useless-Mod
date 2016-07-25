@@ -115,7 +115,6 @@ public class ItemUselessBow extends Item
 
                     if (!worldIn.isRemote)
                     {
-                    	ItemUselessArrow itemarrow = itemstack.getItem() instanceof ItemUselessArrow ? itemstack.getItem() : UselessItems.useless_arrow;
                         EntityUselessArrow entityarrow = new EntityUselessArrow(worldIn);
                         entityarrow.setAim(entityplayer, entityplayer.rotationPitch, entityplayer.rotationYaw, 0.0F, f * 3.0F, 1.0F);
 

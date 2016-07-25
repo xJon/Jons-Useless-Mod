@@ -10,6 +10,7 @@ import xjon.jum.init.UselessAchievements;
 import xjon.jum.init.UselessDimensions;
 import xjon.jum.init.UselessItems;
 import xjon.jum.util.Log;
+import xjon.jum.util.UselessConfiguration;
 import xjon.jum.world.dimension.TeleporterUseless;
 
 public class PlayerEvents{
@@ -41,7 +42,7 @@ public class PlayerEvents{
 	@SubscribeEvent
 	public void loggedOut(PlayerLoggedOutEvent event)
 	{
-		if (event.player.dimension == UselessDimensions.dimensionId && event.player instanceof EntityPlayerMP)
+		if (event.player.dimension == UselessConfiguration.uselessDimensionId && event.player instanceof EntityPlayerMP)
 		{
 				EntityPlayerMP playerMP = (EntityPlayerMP)event.player;
 				

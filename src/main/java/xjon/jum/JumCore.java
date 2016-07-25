@@ -40,7 +40,7 @@ public class JumCore {
 	public static final UselessTab tabJUM = new UselessTab("tabJUM");
 	
 	public static Configuration config;
-	
+		
 	@Instance(Reference.MOD_ID)
 	public static JumCore instance;
 	

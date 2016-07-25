@@ -51,12 +51,12 @@ public class UselessMachine extends Block {
 		{
 			if(playerIn instanceof EntityPlayerMP)
 			{
-					if (worldIn.provider.getDimension() != UselessDimensions.dimensionId) {
+					if (worldIn.provider.getDimension() != UselessConfiguration.uselessDimensionId) {
 						x1 = playerIn.getPosition().getX();
 						y1 = playerIn.getPosition().getY() + 1;
 						z1 = playerIn.getPosition().getZ();
 						flag = true;
-						playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, UselessDimensions.dimensionId, new TeleporterUseless(playerMP.mcServer.worldServerForDimension(UselessDimensions.dimensionId)));
+						playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, UselessConfiguration.uselessDimensionId, new TeleporterUseless(playerMP.mcServer.worldServerForDimension(UselessConfiguration.uselessDimensionId)));
 						playerIn.setPositionAndUpdate(playerIn.posX, playerIn.posY + 1, playerIn.posZ);
 						for (int x = -6; x <= 6; ++x)
 						{ for (int y = -2; y <= 2; ++y)

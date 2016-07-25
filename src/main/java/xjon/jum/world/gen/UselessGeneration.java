@@ -11,30 +11,26 @@ import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraftforge.fml.common.IWorldGenerator;
+import xjon.jum.JumCore;
 import xjon.jum.init.UselessBlocks;
 import xjon.jum.init.UselessDimensions;
+import xjon.jum.util.UselessConfiguration;
 
 public class UselessGeneration implements IWorldGenerator {
 
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)
 	{
-	switch (world.provider.getDimension())
-	{
-	case -1:
-		break;
-	
-	case 0:
+		int dimension = world.provider.getDimension();
+		
+		if (dimension == 0)
+		{
 		generateOverworld(world, random, new BlockPos(chunkX * 16, 64, chunkZ * 16));
-		break;
-		
-	case 1:
-		break;
-		
-	case UselessDimensions.dimensionId:
+		} 
+		else if (dimension == UselessConfiguration.uselessDimensionId) 
+		{
 		generateUselessDimension(world, random, new BlockPos(chunkX * 16, 64, chunkZ * 16));
-		break;
-	}
+		}
 		
 	}
 
