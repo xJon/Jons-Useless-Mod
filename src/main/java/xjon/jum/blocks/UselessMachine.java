@@ -2,8 +2,8 @@ package xjon.jum.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -13,16 +13,12 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.Rotation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import xjon.jum.init.UselessAchievements;
 import xjon.jum.init.UselessBlocks;
 import xjon.jum.init.UselessDimensions;
@@ -42,7 +38,7 @@ public class UselessMachine extends Block {
 		setHardness(220.0F);
 		setHarvestLevel("pickaxe", 2);
 		this.setLightLevel(0.4F);
-		this.setSoundType(blockSoundType.METAL);
+		this.setSoundType(SoundType.METAL);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 	}
 	
@@ -74,7 +70,7 @@ public class UselessMachine extends Block {
 								}
 							}
 						}
-					} else if (flag == true) {
+					} else if (flag) {
 						playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, 0, new TeleporterUseless(playerMP.mcServer.worldServerForDimension(0)));
 						playerIn.setPositionAndUpdate(x1, y1 + 1, z1);	
 						flag = false;
@@ -122,7 +118,7 @@ public class UselessMachine extends Block {
             IBlockState iblockstate1 = worldIn.getBlockState(pos.south());
             IBlockState iblockstate2 = worldIn.getBlockState(pos.west());
             IBlockState iblockstate3 = worldIn.getBlockState(pos.east());
-            EnumFacing enumfacing = (EnumFacing)state.getValue(FACING);
+            EnumFacing enumfacing = state.getValue(FACING);
 
             if (enumfacing == EnumFacing.NORTH && iblockstate.isFullBlock() && !iblockstate1.isFullBlock())
             {
@@ -158,61 +154,17 @@ public class UselessMachine extends Block {
 
         ((EntityPlayer)placer).addStat(UselessAchievements.uselessMachine, 1);
     }
-            
-    @SideOnly(Side.CLIENT)
-    static final class SwitchEnumFacing
-        {
-            static final int[] FACING_LOOKUP = new int[EnumFacing.values().length];
-            static
-            {
-                try
-                {
-                    FACING_LOOKUP[EnumFacing.WEST.ordinal()] = 1;
-                }
-                catch (NoSuchFieldError var4)
-                {
-                    ;
-                }
-
-                try
-                {
-                    FACING_LOOKUP[EnumFacing.EAST.ordinal()] = 2;
-                }
-                catch (NoSuchFieldError var3)
-                {
-                    ;
-                }
-
-                try
-                {
-                    FACING_LOOKUP[EnumFacing.NORTH.ordinal()] = 3;
-                }
-                catch (NoSuchFieldError var2)
-                {
-                    ;
-                }
-
-                try
-                {
-                    FACING_LOOKUP[EnumFacing.SOUTH.ordinal()] = 4;
-                }
-                catch (NoSuchFieldError var1)
-                {
-                    ;
-                }
-            }
-        }
     
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return ((EnumFacing)state.getValue(FACING)).getIndex();
+        return state.getValue(FACING).getIndex();
     }
     
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, new IProperty[] {FACING});
+        return new BlockStateContainer(this, FACING);
     }
     
     @Override

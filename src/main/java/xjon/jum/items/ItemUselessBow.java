@@ -2,18 +2,14 @@ package xjon.jum.items;
 
 import javax.annotation.Nullable;
 
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Enchantments;
-import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemArrow;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.util.ActionResult;
@@ -26,7 +22,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import xjon.jum.entity.projectile.EntityUselessArrow;
 import xjon.jum.init.UselessItems;
-import xjon.jum.util.Reference;
 
 public class ItemUselessBow extends Item
 {
@@ -116,11 +111,11 @@ public class ItemUselessBow extends Item
 
                 if ((double)f >= 0.1D)
                 {
-                    boolean flag1 = entityplayer.capabilities.isCreativeMode || (itemstack.getItem() instanceof ItemUselessArrow ? ((ItemUselessArrow)itemstack.getItem()).isInfinite(itemstack, stack, entityplayer) : false);
+                    boolean flag1 = entityplayer.capabilities.isCreativeMode || (itemstack.getItem() instanceof ItemUselessArrow && ((ItemUselessArrow) itemstack.getItem()).isInfinite(itemstack, stack, entityplayer));
 
                     if (!worldIn.isRemote)
                     {
-                    	ItemUselessArrow itemarrow = (ItemUselessArrow)((ItemUselessArrow)(itemstack.getItem() instanceof ItemUselessArrow ? itemstack.getItem() : UselessItems.useless_arrow));
+                    	ItemUselessArrow itemarrow = itemstack.getItem() instanceof ItemUselessArrow ? itemstack.getItem() : UselessItems.useless_arrow;
                         EntityUselessArrow entityarrow = new EntityUselessArrow(worldIn);
                         entityarrow.setAim(entityplayer, entityplayer.rotationPitch, entityplayer.rotationYaw, 0.0F, f * 3.0F, 1.0F);
 
@@ -158,7 +153,7 @@ public class ItemUselessBow extends Item
                         worldIn.spawnEntityInWorld(entityarrow);
                     }
 
-                    worldIn.playSound((EntityPlayer)null, entityplayer.posX, entityplayer.posY, entityplayer.posZ, SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.NEUTRAL, 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
+                    worldIn.playSound(null, entityplayer.posX, entityplayer.posY, entityplayer.posZ, SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.NEUTRAL, 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
 
                     if (!flag1)
                     {
@@ -207,13 +202,13 @@ public class ItemUselessBow extends Item
         if (ret != null) return ret;
 
         if (!playerIn.capabilities.isCreativeMode && !flag)
-        {
-            return !flag ? new ActionResult(EnumActionResult.FAIL, itemStackIn) : new ActionResult(EnumActionResult.PASS, itemStackIn);
+        {//Flag might be always false ~~
+            return !flag ? new ActionResult<>(EnumActionResult.FAIL, itemStackIn) : new ActionResult<>(EnumActionResult.PASS, itemStackIn);
         }
         else
         {
             playerIn.setActiveHand(hand);
-            return new ActionResult(EnumActionResult.SUCCESS, itemStackIn);
+            return new ActionResult<>(EnumActionResult.SUCCESS, itemStackIn);
         }
 	}
 

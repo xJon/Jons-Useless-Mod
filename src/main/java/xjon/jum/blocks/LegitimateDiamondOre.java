@@ -2,6 +2,7 @@ package xjon.jum.blocks;
 
 import java.util.Random;
 
+import net.minecraft.block.SoundType;
 import xjon.jum.init.UselessItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -15,7 +16,7 @@ public class LegitimateDiamondOre extends Block {
 		super(materialIn);
 		this.setHarvestLevel("pickaxe", 2);
 		this.setHardness(4.5F);
-		this.setSoundType(blockSoundType.STONE);
+		this.setSoundType(SoundType.STONE);
 	}
 
 	@Override

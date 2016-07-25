@@ -2,6 +2,7 @@ package xjon.jum.blocks;
 
 import java.util.Random;
 
+import net.minecraft.block.SoundType;
 import xjon.jum.init.UselessItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -14,7 +15,7 @@ public class UselessOre extends Block {
 		super(materialIn);
 		this.setHarvestLevel("pickaxe", 3);
 		this.setHardness(9.0F);
-		this.setSoundType(blockSoundType.STONE);
+		this.setSoundType(SoundType.STONE);
 	}
 
 	@Override

@@ -1,6 +1,5 @@
 package xjon.jum.init;
 
-import net.minecraft.init.Blocks;
 import net.minecraft.stats.Achievement;
 import net.minecraftforge.common.AchievementPage;
 

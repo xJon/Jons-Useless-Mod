@@ -1,18 +1,13 @@
 package xjon.jum.entity.projectile;
 
-import java.util.List;
-
 import io.netty.buffer.ByteBuf;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IProjectile;
-import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
@@ -20,9 +15,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -37,7 +30,7 @@ import xjon.jum.util.UselessConfiguration;
 
 public class EntityUselessArrow extends EntityArrow implements IProjectile, IEntityAdditionalSpawnData {
 
-    private static final DataParameter<Byte> CRITICAL = EntityDataManager.<Byte>createKey(EntityUselessArrow.class, DataSerializers.BYTE);
+    private static final DataParameter<Byte> CRITICAL = EntityDataManager.createKey(EntityUselessArrow.class, DataSerializers.BYTE);
 	private int xTile = -1;
     private int yTile = -1;
     private int zTile = -1;
@@ -118,7 +111,7 @@ public class EntityUselessArrow extends EntityArrow implements IProjectile, IEnt
     @Override
     protected void entityInit()
     {
-        this.dataManager.register(CRITICAL, Byte.valueOf((byte)0));
+        this.dataManager.register(CRITICAL, (byte) 0);
     }
 
     @Override
@@ -260,7 +253,7 @@ public class EntityUselessArrow extends EntityArrow implements IProjectile, IEnt
             {
                 for (int k = 0; k < 4; ++k)
                 {
-                    this.worldObj.spawnParticle(EnumParticleTypes.CRIT, this.posX + this.motionX * (double)k / 4.0D, this.posY + this.motionY * (double)k / 4.0D, this.posZ + this.motionZ * (double)k / 4.0D, -this.motionX, -this.motionY + 0.2D, -this.motionZ, new int[0]);
+                    this.worldObj.spawnParticle(EnumParticleTypes.CRIT, this.posX + this.motionX * (double)k / 4.0D, this.posY + this.motionY * (double)k / 4.0D, this.posZ + this.motionZ * (double)k / 4.0D, -this.motionX, -this.motionY + 0.2D, -this.motionZ);
                 }
             }
 
@@ -270,9 +263,9 @@ public class EntityUselessArrow extends EntityArrow implements IProjectile, IEnt
             float f4 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
             this.rotationYaw = (float)(MathHelper.atan2(this.motionX, this.motionZ) * (180D / Math.PI));
 
-            for (this.rotationPitch = (float)(MathHelper.atan2(this.motionY, (double)f4) * (180D / Math.PI)); this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F)
-            {
-                ;
+            this.rotationPitch = (float)(MathHelper.atan2(this.motionY, (double)f4) * (180D / Math.PI));
+            while (this.rotationPitch - this.prevRotationPitch < -180.0F) {
+                this.prevRotationPitch -= 360.0F;
             }
 
             while (this.rotationPitch - this.prevRotationPitch >= 180.0F)
@@ -300,7 +293,7 @@ public class EntityUselessArrow extends EntityArrow implements IProjectile, IEnt
                 for (int i = 0; i < 4; ++i)
                 {
                     float f3 = 0.25F;
-                    this.worldObj.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX - this.motionX * (double)f3, this.posY - this.motionY * (double)f3, this.posZ - this.motionZ * (double)f3, this.motionX, this.motionY, this.motionZ, new int[0]);
+                    this.worldObj.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX - this.motionX * (double)f3, this.posY - this.motionY * (double)f3, this.posZ - this.motionZ * (double)f3, this.motionX, this.motionY, this.motionZ);
                 }
 
                 f1 = 0.6F;
@@ -411,22 +404,22 @@ public class EntityUselessArrow extends EntityArrow implements IProjectile, IEnt
     @Override
     public void setIsCritical(boolean critical)
     {
-        byte b0 = ((Byte)this.dataManager.get(CRITICAL)).byteValue();
+        byte b0 = this.dataManager.get(CRITICAL);
 
         if (critical)
         {
-            this.dataManager.set(CRITICAL, Byte.valueOf((byte)(b0 | 1)));
+            this.dataManager.set(CRITICAL, (byte) (b0 | 1));
         }
         else
         {
-            this.dataManager.set(CRITICAL, Byte.valueOf((byte)(b0 & -2)));
+            this.dataManager.set(CRITICAL, (byte) (b0 & -2));
         }
     }
 
     @Override
     public boolean getIsCritical()
     {
-        byte b0 = ((Byte)this.dataManager.get(CRITICAL)).byteValue();
+        byte b0 = this.dataManager.get(CRITICAL);
         return (b0 & 1) != 0;
     }
 
@@ -439,7 +432,7 @@ public class EntityUselessArrow extends EntityArrow implements IProjectile, IEnt
 	public void readSpawnData(ByteBuf additionalData) {
 		Entity shooter = worldObj.getEntityByID(additionalData.readInt());
 		if (shooter instanceof EntityLivingBase) {
-			shootingEntity = (EntityLivingBase) shooter;
+			shootingEntity = shooter;
 		}
 	}
 

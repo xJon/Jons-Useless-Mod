@@ -1,7 +1,5 @@
 package xjon.jum.network;
 
-import io.netty.buffer.ByteBuf;
-import xjon.jum.JumCore;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;

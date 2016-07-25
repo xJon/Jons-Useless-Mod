@@ -4,11 +4,10 @@ import java.util.Iterator;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityOcelot;
-import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
@@ -29,7 +28,7 @@ public class UselessChest extends BlockChest {
 		this.setHardness(1.0F);
 		this.setHarvestLevel("axe", 1);
 		this.setHardness(2.5F);
-		this.setSoundType(blockSoundType.WOOD);
+		this.setSoundType(SoundType.WOOD);
 	}
 	
 	@Override
@@ -77,7 +76,7 @@ public class UselessChest extends BlockChest {
 	 
 	 private boolean isOcelotSittingOnChest(World worldIn, BlockPos pos)
 	    {
-	        Iterator iterator = worldIn.getEntitiesWithinAABB(EntityOcelot.class, new AxisAlignedBB((double)pos.getX(), (double)(pos.getY() + 1), (double)pos.getZ(), (double)(pos.getX() + 1), (double)(pos.getY() + 2), (double)(pos.getZ() + 1))).iterator();
+	        Iterator<EntityOcelot> iterator = worldIn.getEntitiesWithinAABB(EntityOcelot.class, new AxisAlignedBB((double)pos.getX(), (double)(pos.getY() + 1), (double)pos.getZ(), (double)(pos.getX() + 1), (double)(pos.getY() + 2), (double)(pos.getZ() + 1))).iterator();
 	        EntityOcelot entityocelot;
 
 	        do
@@ -87,8 +86,7 @@ public class UselessChest extends BlockChest {
 	                return false;
 	            }
 
-	            Entity entity = (Entity)iterator.next();
-	            entityocelot = (EntityOcelot)entity;
+	            entityocelot = iterator.next();
 	        }
 	        while (!entityocelot.isSitting());
 
@@ -106,7 +104,7 @@ public class UselessChest extends BlockChest {
 	        }
 	        else
 	        {
-	            Object object = (TileEntityUselessChest)tileentity;
+				TileEntityUselessChest object = (TileEntityUselessChest)tileentity;
 
 	            if (this.isBlocked(worldIn, pos))
 	            {
@@ -114,26 +112,21 @@ public class UselessChest extends BlockChest {
 	            }
 	            else
 	            {
-	                Iterator iterator = EnumFacing.Plane.HORIZONTAL.iterator();
 
-	                while (iterator.hasNext())
-	                {
-	                    EnumFacing enumfacing = (EnumFacing)iterator.next();
-	                    BlockPos blockpos1 = pos.offset(enumfacing);
-	                    Block block = worldIn.getBlockState(blockpos1).getBlock();
+					for (EnumFacing enumfacing : EnumFacing.Plane.HORIZONTAL) {
+						BlockPos blockpos1 = pos.offset(enumfacing);
+						Block block = worldIn.getBlockState(blockpos1).getBlock();
 
-	                    if (block == this)
-	                    {
-	                        if (this.isBlocked(worldIn, blockpos1))
-	                        {
-	                            return null;
-	                        }
+						if (block == this) {
+							if (this.isBlocked(worldIn, blockpos1)) {
+								return null;
+							}
 
-	                        TileEntity tileentity1 = worldIn.getTileEntity(blockpos1);
-	                    }
-	                }
+							TileEntity tileentity1 = worldIn.getTileEntity(blockpos1);//TODO wtf?
+						}
+					}
 
-	                return (ILockableContainer)object;
+	                return object;
 	            }
 	        }
 	    }

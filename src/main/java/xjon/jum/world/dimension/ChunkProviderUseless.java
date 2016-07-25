@@ -16,11 +16,9 @@ import java.util.Random;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.block.BlockStone;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.IProgressUpdate;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -28,7 +26,6 @@ import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.chunk.IChunkGenerator;
-import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.ChunkProviderSettings;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.NoiseGeneratorPerlin;
@@ -44,7 +41,6 @@ import net.minecraft.world.gen.structure.MapGenScatteredFeature;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
-import net.minecraftforge.event.terraingen.PopulateChunkEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
 
 
@@ -131,13 +127,13 @@ public class ChunkProviderUseless implements IChunkGenerator {
 			for (int j1 = 0; j1 < b0; ++j1) {
 				for (int k1 = 0; k1 < 32; ++k1) {
 					double d0 = 0.25D;
-					double d1 =  noiseArray[((i1 + 0) * l + j1 + 0) * b1 + k1 + 0];
-					double d2 =  noiseArray[((i1 + 0) * l + j1 + 1) * b1 + k1 + 0];
-					double d3 =  noiseArray[((i1 + 1) * l + j1 + 0) * b1 + k1 + 0];
-					double d4 =  noiseArray[((i1 + 1) * l + j1 + 1) * b1 + k1 + 0];
-					double d5 = ( noiseArray[((i1 + 0) * l + j1 + 0) * b1 + k1 + 1] - d1) * d0;
-					double d6 = ( noiseArray[((i1 + 0) * l + j1 + 1) * b1 + k1 + 1] - d2) * d0;
-					double d7 = ( noiseArray[((i1 + 1) * l + j1 + 0) * b1 + k1 + 1] - d3) * d0;
+					double d1 =  noiseArray[((i1) * l + j1) * b1 + k1];
+					double d2 =  noiseArray[((i1) * l + j1 + 1) * b1 + k1];
+					double d3 =  noiseArray[((i1 + 1) * l + j1) * b1 + k1];
+					double d4 =  noiseArray[((i1 + 1) * l + j1 + 1) * b1 + k1];
+					double d5 = ( noiseArray[((i1) * l + j1) * b1 + k1 + 1] - d1) * d0;
+					double d6 = ( noiseArray[((i1) * l + j1 + 1) * b1 + k1 + 1] - d2) * d0;
+					double d7 = ( noiseArray[((i1 + 1) * l + j1) * b1 + k1 + 1] - d3) * d0;
 					double d8 = ( noiseArray[((i1 + 1) * l + j1 + 1) * b1 + k1 + 1] - d4) * d0;
 					for (int l1 = 0; l1 < 4; ++l1) {
 						double d9 = 0.125D;
