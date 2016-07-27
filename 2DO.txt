@@ -1,6 +1,6 @@
 To Fix:
-- Useless Biome name in Useless Dimension, water color, grass color
-- Useless Dimension lag?
+- Useless Biome name in Useless Dimension
+- Funky Useless Machine ghost block
 - Arrow entity
 
 To Implement:

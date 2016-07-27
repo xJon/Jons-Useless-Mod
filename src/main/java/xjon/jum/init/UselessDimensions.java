@@ -18,8 +18,8 @@ public class UselessDimensions {
 
 	private static void registerDimension() 
 	{
-		DIMENSION_USELESS = DimensionType.register("Useless Dimension", "_useless_dimension", dimensionId, WorldProviderUseless.class, false);
-		DimensionManager.registerDimension(dimensionId, DimensionType.getById(dimensionId));
+		DIMENSION_USELESS = DimensionType.register("Useless Dimension", "useless_dimension", dimensionId, WorldProviderUseless.class, false);
+		DimensionManager.registerDimension(dimensionId, DIMENSION_USELESS);
 	}
 
 }

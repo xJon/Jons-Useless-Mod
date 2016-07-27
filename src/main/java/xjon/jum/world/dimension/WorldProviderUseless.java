@@ -83,7 +83,7 @@ public class WorldProviderUseless extends WorldProvider {
 
 	@Override
 	public DimensionType getDimensionType() {
-		return DimensionType.register("Useless Dimension", "uselessdim", UselessConfiguration.uselessDimensionId, WorldProviderUseless.class, false);
+		return UselessDimensions.DIMENSION_USELESS;
 	}
 
 

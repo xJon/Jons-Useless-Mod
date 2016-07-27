@@ -50,7 +50,7 @@ public class UselessMachine extends Block {
 		
 		if(!UselessConfiguration.isUseless)		
 		{
-			if(playerIn instanceof EntityPlayerMP)
+			if(!worldIn.isRemote && playerIn instanceof EntityPlayerMP)
 			{
 				EntityPlayerMP playerMP = (EntityPlayerMP) playerIn;
 					if (worldIn.provider.getDimension() != UselessConfiguration.uselessDimensionId) {
@@ -74,8 +74,9 @@ public class UselessMachine extends Block {
 						}
 					} else if (flag) {
 						playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, 0, new TeleporterUseless(playerMP.mcServer.worldServerForDimension(0)));
-						playerIn.setPositionAndUpdate(x1, y1 + 1, z1);	
+						playerIn.setPositionAndUpdate(x1 - 1, y1 + 1, z1);	
 						flag = false;
+						playerMP.worldObj.scheduleBlockUpdate(new BlockPos(playerIn.posX, playerIn.posY, playerIn.posZ), UselessBlocks.useless_block, 1, 1);
 					}
 					  else
 					  {
@@ -119,19 +120,19 @@ public class UselessMachine extends Block {
 
             if (enumfacing == EnumFacing.NORTH && iblockstate.isFullBlock() && !iblockstate1.isFullBlock())
             {
-                enumfacing = EnumFacing.SOUTH;
+                enumfacing = EnumFacing.NORTH;
             }
             else if (enumfacing == EnumFacing.SOUTH && iblockstate1.isFullBlock() && !iblockstate.isFullBlock())
             {
-                enumfacing = EnumFacing.NORTH;
+                enumfacing = EnumFacing.SOUTH;
             }
             else if (enumfacing == EnumFacing.WEST && iblockstate2.isFullBlock() && !iblockstate3.isFullBlock())
             {
-                enumfacing = EnumFacing.EAST;
+                enumfacing = EnumFacing.WEST;
             }
             else if (enumfacing == EnumFacing.EAST && iblockstate3.isFullBlock() && !iblockstate2.isFullBlock())
             {
-                enumfacing = EnumFacing.WEST;
+                enumfacing = EnumFacing.EAST;
             }
 
             worldIn.setBlockState(pos, state.withProperty(FACING, enumfacing), 2);
