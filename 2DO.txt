@@ -1,7 +1,9 @@
 To Fix:
-- Useless Biome name in Useless Dimension
-- Funky Useless Machine ghost block
-- Arrow entity
+- Useless Dimension use the Useless Biome, and not Ocean biome...
+- Funky Useless Machine ghost block when coming back from the Useless Dimension
+- Arrow entity not working?
+
+- Useless Armor leggings & chestplate texture
 
 To Implement:
 - More balance?
