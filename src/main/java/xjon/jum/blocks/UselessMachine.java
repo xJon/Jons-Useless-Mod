@@ -38,8 +38,8 @@ public class UselessMachine extends Block {
 	
 	public UselessMachine(Material material) {
 		super(material);
-		setHardness(220.0F);
-		setHarvestLevel("pickaxe", 2);
+		setHardness(65.0F);
+		setHarvestLevel("pickaxe", 3);
 		this.setLightLevel(0.4F);
 		this.setSoundType(SoundType.METAL);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
@@ -74,9 +74,8 @@ public class UselessMachine extends Block {
 						}
 					} else if (flag) {
 						playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, 0, new TeleporterUseless(playerMP.mcServer.worldServerForDimension(0)));
-						playerIn.setPositionAndUpdate(x1 - 1, y1 + 1, z1);	
+						playerIn.setPositionAndUpdate(x1, y1 + 1, z1);	
 						flag = false;
-						playerMP.worldObj.scheduleBlockUpdate(new BlockPos(playerIn.posX, playerIn.posY, playerIn.posZ), UselessBlocks.useless_block, 1, 1);
 					}
 					  else
 					  {
