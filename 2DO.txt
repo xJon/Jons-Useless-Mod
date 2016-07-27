@@ -1,3 +1,7 @@
-Fix:
-- Useless Dimension lag and name
-- Bow and Arrow
+To Fix:
+- Useless Biome name in Useless Dimension, water color, grass color
+- Useless Dimension lag?
+- Arrow entity
+
+To Implement:
+- More balance?

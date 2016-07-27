@@ -19,7 +19,7 @@ public class UselessBiomes {
 	
 	public static void initializeBiome(){
 		
-		biomeUseless = new BiomeUseless(new BiomeProperties("Useless Biome").setWaterColor(13762304));
+		biomeUseless = new BiomeUseless(new BiomeProperties("Useless Biome").setWaterColor(13762304).setBaseBiome("Useless Dimension"));
 		
 	}
 	
