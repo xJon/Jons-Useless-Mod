@@ -1,10 +1,12 @@
 package xjon.jum.world.biome;
 
+import java.util.Collections;
 import java.util.List;
 
 import com.google.common.collect.Lists;
 
 import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.entity.passive.EntityBat;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.Biome;
@@ -16,12 +18,13 @@ import xjon.jum.entity.mob.EntityUselessDave;
 public class BiomeUseless extends Biome {
 	
 	private List<Biome.SpawnListEntry> spawnableList = Lists.<Biome.SpawnListEntry>newArrayList();
-
+	
 	public BiomeUseless(BiomeProperties properties) {
 		super(properties);
 		this.topBlock = Blocks.GRASS.getDefaultState();
 		this.fillerBlock = Blocks.STONE.getDefaultState();
-		this.spawnableList.add(new SpawnListEntry(EntityUselessDave.class, 15, 3, 7));
+		this.spawnableList.add(new BiomeUseless.SpawnListEntry(EntityBat.class, 10, 4, 8));
+		this.spawnableList.add(new BiomeUseless.SpawnListEntry(EntityUselessDave.class, 5, 2, 7));
 		this.setRegistryName("UselessBiome");
 	}
 
@@ -32,6 +35,11 @@ public class BiomeUseless extends Biome {
 	}
 	
 	@Override
+	public List<SpawnListEntry> getSpawnableList(EnumCreatureType creatureType) {
+		return spawnableList;
+	}
+	
+	@Override
 	public int getGrassColorAtPos(BlockPos pos) {
 		return 0xd8fa9e;
 	}
@@ -39,11 +47,6 @@ public class BiomeUseless extends Biome {
 	@Override
 	public int getWaterColorMultiplier() {
 		return 13762304;
-	}
-	
-	@Override
-	public List<SpawnListEntry> getSpawnableList(EnumCreatureType creatureType) {
-		return spawnableList;
 	}
 	
 	@Override

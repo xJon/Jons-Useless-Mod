@@ -64,7 +64,7 @@ public class UselessMachine extends Block {
 						{ for (int y = -2; y <= 2; ++y)
 							{ for (int z = -6; z <= 6; ++z)
 								{
-									if(playerIn.worldObj.getBlockState(new BlockPos(playerIn.posX + x, playerIn.posY + y, playerIn.posZ + z)).equals(UselessBlocks.useless_machine.getDefaultState()))
+									if(playerIn.worldObj.getBlockState(new BlockPos(playerIn.posX + x, playerIn.posY + y, playerIn.posZ + z)).getBlock().equals(UselessBlocks.useless_machine))
 									{
 										playerIn.setPositionAndUpdate(playerIn.posX + x, playerIn.posY + y + 1, playerIn.posZ + z + 1.5);
 										break;
@@ -83,7 +83,7 @@ public class UselessMachine extends Block {
 						  playerIn.setPositionAndUpdate(worldIn.getSpawnPoint().getX(), worldIn.getSpawnPoint().getY(), worldIn.getSpawnPoint().getZ());
 						  for (int y = playerIn.getPosition().getY(); y < 255; ++y)
 						  {
-							  if (worldIn.getBlockState(new BlockPos(playerIn.posX, y, playerIn.posZ)).equals(Blocks.AIR) && worldIn.getBlockState(new BlockPos(playerIn.posX, y + 1, playerIn.posZ)).equals(Blocks.AIR))
+							  if (worldIn.isAirBlock(new BlockPos(playerIn.posX, y, playerIn.posZ)) && worldIn.isAirBlock(new BlockPos(playerIn.posX, y + 1, playerIn.posZ)))
 							  {
 								  playerIn.setPositionAndUpdate(playerIn.posX, y + 2, playerIn.posZ);
 								  break;

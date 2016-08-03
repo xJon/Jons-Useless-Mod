@@ -1,9 +1,8 @@
 To Fix:
-- Useless Dimension use the Useless Biome, and not Ocean biome...
 - Funky Useless Machine ghost block when coming back from the Useless Dimension
 - Arrow entity not working?
 
 - Useless Armor leggings & chestplate texture
 
 To Implement:
-- More balance?
+Spawnrate of Useless Dave balance in the Useless Dimension

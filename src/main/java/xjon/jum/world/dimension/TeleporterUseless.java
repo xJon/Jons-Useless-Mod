@@ -27,7 +27,7 @@ public class TeleporterUseless extends Teleporter {
 				{ for (int y = -3; y <= 3; ++y)
 					{ for(int z = -5; z <= 5; ++z)
 						{
-							if(this.worldServerInstance.getBlockState(new BlockPos(entityIn.posX + x, entityIn.posY + y, entityIn.posZ + z)).equals(UselessBlocks.useless_machine.getDefaultState()))
+							if(this.worldServerInstance.getBlockState(new BlockPos(entityIn.posX + x, entityIn.posY + y, entityIn.posZ + z)).getBlock().equals(UselessBlocks.useless_machine))
 									{
 										machineExist = true;
 										break;

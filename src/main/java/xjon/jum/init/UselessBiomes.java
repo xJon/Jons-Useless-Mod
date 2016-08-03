@@ -25,6 +25,7 @@ public class UselessBiomes {
 	
 	public static void registerBiome(){
 		BiomeDictionary.registerBiomeType(biomeUseless, Type.MAGICAL);
+		Biome.registerBiome(184, "Useless Biome", biomeUseless);
 		BiomeManager.addSpawnBiome(biomeUseless);
 		
 	}

@@ -3,7 +3,6 @@ package xjon.jum.world.dimension;
 import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.FLOWERS;
 import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.GRASS;
 import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.LAKE_WATER;
-import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.PUMPKIN;
 import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.REED;
 import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.SAND;
 import static net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.SAND_PASS2;
@@ -407,20 +406,6 @@ public class ChunkProviderUseless implements IChunkGenerator {
             }
         }
         }
-        if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, random, chunkPos, net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.PUMPKIN))
-        if (random.nextInt(32) == 0)
-        {
-            int i5 = random.nextInt(16) + 8;
-            int k9 = random.nextInt(16) + 8;
-            int j13 = worldIn.getHeight(this.chunkPos.add(i5, 0, k9)).getY() * 2;
-
-            if (j13 > 0)
-            {
-                int k16 = random.nextInt(j13);
-                (new WorldGenPumpkin()).generate(worldIn, random, this.chunkPos.add(i5, k16, k9));
-            }
-        }
-
         if (this.generateLakes)
         {
             if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, random, chunkPos, net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.LAKE_WATER))
