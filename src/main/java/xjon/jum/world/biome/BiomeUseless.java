@@ -16,15 +16,15 @@ import xjon.jum.entity.mob.EntityUselessDave;
 
 
 public class BiomeUseless extends Biome {
-	
-	private List<Biome.SpawnListEntry> spawnableList = Lists.<Biome.SpawnListEntry>newArrayList();
-	
+		
 	public BiomeUseless(BiomeProperties properties) {
 		super(properties);
 		this.topBlock = Blocks.GRASS.getDefaultState();
 		this.fillerBlock = Blocks.STONE.getDefaultState();
-		this.spawnableList.add(new BiomeUseless.SpawnListEntry(EntityBat.class, 10, 4, 8));
-		this.spawnableList.add(new BiomeUseless.SpawnListEntry(EntityUselessDave.class, 5, 2, 7));
+		this.spawnableMonsterList.clear();
+		this.spawnableCreatureList.clear();
+		this.spawnableWaterCreatureList.clear();
+		this.spawnableCreatureList.add(new BiomeUseless.SpawnListEntry(EntityUselessDave.class, 15, 3, 7));
 		this.setRegistryName("UselessBiome");
 	}
 
@@ -34,10 +34,6 @@ public class BiomeUseless extends Biome {
 		return 0xC7FF85;
 	}
 	
-	@Override
-	public List<SpawnListEntry> getSpawnableList(EnumCreatureType creatureType) {
-		return spawnableList;
-	}
 	
 	@Override
 	public int getGrassColorAtPos(BlockPos pos) {
