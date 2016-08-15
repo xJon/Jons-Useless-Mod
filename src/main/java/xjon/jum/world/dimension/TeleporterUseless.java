@@ -10,6 +10,7 @@ import xjon.jum.blocks.UselessMachine;
 import xjon.jum.init.UselessBlocks;
 import xjon.jum.init.UselessDimensions;
 import xjon.jum.util.Log;
+import xjon.jum.util.UselessConfiguration;
 import net.minecraft.block.BlockPortal;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -46,7 +47,7 @@ public class TeleporterUseless extends Teleporter {
 						}
 					}
 				}
-				if(i == 847 && entityIn.dimension == UselessDimensions.dimensionId) {
+				if(i == 847 && entityIn.dimension == UselessConfiguration.uselessDimensionId) {
 					for (int x = -1; x <= 1; ++x)
 					{ for (int z = -1; z <= 1; ++z)
 						{ for (int y = -1; y <= 2; ++y)
@@ -63,7 +64,7 @@ public class TeleporterUseless extends Teleporter {
 						}
 				else
 				{
-					if (entityIn.dimension == UselessDimensions.dimensionId)
+					if (entityIn.dimension == UselessConfiguration.uselessDimensionId)
 					{
 						Log.warn("Useless Machine already spawned, not spawning another one");
 					}

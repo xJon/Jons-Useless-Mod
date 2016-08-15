@@ -1,12 +1,11 @@
 package xjon.jum.init;
 
+import xjon.jum.util.UselessConfiguration;
 import xjon.jum.world.dimension.WorldProviderUseless;
 import net.minecraftforge.common.DimensionManager;
 
 public class UselessDimensions {
-	
-	public static final int dimensionId = 57;
-	
+		
 	public static void init()
 	{
 		registerDimension();
@@ -14,8 +13,8 @@ public class UselessDimensions {
 
 	private static void registerDimension() 
 	{
-		DimensionManager.registerProviderType(dimensionId, WorldProviderUseless.class, false);
-		DimensionManager.registerDimension(dimensionId, dimensionId);
+		DimensionManager.registerProviderType(UselessConfiguration.uselessDimensionId, WorldProviderUseless.class, false);
+		DimensionManager.registerDimension(UselessConfiguration.uselessDimensionId, UselessConfiguration.uselessDimensionId);
 	}
 
 }

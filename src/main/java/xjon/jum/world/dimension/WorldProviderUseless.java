@@ -1,23 +1,22 @@
 package xjon.jum.world.dimension;
 
-import xjon.jum.init.UselessBiomes;
-import xjon.jum.init.UselessDimensions;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.WorldChunkManagerHell;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.client.IRenderHandler;
-import net.minecraftforge.common.BiomeManager.BiomeType;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import xjon.jum.init.UselessBiomes;
+import xjon.jum.util.UselessConfiguration;
 
 public class WorldProviderUseless extends WorldProvider {
 
 	@Override
 	public void registerWorldChunkManager() {
 		this.worldChunkMgr = new WorldChunkManagerHell(UselessBiomes.biomeUseless, 1.2F);
-		this.dimensionId = UselessDimensions.dimensionId;
+		this.dimensionId = UselessConfiguration.uselessDimensionId;
 		isHellWorld = false;
 	}
 

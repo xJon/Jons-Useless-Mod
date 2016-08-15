@@ -59,7 +59,7 @@ public class UselessItems {
 	{	
 		if(!UselessConfiguration.isUseless)
 		{
-			harvestLevel = 10;
+			harvestLevel = 4;
 			maxUses = 1000;
 			enchantability = 100;
 			efficiency = 10.0F;

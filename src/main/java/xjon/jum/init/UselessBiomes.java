@@ -1,5 +1,6 @@
 package xjon.jum.init;
 
+import xjon.jum.util.UselessConfiguration;
 import xjon.jum.world.biome.BiomeGenUseless;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.BiomeDictionary;
@@ -18,7 +19,7 @@ public class UselessBiomes {
 	
 	public static void initializeBiome(){
 		
-		biomeUseless = new BiomeGenUseless(UselessDimensions.dimensionId).setBiomeName("Useless Biome");
+		biomeUseless = new BiomeGenUseless(UselessConfiguration.uselessBiomeId).setBiomeName("Useless Biome");
 		
 	}
 	

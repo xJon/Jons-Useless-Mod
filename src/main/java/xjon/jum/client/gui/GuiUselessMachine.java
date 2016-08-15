@@ -10,8 +10,6 @@ import xjon.jum.init.UselessDimensions;
 import xjon.jum.util.Reference;
 import xjon.jum.util.UselessConfiguration;
 
-import com.sun.prism.paint.Color;
-
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.ISound;

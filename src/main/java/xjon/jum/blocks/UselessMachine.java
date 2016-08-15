@@ -34,8 +34,8 @@ public class UselessMachine extends Block {
 	
 	public  UselessMachine(Material material) {
 		super(material);
-		setHardness(220.0F);
-		setHarvestLevel("pickaxe", 2);
+		setHardness(65.0F);
+		setHarvestLevel("pickaxe", 3);
 		this.setLightLevel(0.4F);
 		this.setStepSound(this.soundTypeMetal);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
@@ -62,12 +62,12 @@ public class UselessMachine extends Block {
 			if(playerIn instanceof EntityPlayerMP)
 			{
 				EntityPlayerMP playerMP = (EntityPlayerMP) playerIn;
-					if (worldIn.provider.getDimensionId() != UselessDimensions.dimensionId) {
+					if (worldIn.provider.getDimensionId() != UselessConfiguration.uselessDimensionId) {
 						x1 = playerIn.getPosition().getX();
 						y1 = playerIn.getPosition().getY() + 1;
 						z1 = playerIn.getPosition().getZ();
 						flag = true;
-						playerMP.mcServer.getConfigurationManager().transferPlayerToDimension(playerMP, UselessDimensions.dimensionId, new TeleporterUseless(playerMP.mcServer.worldServerForDimension(UselessDimensions.dimensionId)));
+						playerMP.mcServer.getConfigurationManager().transferPlayerToDimension(playerMP, UselessConfiguration.uselessDimensionId, new TeleporterUseless(playerMP.mcServer.worldServerForDimension(UselessConfiguration.uselessDimensionId)));
 						playerIn.setPositionAndUpdate(playerIn.posX, playerIn.posY + 1, playerIn.posZ);
 						for (int x = -6; x <= 6; ++x)
 						{ for (int y = -2; y <= 2; ++y)
@@ -108,12 +108,6 @@ public class UselessMachine extends Block {
 			playerIn.playSound("jum:nope", 1.0F, 1.0F);
 		}
 		return true;
-}
-	
-	@Override
-	public TileEntity createTileEntity(World world, IBlockState state) {
-
-		return super.createTileEntity(world, state);
 	}
 	
 	 public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
@@ -194,48 +188,4 @@ public class UselessMachine extends Block {
     {
         return new BlockState(this, new IProperty[] {FACING});
     }
-
-    @SideOnly(Side.CLIENT)
-    static final class SwitchEnumFacing
-        {
-            static final int[] FACING_LOOKUP = new int[EnumFacing.values().length];
-            static
-            {
-                try
-                {
-                    FACING_LOOKUP[EnumFacing.WEST.ordinal()] = 1;
-                }
-                catch (NoSuchFieldError var4)
-                {
-                    ;
-                }
-
-                try
-                {
-                    FACING_LOOKUP[EnumFacing.EAST.ordinal()] = 2;
-                }
-                catch (NoSuchFieldError var3)
-                {
-                    ;
-                }
-
-                try
-                {
-                    FACING_LOOKUP[EnumFacing.NORTH.ordinal()] = 3;
-                }
-                catch (NoSuchFieldError var2)
-                {
-                    ;
-                }
-
-                try
-                {
-                    FACING_LOOKUP[EnumFacing.SOUTH.ordinal()] = 4;
-                }
-                catch (NoSuchFieldError var1)
-                {
-                    ;
-                }
-            }
-        }
 }

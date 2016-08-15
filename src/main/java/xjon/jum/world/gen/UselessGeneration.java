@@ -4,6 +4,7 @@ import java.util.Random;
 
 import xjon.jum.init.UselessBlocks;
 import xjon.jum.init.UselessDimensions;
+import xjon.jum.util.UselessConfiguration;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.pattern.BlockHelper;
 import net.minecraft.init.Blocks;
@@ -18,21 +19,15 @@ public class UselessGeneration implements IWorldGenerator {
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) 
 	{
-	switch (world.provider.getDimensionId())
-	{
-	case -1:
-		break;
+	int dimensionId = world.provider.getDimensionId();
 	
-	case 0:
+	if (dimensionId == 0)
+	{
 		generateOverworld(world, random, new BlockPos(chunkX * 16, 64, chunkZ * 16));
-		break;
-		
-	case 1:
-		break;
-		
-	case UselessDimensions.dimensionId:
+	} 
+	else if (dimensionId == UselessConfiguration.uselessDimensionId) 
+	{
 		generateUselessDimension(world, random, new BlockPos(chunkX * 16, 64, chunkZ * 16));
-		break;
 	}
 		
 	}

@@ -1,14 +1,7 @@
 package xjon.jum.client.render.tileentity;
 
-import java.util.Calendar;
-
-import xjon.jum.blocks.UselessChest;
-import xjon.jum.tileentity.TileEntityUselessChest;
-import xjon.jum.util.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.client.model.ModelChest;
-import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.client.model.ModelLargeChest;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -16,9 +9,11 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import xjon.jum.blocks.UselessChest;
+import xjon.jum.tileentity.TileEntityUselessChest;
 
 @SideOnly(Side.CLIENT)
-public class UselessChestRenderer extends TileEntitySpecialRenderer
+public class UselessChestRenderer extends TileEntitySpecialRenderer<TileEntityUselessChest>
 {
     private static final ResourceLocation textureNormal = new ResourceLocation("jum:textures/entity/chest/normal.png");
     private ModelChest simpleChest = new ModelChest();
@@ -172,8 +167,8 @@ public class UselessChestRenderer extends TileEntitySpecialRenderer
     }
 
 	@Override
-    public void renderTileEntityAt(TileEntity p_180535_1_, double posX, double posZ, double p_180535_6_, float p_180535_8_, int p_180535_9_)
-    {
-        this.func_180538_a((TileEntityUselessChest)p_180535_1_, posX, posZ, p_180535_6_, p_180535_8_, p_180535_9_);
-    }
+	public void renderTileEntityAt(TileEntityUselessChest te, double x, double y, double z, float partialTicks, int destroyStage)
+	{
+		this.func_180538_a(te, x, y, z, partialTicks, destroyStage);
+	}
 }

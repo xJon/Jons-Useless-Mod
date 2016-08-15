@@ -2,22 +2,15 @@ package xjon.jum.event;
 
 import java.util.Random;
 
-import xjon.jum.entity.mob.EntityUselessDave;
-import xjon.jum.init.UselessAchievements;
-import xjon.jum.init.UselessDimensions;
-import xjon.jum.init.UselessItems;
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntityZombie;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.stats.Achievement;
-import net.minecraft.stats.StatBase;
-import net.minecraft.world.World;
-import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import xjon.jum.entity.mob.EntityUselessDave;
+import xjon.jum.init.UselessItems;
+
 
 public class JoinWorldEvents {
 

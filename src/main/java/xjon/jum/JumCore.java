@@ -4,7 +4,6 @@ import java.io.File;
 
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -61,8 +60,8 @@ public class JumCore {
 		UselessBiomes.init();
 		UselessDimensions.init();
 		NetworkHandler.init();
-		FMLCommonHandler.instance().bus().register(new PlayerEvents());
-		FMLCommonHandler.instance().bus().register(new JoinWorldEvents());
+		MinecraftForge.EVENT_BUS.register(new PlayerEvents());
+		MinecraftForge.EVENT_BUS.register(new JoinWorldEvents());
 		MinecraftForge.EVENT_BUS.register(new FOVEvents());
 		
 	}
@@ -75,8 +74,8 @@ public class JumCore {
 		UselessRecipes.register();
 		UselessTileEntities.register();
 		GameRegistry.registerWorldGenerator(new UselessGeneration(), 0);
-		FMLCommonHandler.instance().bus().register(JumCore.instance);
-		FMLCommonHandler.instance().bus().register(new ConfigEvents());
+		MinecraftForge.EVENT_BUS.register(JumCore.instance);
+		MinecraftForge.EVENT_BUS.register(new ConfigEvents());
 	}
 	
 	@EventHandler
