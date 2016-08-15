@@ -2,7 +2,5 @@ To Fix:
 - Funky Useless Machine ghost block when coming back from the Useless Dimension
 - Arrow entity not working?
 
-- Useless Armor leggings & chestplate texture
-
 To Implement:
 Spawnrate of Useless Dave balance in the Useless Dimension

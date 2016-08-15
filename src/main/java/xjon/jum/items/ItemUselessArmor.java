@@ -19,7 +19,7 @@ public class ItemUselessArmor extends ItemArmor {
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, EntityEquipmentSlot slot, String type)
 	{
-		if (this.armorType.getIndex() == 2)
+		if (armorType == EntityEquipmentSlot.LEGS)
 			return "jum:textures/models/armor/useless_armor_2.png";
 		return "jum:textures/models/armor/useless_armor_1.png";
 	}
