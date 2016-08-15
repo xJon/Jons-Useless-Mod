@@ -24,7 +24,7 @@ plugins {
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-version = "1.1.0"
+version = "1.1.1"
 group= "xjon.jum" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "jum"
 
@@ -32,7 +32,7 @@ idea { module { inheritOutputDirs = true } }
 
 
 minecraft {
-    version = "1.9.4-12.17.0.1976"
+    version = "1.10.2-12.18.1.2011"
     runDir = "run"
     
     // the mappings can be changed at any time, and must be in the following format.

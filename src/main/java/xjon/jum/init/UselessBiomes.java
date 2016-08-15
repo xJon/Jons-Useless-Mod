@@ -1,5 +1,6 @@
 package xjon.jum.init;
 
+import xjon.jum.util.UselessConfiguration;
 import xjon.jum.world.biome.BiomeUseless;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.BiomeProperties;
@@ -25,7 +26,7 @@ public class UselessBiomes {
 	
 	public static void registerBiome(){
 		BiomeDictionary.registerBiomeType(biomeUseless, Type.MAGICAL);
-		Biome.registerBiome(184, "Useless Biome", biomeUseless);
+		Biome.registerBiome(UselessConfiguration.uselessBiomeId, "Useless Biome", biomeUseless);
 		BiomeManager.addSpawnBiome(biomeUseless);
 		
 	}
