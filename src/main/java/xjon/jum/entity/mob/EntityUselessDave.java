@@ -90,11 +90,4 @@ public class EntityUselessDave extends EntityMob {
     {
         return true;
     }
-	 
-	 
-	 
-	 
-	
-	
-
 }

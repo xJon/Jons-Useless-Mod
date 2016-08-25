@@ -50,7 +50,7 @@ public class UselessMachine extends Block {
 		
 		if(!UselessConfiguration.isUseless)		
 		{
-			if(!worldIn.isRemote && playerIn instanceof EntityPlayerMP)
+			if(!worldIn.isRemote)
 			{
 				EntityPlayerMP playerMP = (EntityPlayerMP) playerIn;
 					if (worldIn.provider.getDimension() != UselessConfiguration.uselessDimensionId) {
@@ -59,6 +59,7 @@ public class UselessMachine extends Block {
 						z1 = playerIn.getPosition().getZ();
 						flag = true;
 						playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, UselessConfiguration.uselessDimensionId, new TeleporterUseless(playerMP.mcServer.worldServerForDimension(UselessConfiguration.uselessDimensionId)));
+						//playerIn.changeDimension(UselessConfiguration.uselessDimensionId);
 						playerIn.setPositionAndUpdate(playerIn.posX, playerIn.posY + 1, playerIn.posZ);
 						for (int x = -6; x <= 6; ++x)
 						{ for (int y = -2; y <= 2; ++y)
@@ -74,12 +75,14 @@ public class UselessMachine extends Block {
 						}
 					} else if (flag) {
 						playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, 0, new TeleporterUseless(playerMP.mcServer.worldServerForDimension(0)));
+						//playerIn.changeDimension(0);
 						playerIn.setPositionAndUpdate(x1, y1 + 1, z1);	
 						flag = false;
 					}
 					  else
 					  {
 						  playerMP.mcServer.getPlayerList().transferPlayerToDimension(playerMP, 0, new TeleporterUseless(playerMP.mcServer.worldServerForDimension(0)));
+						  //playerIn.changeDimension(0);
 						  playerIn.setPositionAndUpdate(worldIn.getSpawnPoint().getX(), worldIn.getSpawnPoint().getY(), worldIn.getSpawnPoint().getZ());
 						  for (int y = playerIn.getPosition().getY(); y < 255; ++y)
 						  {
