@@ -16,6 +16,7 @@ import xjon.jum.items.ItemBlockUselessMachine;
 import xjon.jum.items.ItemBlockUselessOre;
 import xjon.jum.items.ItemSuperUselessMaterial;
 import xjon.jum.items.ItemUselessArmor;
+import xjon.jum.items.ItemUselessArrow;
 import xjon.jum.items.ItemUselessAxe;
 import xjon.jum.items.ItemUselessBow;
 import xjon.jum.items.ItemUselessBro;
@@ -115,7 +116,7 @@ public class UselessItems {
 		useless_boots = new ItemUselessArmor(uselessArmorMaterial, 0, EntityEquipmentSlot.FEET).setUnlocalizedName("useless_boots").setRegistryName("useless_boots").setCreativeTab(JumCore.tabJUM);
 		useless_multitool = new ItemUselessMultitool(uselessToolMaterial).setUnlocalizedName("useless_multitool").setRegistryName("useless_multitool").setCreativeTab(JumCore.tabJUM);
 		useless_bow = new ItemUselessBow().setUnlocalizedName("useless_bow").setRegistryName("useless_bow").setCreativeTab(JumCore.tabJUM);
-		useless_arrow = new Item().setUnlocalizedName("useless_arrow").setRegistryName("useless_arrow").setCreativeTab(JumCore.tabJUM);
+		useless_arrow = new ItemUselessArrow().setUnlocalizedName("useless_arrow").setRegistryName("useless_arrow").setCreativeTab(JumCore.tabJUM);
 	}
 	
 	public static void registerItems()

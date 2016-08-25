@@ -30,7 +30,6 @@ import xjon.jum.util.UselessConfiguration;
 
 public class EntityUselessArrow extends EntityArrow implements IProjectile {
 
-    private static final DataParameter<Byte> CRITICAL = EntityDataManager.createKey(EntityUselessArrow.class, DataSerializers.BYTE);
     private double damage = 5.0D;
     
     public EntityUselessArrow(World worldIn)
@@ -77,19 +76,6 @@ public class EntityUselessArrow extends EntityArrow implements IProjectile {
     {
         return this.damage;
     }
-
-  /*@Override
-	public void writeSpawnData(ByteBuf buffer) {
-		buffer.writeInt(shootingEntity != null ? shootingEntity.getEntityId() : -1);
-	}
-
-	@Override
-	public void readSpawnData(ByteBuf additionalData) {
-		Entity shooter = worldObj.getEntityByID(additionalData.readInt());
-		if (shooter instanceof EntityLivingBase) {
-			shootingEntity = shooter;
-		}
-	}*/
 
 	@Override
 	protected ItemStack getArrowStack() {

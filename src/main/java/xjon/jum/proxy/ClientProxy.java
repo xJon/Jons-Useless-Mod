@@ -6,7 +6,7 @@ import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import xjon.jum.client.render.ModeledBlockInventoryRenderer;
 import xjon.jum.client.render.mob.RenderUselessDave;
-import xjon.jum.client.render.projectile.RenderArrow;
+import xjon.jum.client.render.projectile.RenderUselessArrow;
 import xjon.jum.client.render.tileentity.UselessChestRenderer;
 import xjon.jum.entity.mob.EntityUselessDave;
 import xjon.jum.entity.mob.ModelUselessDave;
@@ -21,7 +21,7 @@ public class ClientProxy extends CommonProxy {
 	public void registerRenders()
 	{
 		RenderingRegistry.registerEntityRenderingHandler(EntityUselessDave.class, manager -> new RenderUselessDave(manager, new ModelUselessDave(), 0));
-		RenderingRegistry.registerEntityRenderingHandler(EntityUselessArrow.class, RenderArrow::new);
+		RenderingRegistry.registerEntityRenderingHandler(EntityUselessArrow.class, RenderUselessArrow::new);
 
 		TileEntitySpecialRenderer<TileEntityUselessChest> mcr = new UselessChestRenderer();
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityUselessChest.class, mcr);
