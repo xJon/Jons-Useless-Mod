@@ -62,7 +62,15 @@ public class ItemUselessMultitool extends ItemTool {
 			ItemStack equipped = player.getHeldItemMainhand();
 			if (equipped == stack)
 				{
-					player.addPotionEffect(new PotionEffect(MobEffects.HASTE, 10, 0));
+					if (player.getActivePotionEffect(MobEffects.HASTE) == null)
+					{
+						player.addPotionEffect(new PotionEffect(MobEffects.HASTE, 200, 0));
+					}
+					if (worldIn.getWorldTime() % 50 > 0)
+					{
+						return;
+					}
+					player.addPotionEffect(new PotionEffect(MobEffects.HASTE, 200, 0));
 				}
 		
 		}

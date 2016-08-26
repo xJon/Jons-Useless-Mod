@@ -42,13 +42,13 @@ public class ItemUselessArmor extends ItemArmor {
 					{
 						if (player.getActivePotionEffect(MobEffects.REGENERATION) == null)
 						{
-							player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 1, 0));
+							player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 200, 0));
 						}
 						if (world.getWorldTime() % 50 > 0)
 						{
 							return;
 						}
-						player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 1, 0));
+						player.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 200, 0));
 					}
 			
 				}

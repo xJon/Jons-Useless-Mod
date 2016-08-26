@@ -2,4 +2,4 @@ To Fix:
 - This list
 
 To Implement:
-Spawnrate of Useless Dave balance in the Useless Dimension
+- Configurable balance

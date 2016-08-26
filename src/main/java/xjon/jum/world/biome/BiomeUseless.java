@@ -24,9 +24,6 @@ public class BiomeUseless extends Biome {
 		super(properties);
 		this.topBlock = Blocks.GRASS.getDefaultState();
 		this.fillerBlock = Blocks.STONE.getDefaultState();
-		/*this.spawnableMonsterList.clear();
-		this.spawnableCreatureList.clear();
-		this.spawnableWaterCreatureList.clear();*/
 		this.spawnableCList.add(new Biome.SpawnListEntry(EntityUselessDave.class, 15, 3, 7));
 		this.spawnableCCList.add(new Biome.SpawnListEntry(EntityBat.class, 10, 8, 8));
 		this.setRegistryName("UselessBiome");
@@ -54,6 +51,8 @@ public class BiomeUseless extends Biome {
 	{
 		switch (creatureType)
 		{
+        	case MONSTER:
+        		return this.spawnableCList;
 			case CREATURE:
 				return this.spawnableCList;
 			case AMBIENT:

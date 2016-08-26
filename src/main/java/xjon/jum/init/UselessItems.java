@@ -62,13 +62,13 @@ public class UselessItems {
 		if(!UselessConfiguration.isUseless)
 		{
 			harvestLevel = 4;
-			maxUses = 1000;
+			maxUses = 40;
 			enchantability = 100;
 			efficiency = 10.0F;
 			damage = 5.0F;
 			
 			armorHelm = 3;
-			armorChest = 9;
+			armorChest = 8;
 			armorLeg = 6;
 			armorBoot = 3;
 			//84% damage reduction
@@ -97,7 +97,7 @@ public class UselessItems {
 	
 	public static void init()
 	{
-		uselessToolMaterial = EnumHelper.addToolMaterial("uselessToolMaterial", harvestLevel, maxUses, efficiency, damage, enchantability);
+		uselessToolMaterial = EnumHelper.addToolMaterial("uselessToolMaterial", harvestLevel, maxUses * 32, efficiency, damage, enchantability);
 	    uselessArmorMaterial = EnumHelper.addArmorMaterial("uselessArmorMaterial", "useless_armor", maxUses, new int []{armorHelm,armorChest,armorLeg,armorBoot}, enchantability, SoundEvents.ITEM_ARMOR_EQUIP_DIAMOND, damage);
 		
 		useless_material = new Item().setUnlocalizedName("useless_material").setRegistryName("useless_material").setCreativeTab(JumCore.tabJUM);
