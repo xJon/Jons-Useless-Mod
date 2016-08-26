@@ -24,7 +24,7 @@ plugins {
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-version = "1.1.1"
+version = "1.1.2"
 group= "xjon.jum" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "jum"
 

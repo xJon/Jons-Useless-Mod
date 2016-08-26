@@ -62,9 +62,9 @@ public class UselessItems {
 		if(!UselessConfiguration.isUseless)
 		{
 			harvestLevel = 4;
-			maxUses = 40;
-			enchantability = 100;
-			efficiency = 10.0F;
+			maxUses = UselessConfiguration.durability;
+			enchantability = UselessConfiguration.enchantability;
+			efficiency = UselessConfiguration.efficiency;
 			damage = 5.0F;
 			
 			armorHelm = 3;
@@ -73,7 +73,7 @@ public class UselessItems {
 			armorBoot = 3;
 			//84% damage reduction
 			
-			foodAmount = 8;
+			foodAmount = UselessConfiguration.foodAmount;
 			foodSaturation = 3.0F;
 		}
 		else

@@ -48,7 +48,7 @@ public class JumCore {
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
-		config = new Configuration(new File("config/Jum.cfg"));
+		config = new Configuration(new File("config/JonsUselessMod.cfg"));
 		config.load();
 		UselessConfiguration.syncConfig();
 		UselessItems.checks();
