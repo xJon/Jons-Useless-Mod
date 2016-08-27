@@ -21,6 +21,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import xjon.jum.init.UselessItems;
 import xjon.jum.util.Reference;
+import xjon.jum.util.UselessConfiguration;
 
 public class EntityUselessDave extends EntityMob {
 
@@ -54,7 +55,7 @@ public class EntityUselessDave extends EntityMob {
 	{
 		super.applyEntityAttributes();
 		
-		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(36.0F);
+		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(UselessConfiguration.daveHealth);
 		this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(36.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.23000000417232513D);
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(5.0D);
