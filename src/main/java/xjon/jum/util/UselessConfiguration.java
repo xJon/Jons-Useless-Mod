@@ -27,11 +27,11 @@ public class UselessConfiguration {
 	public static final String IS_USELESS_NAME = "Sets if the mod is being useless or not";
 	public static final String USELESS_DIMENSION_ID_NAME = "Sets the ID of the Useless Dimension";
 	public static final String USELESS_BIOME_ID_NAME = "Sets the ID of the Useless Biome";
-	public static final String DURABILITY_NAME = "The durability of all tools in the mod";
-	public static final String ENCHANTABILITY_NAME = "The enchantibility of all tools in the mod"; 
-	public static final String EFFICIENCY_NAME = "The efficiency of all tools in the mod";
-	public static final String FOOD_AMOUNT_NAME = "How much food Useless Food provides"; 
-	public static final String DAVE_HEALTH_NAME = "How much health points Dave has";
+	public static final String DURABILITY_NAME = "Tools durability level";
+	public static final String ENCHANTABILITY_NAME = "Tools enchantibility"; 
+	public static final String EFFICIENCY_NAME = "Tools efficiency";
+	public static final String FOOD_AMOUNT_NAME = "Useless Food efficiency"; 
+	public static final String DAVE_HEALTH_NAME = "Dave's HP amount";
 	
 	public static final String MAIN = Configuration.CATEGORY_GENERAL + Configuration.CATEGORY_SPLITTER + "Main";
 	public static final String BALANCE = Configuration.CATEGORY_GENERAL + Configuration.CATEGORY_SPLITTER + "Balance";
