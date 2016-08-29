@@ -28,7 +28,6 @@ import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenFlowers;
 import net.minecraft.world.gen.feature.WorldGenLiquids;
 import net.minecraft.world.gen.feature.WorldGenMinable;
-import net.minecraft.world.gen.feature.WorldGenPumpkin;
 import net.minecraft.world.gen.feature.WorldGenReed;
 import net.minecraft.world.gen.feature.WorldGenSand;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -403,15 +402,6 @@ public class ChunkProviderUseless implements IChunkProvider {
             l = randomGenerator.nextInt(16) + 8;
             i1 = nextInt(currentWorld.getHeight(field_180294_c.add(k, 0, l)).getY() * 2);
              reedGen.generate(currentWorld, randomGenerator, field_180294_c.add(k, i1, l));
-        }
-
-        doGen = TerrainGen.decorate(currentWorld, randomGenerator, field_180294_c, PUMPKIN);
-        if (doGen &&  randomGenerator.nextInt(32) == 0)
-        {
-            j = randomGenerator.nextInt(16) + 8;
-            k = randomGenerator.nextInt(16) + 8;
-            l = nextInt(currentWorld.getHeight(field_180294_c.add(j, 0, k)).getY() * 2);
-            (new WorldGenPumpkin()).generate(currentWorld, randomGenerator, field_180294_c.add(j, l, k));
         }
 
         if (generateLakes)

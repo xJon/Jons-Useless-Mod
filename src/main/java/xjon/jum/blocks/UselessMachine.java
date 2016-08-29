@@ -57,9 +57,9 @@ public class UselessMachine extends Block {
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
 	{		
-		if(!UselessConfiguration.isUseless)		
+		if (!worldIn.isRemote && playerIn instanceof EntityPlayerMP)		
 		{
-			if(playerIn instanceof EntityPlayerMP)
+			if (!UselessConfiguration.isUseless)
 			{
 				EntityPlayerMP playerMP = (EntityPlayerMP) playerIn;
 					if (worldIn.provider.getDimensionId() != UselessConfiguration.uselessDimensionId) {
@@ -101,13 +101,14 @@ public class UselessMachine extends Block {
 						  Log.error("No coordinates were found, teleporting player back to spawn point");
 					  }
 			}
+			else
+			{
+				worldIn.playSoundToNearExcept(playerIn, "jum:nope", 1.0F, 1.0F);
+				playerIn.playSound("jum:nope", 1.0F, 1.0F);
+			}
+			return true;
 		}
-		else
-		{
-			worldIn.playSoundToNearExcept(playerIn, "jum:nope", 1.0F, 1.0F);
-			playerIn.playSound("jum:nope", 1.0F, 1.0F);
-		}
-		return true;
+		return false;
 	}
 	
 	 public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)

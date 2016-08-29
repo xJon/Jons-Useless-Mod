@@ -31,7 +31,7 @@ public class UselessEntities {
 		
 		EntityRegistry.registerModEntity(entityClass, entityName, 1, JumCore.instance, 64, 1, true);
 		
-		EntityRegistry.addSpawn(entityClass, 5, 1, 1, EnumCreatureType.CREATURE, allBiomes);
+		EntityRegistry.addSpawn(entityClass, 2, 1, 1, EnumCreatureType.CREATURE, allBiomes);
 		
 		createEgg(solidColor, spotColor);
 	}

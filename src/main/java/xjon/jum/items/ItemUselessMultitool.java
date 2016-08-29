@@ -72,7 +72,15 @@ public class ItemUselessMultitool extends ItemTool {
 			ItemStack equipped = player.getCurrentEquippedItem();
 			if (equipped == stack)
 				{
-					player.addPotionEffect(new PotionEffect(Potion.digSpeed.id, 5, 0));
+				if (player.getActivePotionEffect(Potion.regeneration) == null)
+				{
+					player.addPotionEffect(new PotionEffect(Potion.digSpeed.id, 200, 0));
+				}
+				if (worldIn.getWorldTime() % 50 > 0)
+				{
+					return;
+				}
+				player.addPotionEffect(new PotionEffect(Potion.digSpeed.id, 200, 0));
 				}
 		
 		}

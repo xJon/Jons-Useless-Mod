@@ -3,6 +3,7 @@ package xjon.jum.entity.mob;
 import java.util.Random;
 
 import xjon.jum.init.UselessItems;
+import xjon.jum.util.UselessConfiguration;
 import net.minecraft.block.Block;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
@@ -60,7 +61,7 @@ public class EntityUselessDave extends EntityMob {
 	{
 		super.applyEntityAttributes();
 		
-		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(36.0F);
+		this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(UselessConfiguration.daveHealth);
 		this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(36.0D);
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.23000000417232513D);
         this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(5.0D);
