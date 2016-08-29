@@ -22,7 +22,7 @@ public class UselessConfiguration {
 	public static int ENCHANTABILITY_DEFAULT = 100;
 	public static int EFFICIENCY_DEFAULT = 10;
 	public static int FOOD_AMOUNT_DEFAULT = 8;
-	public static int DAVE_HEALTH_DEFAULT = 36;
+	public static int DAVE_HEALTH_DEFAULT = 28;
 	
 	public static final String IS_USELESS_NAME = "Sets if the mod is being useless or not";
 	public static final String USELESS_DIMENSION_ID_NAME = "Sets the ID of the Useless Dimension";
