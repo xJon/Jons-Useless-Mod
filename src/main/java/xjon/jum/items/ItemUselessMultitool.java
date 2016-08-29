@@ -26,6 +26,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import xjon.jum.util.UselessConfiguration;
 
 
 public class ItemUselessMultitool extends ItemTool {
@@ -38,6 +39,23 @@ public class ItemUselessMultitool extends ItemTool {
 	{
 		super(4.0F, -1.5F, material, effectiveBlocks);
 		this.setMaxDamage(3141);
+	}
+	
+	@Override
+	public boolean canHarvestBlock(IBlockState blockIn)
+	{
+		if(!UselessConfiguration.isUseless)
+		{
+			if (blockIn.getBlock() == Blocks.BEDROCK)
+			{
+				return false;
+			}
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 	
 	@Override

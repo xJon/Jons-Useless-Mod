@@ -8,6 +8,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.BiomeProviderSingle;
+import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
@@ -76,6 +77,11 @@ public class WorldProviderUseless extends WorldProvider {
 		return 0;
 	}
 	
+	@Override
+	public boolean canDoRainSnowIce(Chunk chunk) {
+		return false;
+	}
+		
 	@Override
 	public String getWelcomeMessage() {
 		return "You are wasting your time.";

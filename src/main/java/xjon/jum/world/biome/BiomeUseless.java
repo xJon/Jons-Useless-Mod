@@ -63,6 +63,11 @@ public class BiomeUseless extends Biome {
 	}
 	
 	@Override
+	public boolean canRain() {
+		return false;
+	}
+	
+	@Override
 	public Class<? extends Biome> getBiomeClass() {
 		return BiomeUseless.class;
 	}
