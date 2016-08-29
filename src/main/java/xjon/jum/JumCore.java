@@ -23,6 +23,7 @@ import xjon.jum.init.UselessDimensions;
 import xjon.jum.init.UselessEntities;
 import xjon.jum.init.UselessItems;
 import xjon.jum.init.UselessRecipes;
+import xjon.jum.init.UselessSounds;
 import xjon.jum.init.UselessTileEntities;
 import xjon.jum.network.NetworkHandler;
 import xjon.jum.proxy.CommonProxy;
@@ -60,7 +61,8 @@ public class JumCore {
 		UselessEntities.init();
 		UselessBiomes.init();
 		UselessDimensions.init();
-		NetworkHandler.init();
+		UselessSounds.init();
+		//NetworkHandler.init();
 		MinecraftForge.EVENT_BUS.register(new PlayerEvents());
 		MinecraftForge.EVENT_BUS.register(new JoinWorldEvents());
 		MinecraftForge.EVENT_BUS.register(new FOVEvents());

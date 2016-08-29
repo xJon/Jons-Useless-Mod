@@ -35,6 +35,7 @@ public class UselessMachine extends Block {
 	public static final PropertyDirection FACING = BlockHorizontal.FACING;
 	private boolean flag; 
 	public static int x1, y1, z1;
+	public static SoundEvent SND_NOPE = new SoundEvent(new ResourceLocation(Reference.MOD_ID, "nope"));
 	
 	public UselessMachine(Material material) {
 		super(material);
@@ -95,7 +96,7 @@ public class UselessMachine extends Block {
 			else
 			{
 				EntityPlayerMP playerMP = (EntityPlayerMP) playerIn;
-				playerMP.worldObj.playSound(playerIn, pos, new SoundEvent(new ResourceLocation(Reference.MOD_ID, "nope")), SoundCategory.AMBIENT, 1.0F, 1.0F);
+				playerMP.worldObj.playSound(playerIn, pos, SND_NOPE, SoundCategory.AMBIENT, 1.0F, 1.0F);
 			}
 			return true;
 		}

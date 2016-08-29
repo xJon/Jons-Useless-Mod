@@ -23,9 +23,14 @@ import net.minecraft.world.World;
 import xjon.jum.init.UselessItems;
 import xjon.jum.util.Reference;
 import xjon.jum.util.UselessConfiguration;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class EntityUselessDave extends EntityMob {
-
+	
+	public static SoundEvent SND_HI = new SoundEvent(new ResourceLocation(Reference.MOD_ID, "hidave"));
+	public static SoundEvent SND_HIT = new SoundEvent(new ResourceLocation(Reference.MOD_ID, "hitdave"));
+    public static SoundEvent SND_DEATH = new SoundEvent(new ResourceLocation(Reference.MOD_ID, "deathdave"));
+    
 	public EntityUselessDave(World worldIn) {
 		super(worldIn);
 		this.tasks.addTask(0, new EntityAISwimming(this));
@@ -41,6 +46,7 @@ public class EntityUselessDave extends EntityMob {
         this.applyEntityAI();
         this.setSize(0.6F, 1.95F);
     }
+
 	
 	protected void applyEntityAI()
     {
@@ -65,29 +71,29 @@ public class EntityUselessDave extends EntityMob {
 	@Override
 	protected SoundEvent getAmbientSound()
     {
-        return new SoundEvent(new ResourceLocation(Reference.MOD_ID, "hidave"));
+        return SND_HI;
     }
 	
 	@Override
 	protected SoundEvent getHurtSound()
 	{
-		return new SoundEvent(new ResourceLocation(Reference.MOD_ID, "hitdave"));
+		return SND_HIT;
 	}
 	
 	@Override
 	protected SoundEvent getDeathSound()
     {
-		return new SoundEvent(new ResourceLocation(Reference.MOD_ID, "deathdave"));
+		return SND_DEATH;
     }
 	
 	@Override
 	protected void playHurtSound(DamageSource source) {
-		playSound(new SoundEvent(new ResourceLocation(Reference.MOD_ID, "hitdave")), 0.75F, 1.0F);;
+		playSound(SND_HIT, 0.75F, 1.0F);;
 	}
 	
 	@Override
 	public void playLivingSound() {
-		playSound(new SoundEvent(new ResourceLocation(Reference.MOD_ID, "hidave")), 0.37F, 1.0F);;
+		playSound(SND_HI, 0.37F, 1.0F);;
 	}
 		
 	protected void playStepSound(BlockPos p_180429_1_, Block p_180429_2_)
