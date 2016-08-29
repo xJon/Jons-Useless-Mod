@@ -15,6 +15,7 @@ import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
@@ -61,21 +62,34 @@ public class EntityUselessDave extends EntityMob {
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(5.0D);
 	}
 	
+	@Override
 	protected SoundEvent getAmbientSound()
     {
         return new SoundEvent(new ResourceLocation(Reference.MOD_ID, "hidave"));
     }
 	
+	@Override
 	protected SoundEvent getHurtSound()
 	{
 		return new SoundEvent(new ResourceLocation(Reference.MOD_ID, "hitdave"));
 	}
 	
+	@Override
 	protected SoundEvent getDeathSound()
     {
 		return new SoundEvent(new ResourceLocation(Reference.MOD_ID, "deathdave"));
     }
 	
+	@Override
+	protected void playHurtSound(DamageSource source) {
+		playSound(new SoundEvent(new ResourceLocation(Reference.MOD_ID, "hitdave")), 0.75F, 1.0F);;
+	}
+	
+	@Override
+	public void playLivingSound() {
+		playSound(new SoundEvent(new ResourceLocation(Reference.MOD_ID, "hidave")), 0.37F, 1.0F);;
+	}
+		
 	protected void playStepSound(BlockPos p_180429_1_, Block p_180429_2_)
 	{
         this.playSound(SoundEvents.ENTITY_ZOMBIE_STEP, 0.15F, 1.0F);

@@ -1,5 +1,5 @@
 To Fix:
-- Sounds on server
+- Dave plays ambient sounds on dedicated server?
 
 To Implement:
-- No rain in Useless Dimension
+- Ideas.
