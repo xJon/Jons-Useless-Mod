@@ -31,7 +31,7 @@ import xjon.jum.util.UselessConfiguration;
 import xjon.jum.util.UselessTab;
 import xjon.jum.world.gen.UselessGeneration;
 
-@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION, guiFactory = Reference.GUI_FACTORY)
+@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION, guiFactory = Reference.GUI_FACTORY, acceptedMinecraftVersions = Reference.ACCEPTED_VERSIONS)
 public class JumCore {
 
 	@SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.SERVER_PROXY_CLASS)
